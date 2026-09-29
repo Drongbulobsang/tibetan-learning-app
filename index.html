@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tibetan Alphabets Learning Tool</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+Tibetan:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Fredoka', sans-serif; }
+    .tibetan-font { font-family: 'Noto Sans Tibetan', serif; }
+  </style>
+</head>
+<body class="bg-amber-50 min-h-screen text-slate-800">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-red-900 via-red-800 to-indigo-950 text-white p-6 shadow-md border-b-4 border-yellow-400">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-4xl">🦁</span>
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold tracking-wide">Tibetan Alphabets</h1>
+          <p class="text-yellow-300 text-sm">Interactive Audio & Practice Tool</p>
+        </div>
+      </div>
+      <div class="bg-yellow-400 text-red-950 px-4 py-2 rounded-full font-bold shadow text-sm">
+        ⭐ Learn & Practice 30 Consonants
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto p-4 md:p-6">
+    <!-- Grid View -->
+    <div id="alphabet-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+      <!-- Cards rendered dynamically via JavaScript -->
+    </div>
+  </main>
+
+  <script>
+    // Audio Synthesis Setup using Web Audio API
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(freq) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.8);
+    }
+
+    // 30 Tibetan Alphabets Data
+    const tibetanLetters = [
+      { char: "ཀ", group: 1, freq: 261.63 }, { char: "ཁ", group: 1, freq: 293.66 }, { char: "ག", group: 1, freq: 329.63 }, { char: "ང", group: 1, freq: 349.23 },
+      { char: "ཅ", group: 2, freq: 392.00 }, { char: "ཆ", group: 2, freq: 440.00 }, { char: "ཇ", group: 2, freq: 493.88 }, { char: "ཉ", group: 2, freq: 523.25 },
+      { char: "ཏ", group: 3, freq: 587.33 }, { char: "ཐ", group: 3, freq: 659.25 }, { char: "ད", group: 3, freq: 698.46 }, { char: "ན", group: 3, freq: 783.99 },
+      { char: "པ", group: 4, freq: 880.00 }, { char: "ཕ", group: 4, freq: 987.77 }, { char: "བ", group: 4, freq: 1046.50 }, { char: "མ", group: 4, freq: 1174.66 },
+      { char: "ཙ", group: 5, freq: 1318.51 }, { char: "ཚ", group: 5, freq: 1396.91 }, { char: "ཛ", group: 5, freq: 1567.98 }, { char: "ཝ", group: 5, freq: 1760.00 },
+      { char: "ཞ", group: 6, freq: 261.63 }, { char: "ཟ", group: 6, freq: 293.66 }, { char: "འ", group: 6, freq: 329.63 }, { char: "ཡ", group: 6, freq: 349.23 },
+      { char: "ར", group: 7, freq: 392.00 }, { char: "ལ", group: 7, freq: 440.00 }, { char: "ཤ", group: 7, freq: 493.88 }, { char: "ས", group: 7, freq: 523.25 },
+      { char: "ཧ", group: 8, freq: 587.33 }, { char: "ཨ", group: 8, freq: 659.25 }
+    ];
+
+    // Render Cards
+    const grid = document.getElementById('alphabet-grid');
+    tibetanLetters.forEach(item => {
+      const card = document.createElement('div');
+      card.className = "bg-white border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center cursor-pointer transform hover:-translate-y-1 active:scale-95";
+      card.onclick = () => playSound(item.freq);
+      card.innerHTML = `
+        <span class="tibetan-font text-5xl font-bold text-red-900 select-none">${item.char}</span>
+        <button class="mt-4 text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1.5 rounded-full flex items-center gap-1 hover:bg-amber-200">
+          🔊 Listen
+        </button>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
