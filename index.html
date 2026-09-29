@@ -8,23 +8,22 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Fredoka for friendly kid UI, Noto Sans Tibetan for accurate script rendering -->
+  <!-- Google Fonts: Fredoka for kid UI & Jomolhari for authentic classical Tibetan script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+Tibetan:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jomolhari&display=swap" rel="stylesheet">
   
   <!-- Canvas Confetti for Quiz Celebrations -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
-    /* Custom Styling for Kid-Friendly Tibetan Learning App */
     body {
       font-family: 'Fredoka', cursive, sans-serif;
       user-select: none;
       -webkit-user-select: none;
     }
     .tibetan-font {
-      font-family: 'Noto Sans Tibetan', serif;
+      font-family: 'Jomolhari', 'Noto Sans Tibetan', serif;
     }
     /* Custom scrollbar styled with warm gold accents */
     ::-webkit-scrollbar {
@@ -55,11 +54,18 @@
     .mascot-float {
       animation: gentle-float 4s ease-in-out infinite;
     }
+
+    /* Custom SVG Drawing Cursors for Magic Pen */
+    .cursor-pen {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>') 0 22, crosshair !important;
+    }
+    .cursor-eraser {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l12-12a1 1 0 0 1 1.4 0l4.3 4.3a1 1 0 0 1 0 1.4l-12 12a1 1 0 0 1-1.4 0Z"/><path d="M22 21H7"/><path d="m5 11 4.5 4.5"/></svg>') 0 22, pointer !important;
+    }
   </style>
 </head>
 <body class="bg-amber-50 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-amber-200">
 
-  <!-- Navigation Header (Tibet World Palette & Kid Styling) -->
   <header class="bg-gradient-to-r from-red-900 via-amber-800 to-indigo-950 text-white shadow-lg sticky top-0 z-30 border-b-4 border-yellow-400">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       
@@ -73,7 +79,7 @@
             <span class="tibetan-font text-yellow-300 text-2xl sm:text-3xl">Bod-Yig</span>
             <span>Tibetan Tool</span>
           </h1>
-          <p class="text-xs text-amber-200">Pure Script • Interactive Audio & Games</p>
+          <p class="text-xs text-amber-200">Jomolhari Script • Audio & Games</p>
         </div>
       </div>
 
@@ -114,7 +120,7 @@
           <span class="text-xs bg-amber-200 text-amber-900 font-semibold px-2.5 py-0.5 rounded-full">Guide</span>
         </div>
         <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium mt-0.5">
-          Welcome! Tap any letter card to listen to its pure Tibetan sound!
+          Welcome! Explore all 30 consonants rendered in beautiful Jomolhari Tibetan font!
         </p>
       </div>
     </div>
@@ -129,17 +135,18 @@
       <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
         <div class="flex items-center gap-2">
           <span class="text-sm font-bold text-slate-700">Display Layout:</span>
-          <button id="btn-group-all" onclick="filterGroup('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow">All 30 Letters</button>
-          <button id="btn-group-row" onclick="filterGroup('grouped')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 hover:bg-amber-200">Grouped Rows</button>
+          <span class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200">
+            Traditional Rows (4 Letters per Line)
+          </span>
         </div>
         <div class="text-xs text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-          Pure Tibetan Script • Clean View
+          Jomolhari Font • Clean View
         </div>
       </div>
 
-      <!-- Dynamic Grid Container -->
-      <div id="grid-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-        <!-- Injected via JavaScript -->
+      <!-- Dynamic Grid Container for Row-by-Row Lines -->
+      <div id="grid-container" class="space-y-4 sm:space-y-6">
+        <!-- Injected via JavaScript in 8 horizontal row lines -->
       </div>
     </section>
 
@@ -221,17 +228,36 @@
             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
               <span>🎨</span> Magic Pen Canvas
             </h2>
-            <p class="text-xs text-slate-500">Trace and practice writing pure Tibetan letters!</p>
+            <p class="text-xs text-slate-500">Trace and practice writing Tibetan letters in Jomolhari script!</p>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-100 text-amber-900 font-bold rounded-xl text-xs hover:bg-amber-200">◀ Prev</button>
-            <span id="drawing-char-display" class="tibetan-font text-3xl font-bold text-red-900 px-3">ཀ</span>
-            <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-100 text-amber-900 font-bold rounded-xl text-xs hover:bg-amber-200">Next ▶</button>
+          <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
+            <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-sm hover:bg-amber-300 transition">◀ Prev</button>
+            <span id="drawing-char-display" class="tibetan-font text-5xl sm:text-6xl font-extrabold text-red-900 px-4 drop-shadow-sm">ཀ</span>
+            <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-sm hover:bg-amber-300 transition">Next ▶</button>
           </div>
         </div>
 
-        <!-- Crayon Controls Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3 rounded-2xl border border-amber-200">
+        <!-- Tool Selection & Crayon Controls Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
+          
+          <!-- Pen Tool Options -->
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-bold text-slate-700 mr-1">Pen Tools:</span>
+            <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1">
+              ✏️ Pen
+            </button>
+            <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
+              🖍️ Marker
+            </button>
+            <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
+              ✨ Glow Pen
+            </button>
+            <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
+              🧹 Eraser
+            </button>
+          </div>
+
+          <!-- Color Palette -->
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-slate-700">Colors:</span>
             <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
@@ -241,30 +267,32 @@
             <button onclick="setPenColor('#1e293b')" class="w-7 h-7 rounded-full bg-slate-800 border-2 border-white shadow ring-2 ring-slate-700 hover:scale-110 transition"></button>
           </div>
 
+          <!-- Stroke Size & Clear -->
           <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-slate-700">Brush Size:</span>
-            <input id="pen-size" type="range" min="4" max="24" value="10" class="w-20 accent-amber-500 cursor-pointer">
-            <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs font-bold transition">
+            <span class="text-xs font-bold text-slate-700">Size:</span>
+            <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
+            <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs font-bold transition flex items-center gap-1">
               🗑️ Clear
             </button>
           </div>
+
         </div>
 
-        <!-- Canvas Box with Perfectly Centered Consonant Template -->
-        <div class="relative w-full aspect-square max-w-md mx-auto bg-amber-50/50 rounded-2xl border-4 border-dashed border-amber-300 overflow-hidden shadow-inner flex items-center justify-center">
+        <!-- Canvas Box with Centered Consonant Template -->
+        <div class="relative w-full aspect-square max-w-lg mx-auto bg-amber-50/50 rounded-3xl border-4 border-dashed border-amber-300 overflow-hidden shadow-inner flex items-center justify-center">
           
-          <!-- Perfectly Centered Template Character -->
-          <span id="canvas-guide-text" class="tibetan-font text-[180px] font-bold text-amber-200/60 select-none pointer-events-none absolute inset-0 flex items-center justify-center -translate-y-2">
+          <!-- Perfectly Centered Jomolhari Template Character -->
+          <span id="canvas-guide-text" class="tibetan-font text-[220px] sm:text-[280px] font-extrabold text-amber-200/80 select-none pointer-events-none absolute inset-0 flex items-center justify-center leading-none text-center transform -translate-y-4">
             ཀ
           </span>
           
           <!-- Interactive Drawing Surface -->
-          <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-crosshair touch-none"></canvas>
+          <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-pen touch-none"></canvas>
         </div>
 
         <div class="flex justify-between items-center text-xs text-slate-500 pt-2">
-          <span>Tip: Trace directly over the light yellow character.</span>
-          <button onclick="playCanvasAudio()" class="px-3.5 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1">
+          <span>Tip: Select a pen tool and trace directly over the large guide character!</span>
+          <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1">
             🔊 Play Audio
           </button>
         </div>
@@ -287,7 +315,7 @@
       <div class="text-center space-y-2">
         <span id="modal-char" class="tibetan-font text-9xl font-bold text-red-900 block my-2 select-none">ཀ</span>
         <div class="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-200">
-          Pure Tibetan Consonant
+          Jomolhari Consonant
         </div>
       </div>
 
@@ -306,52 +334,49 @@
   </div>
 
   <footer class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs text-amber-900 font-medium">
-    Tibetan Alphabets Audio Tool • Pure Script Mode for Children & Beginners
+    Tibetan Alphabets Audio Tool • Jomolhari Script Mode
   </footer>
 
   <script>
-    /* ==========================================================================
-       1. DATA DEFINITIONS (30 Tibetan Consonants - Pure Tibetan Script)
-       ========================================================================== */
     const TIBETAN_LETTERS = [
       // Row 1
-      { id: 0, char: "ཀ", row: 1, freq: 261.63 },
-      { id: 1, char: "ཁ", row: 1, freq: 293.66 },
-      { id: 2, char: "ག", row: 1, freq: 329.63 },
-      { id: 3, char: "ང", row: 1, freq: 349.23 },
+      { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ka.mp3" },
+      { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/kha.mp3" },
+      { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ga.mp3" },
+      { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/nga.mp3" },
       // Row 2
-      { id: 4, char: "ཅ", row: 2, freq: 392.00 },
-      { id: 5, char: "ཆ", row: 2, freq: 440.00 },
-      { id: 6, char: "ཇ", row: 2, freq: 493.88 },
-      { id: 7, char: "ཉ", row: 2, freq: 523.25 },
+      { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ca.mp3" },
+      { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/cha.mp3" },
+      { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ja.mp3" },
+      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/nya.mp3" },
       // Row 3
-      { id: 8, char: "ཏ", row: 3, freq: 587.33 },
-      { id: 9, char: "ཐ", row: 3, freq: 659.25 },
-      { id: 10, char: "ད", row: 3, freq: 698.46 },
-      { id: 11, char: "ན", row: 3, freq: 783.99 },
+      { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ta.mp3" },
+      { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tha.mp3" },
+      { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/da.mp3" },
+      { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/na.mp3" },
       // Row 4
-      { id: 12, char: "པ", row: 4, freq: 880.00 },
-      { id: 13, char: "ཕ", row: 4, freq: 987.77 },
-      { id: 14, char: "བ", row: 4, freq: 1046.50 },
-      { id: 15, char: "མ", row: 4, freq: 1174.66 },
+      { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/pa.mp3" },
+      { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/pha.mp3" },
+      { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ba.mp3" },
+      { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ma.mp3" },
       // Row 5
-      { id: 16, char: "ཙ", row: 5, freq: 1318.51 },
-      { id: 17, char: "ཚ", row: 5, freq: 1396.91 },
-      { id: 18, char: "ཛ", row: 5, freq: 1567.98 },
-      { id: 19, char: "ཝ", row: 5, freq: 1760.00 },
+      { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tsa.mp3" },
+      { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tsha.mp3" },
+      { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/dza.mp3" },
+      { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/wa.mp3" },
       // Row 6
-      { id: 20, char: "ཞ", row: 6, freq: 261.63 },
-      { id: 21, char: "ཟ", row: 6, freq: 293.66 },
-      { id: 22, char: "འ", row: 6, freq: 329.63 },
-      { id: 23, char: "ཡ", row: 6, freq: 349.23 },
+      { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/zha.mp3" },
+      { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/za.mp3" },
+      { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/a.mp3" },
+      { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ya.mp3" },
       // Row 7
-      { id: 24, char: "ར", row: 7, freq: 392.00 },
-      { id: 25, char: "ལ", row: 7, freq: 440.00 },
-      { id: 26, char: "ཤ", row: 7, freq: 493.88 },
-      { id: 27, char: "ས", row: 7, freq: 523.25 },
+      { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ra.mp3" },
+      { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/la.mp3" },
+      { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/sha.mp3" },
+      { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/sa.mp3" },
       // Row 8
-      { id: 28, char: "ཧ", row: 8, freq: 587.33 },
-      { id: 29, char: "ཨ", row: 8, freq: 659.25 }
+      { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ha.mp3" },
+      { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/a_high.mp3" }
     ];
 
     /* State Variables */
@@ -362,7 +387,7 @@
     let quizTarget = null;
     let quizScore = 0;
 
-    /* Web Audio Synthesizer */
+    /* Web Audio Synthesizer & MP3 Player */
     let audioCtx = null;
 
     function initAudio() {
@@ -392,16 +417,25 @@
         osc.start();
         osc.stop(audioCtx.currentTime + 0.9);
       } catch(e) {
-        console.log("Audio error", e);
+        console.log("Audio synthesis error", e);
       }
     }
 
     function playSound(index) {
       const item = TIBETAN_LETTERS[index];
-      if (item) {
+      if (!item) return;
+
+      if (item.audioUrl && !item.audioUrl.includes('YOUR_USERNAME')) {
+        const audio = new Audio(item.audioUrl);
+        audio.play().catch(err => {
+          console.warn("Audio file playback failed, using tone synthesis instead", err);
+          playCharacterTone(item.freq);
+        });
+      } else {
         playCharacterTone(item.freq);
-        mascotSpeak(`Playing sound for Tibetan consonant ${item.char}`);
       }
+
+      mascotSpeak(`Playing sound for Tibetan consonant ${item.char}`);
     }
 
     function mascotSpeak(msg) {
@@ -416,24 +450,18 @@
       document.getElementById('star-count').innerText = starCount;
     }
 
-    /* ==========================================================================
-       2. TAB NAVIGATION LOGIC
-       ========================================================================== */
     function switchTab(tab) {
-      // Hide all views
       document.getElementById('view-grid').classList.add('hidden');
       document.getElementById('view-flashcards').classList.add('hidden');
       document.getElementById('view-quiz').classList.add('hidden');
       document.getElementById('view-drawing').classList.add('hidden');
 
-      // Reset button navigation highlight
       const navBtns = ['nav-grid', 'nav-flashcards', 'nav-quiz', 'nav-drawing'];
       navBtns.forEach(id => {
         const btn = document.getElementById(id);
         btn.className = "px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60";
       });
 
-      // Highlight active button & view
       const activeBtn = document.getElementById(`nav-${tab}`);
       if (activeBtn) {
         activeBtn.className = "px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-yellow-400 text-red-950 shadow";
@@ -444,7 +472,6 @@
         activeView.classList.remove('hidden');
       }
 
-      // View Initializers
       if (tab === 'quiz') {
         initQuiz();
       } else if (tab === 'drawing') {
@@ -454,45 +481,39 @@
       }
     }
 
-    /* ==========================================================================
-       3. ALPHABET GRID VIEW RENDERING
-       ========================================================================== */
-    function renderGrid(mode = 'all') {
+    function renderGrid() {
       const container = document.getElementById('grid-container');
       container.innerHTML = '';
 
-      if (mode === 'all') {
-        container.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4";
-        TIBETAN_LETTERS.forEach(item => {
-          container.appendChild(createLetterCard(item));
+      // Render all 8 traditional Tibetan rows, placing 4 letters per line in each row
+      for (let r = 1; r <= 8; r++) {
+        const rowItems = TIBETAN_LETTERS.filter(i => i.row === r);
+        const rowBox = document.createElement('div');
+        rowBox.className = "bg-white p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-sm space-y-2";
+        
+        // Strict 4-column layout to guarantee four letters per line
+        const colsClass = "grid grid-cols-4 gap-2 sm:gap-4";
+
+        rowBox.innerHTML = `
+          <div class="text-xs font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center">
+            <span>Row ${r}</span>
+            <span class="text-amber-700 font-normal">${rowItems.length} Consonants</span>
+          </div>
+          <div class="${colsClass}"></div>
+        `;
+
+        const subGrid = rowBox.querySelector('.grid');
+        rowItems.forEach(item => {
+          subGrid.appendChild(createLetterCard(item));
         });
-      } else {
-        // Grouped by 8 traditional rows
-        container.className = "space-y-6 col-span-full";
-        for (let r = 1; r <= 8; r++) {
-          const rowItems = TIBETAN_LETTERS.filter(i => i.row === r);
-          const rowBox = document.createElement('div');
-          rowBox.className = "bg-white p-4 rounded-2xl border border-amber-200 shadow-sm space-y-3";
-          
-          rowBox.innerHTML = `
-            <div class="text-xs font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center">
-              <span>Row ${r}</span>
-              <span class="text-amber-700 font-normal">${rowItems.length} Consonants</span>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
-          `;
-          const subGrid = rowBox.querySelector('.grid');
-          rowItems.forEach(item => {
-            subGrid.appendChild(createLetterCard(item));
-          });
-          container.appendChild(rowBox);
-        }
+
+        container.appendChild(rowBox);
       }
     }
 
     function createLetterCard(item) {
       const card = document.createElement('div');
-      card.className = "bg-white border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-4 sm:p-5 shadow-sm card-bounce flex flex-col items-center justify-between gap-3 cursor-pointer relative group";
+      card.className = "bg-amber-50/60 border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-2 sm:p-4 shadow-sm card-bounce flex flex-col items-center justify-between gap-1.5 sm:gap-3 cursor-pointer relative group";
       
       card.onclick = () => {
         playSound(item.id);
@@ -500,13 +521,13 @@
       };
 
       card.innerHTML = `
-        <span class="tibetan-font text-5xl sm:text-6xl font-bold text-red-900 select-none">${item.char}</span>
+        <span class="tibetan-font text-3xl sm:text-5xl font-bold text-red-900 select-none my-1 sm:my-2">${item.char}</span>
         
-        <div class="flex items-center gap-1.5 w-full pt-1">
-          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-xs font-bold flex items-center justify-center gap-1 transition">
-            🔊 Sound
+        <div class="flex items-center gap-1 w-full pt-1">
+          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-[10px] sm:text-xs font-bold flex items-center justify-center gap-0.5 transition">
+            🔊 <span class="hidden sm:inline">Sound</span>
           </button>
-          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition">
+          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-[10px] sm:text-xs font-bold transition">
             ✏️
           </button>
         </div>
@@ -514,21 +535,6 @@
       return card;
     }
 
-    function filterGroup(mode) {
-      document.getElementById('btn-group-all').className = mode === 'all' 
-        ? "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow"
-        : "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 hover:bg-amber-200";
-
-      document.getElementById('btn-group-row').className = mode === 'grouped' 
-        ? "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow"
-        : "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-amber-100 text-amber-900 hover:bg-amber-200";
-
-      renderGrid(mode);
-    }
-
-    /* ==========================================================================
-       4. FLASHCARDS LOGIC
-       ========================================================================== */
     function updateFlashcardView() {
       const item = TIBETAN_LETTERS[currentFlashIndex];
       document.getElementById('flash-index-badge').innerText = `${currentFlashIndex + 1} / 30`;
@@ -551,15 +557,10 @@
       speakCurrentFlashcard();
     }
 
-    /* ==========================================================================
-       5. EAR TRAINING QUIZ LOGIC
-       ========================================================================== */
     function initQuiz() {
-      // Pick random target character
       const randomIndex = Math.floor(Math.random() * TIBETAN_LETTERS.length);
       quizTarget = TIBETAN_LETTERS[randomIndex];
 
-      // Build 4 random choices including target
       const choices = [quizTarget];
       while (choices.length < 4) {
         const rand = TIBETAN_LETTERS[Math.floor(Math.random() * TIBETAN_LETTERS.length)];
@@ -568,10 +569,8 @@
         }
       }
 
-      // Shuffle choices
       choices.sort(() => Math.random() - 0.5);
 
-      // Render Quiz Grid
       const grid = document.getElementById('quiz-options-grid');
       grid.innerHTML = '';
 
@@ -591,20 +590,18 @@
 
     function playQuizTargetAudio() {
       if (quizTarget) {
-        playCharacterTone(quizTarget.freq);
+        playSound(quizTarget.id);
       }
     }
 
     function handleQuizAnswer(selected, buttonElem) {
       if (selected.id === quizTarget.id) {
-        // Correct Choice
         buttonElem.classList.add('bg-emerald-100', 'border-emerald-500');
         quizScore += 10;
         addStars(5);
         document.getElementById('quiz-score').innerText = quizScore;
         mascotSpeak("🎉 Fantastic job! You found the correct Tibetan letter!");
 
-        // Confetti Burst
         try {
           confetti({
             particleCount: 50,
@@ -617,27 +614,24 @@
           initQuiz();
         }, 1200);
       } else {
-        // Incorrect Choice
         buttonElem.classList.add('bg-red-100', 'border-red-400');
         mascotSpeak("Oops! Tap the speaker and try again!");
         playSound(selected.id);
       }
     }
 
-    /* ==========================================================================
-       6. MAGIC PEN CANVAS LOGIC
-       ========================================================================== */
     let canvas, ctx;
     let isDrawing = false;
     let penColor = '#ef4444';
+    let penTool = 'pen';
 
     function setupCanvas() {
       canvas = document.getElementById('practice-canvas');
       if (!canvas) return;
 
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width || 350;
-      canvas.height = rect.height || 350;
+      canvas.width = rect.width || 400;
+      canvas.height = rect.height || 400;
 
       ctx = canvas.getContext('2d');
       ctx.lineCap = 'round';
@@ -645,13 +639,11 @@
 
       updateCanvasGuide();
 
-      // Mouse Events
       canvas.onmousedown = startDrawing;
       canvas.onmousemove = draw;
       canvas.onmouseup = stopDrawing;
       canvas.onmouseleave = stopDrawing;
 
-      // Touch Events for Mobile & Tablet
       canvas.ontouchstart = (e) => {
         e.preventDefault();
         const touch = e.touches[0];
@@ -663,6 +655,29 @@
         draw({ clientX: touch.clientX, clientY: touch.clientY });
       };
       canvas.ontouchend = stopDrawing;
+    }
+
+    function setPenTool(tool) {
+      penTool = tool;
+      const tools = ['pen', 'marker', 'glow', 'eraser'];
+      tools.forEach(t => {
+        const btn = document.getElementById(`tool-${t}`);
+        if (btn) {
+          if (t === tool) {
+            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1";
+          } else {
+            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200";
+          }
+        }
+      });
+
+      if (canvas) {
+        if (penTool === 'eraser') {
+          canvas.className = "w-full h-full relative z-10 cursor-eraser touch-none";
+        } else {
+          canvas.className = "w-full h-full relative z-10 cursor-pen touch-none";
+        }
+      }
     }
 
     function updateCanvasGuide() {
@@ -680,6 +695,9 @@
 
     function setPenColor(color) {
       penColor = color;
+      if (penTool === 'eraser') {
+        setPenTool('pen');
+      }
     }
 
     function getCanvasCoordinates(e) {
@@ -700,10 +718,33 @@
     function draw(e) {
       if (!isDrawing) return;
       const coords = getCanvasCoordinates(e);
-      const size = document.getElementById('pen-size').value;
+      const size = parseFloat(document.getElementById('pen-size').value);
 
       ctx.strokeStyle = penColor;
-      ctx.lineWidth = size;
+      ctx.shadowColor = penColor;
+
+      if (penTool === 'eraser') {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.lineWidth = size * 2.5;
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
+      } else if (penTool === 'marker') {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.lineWidth = size * 1.8;
+        ctx.globalAlpha = 0.55;
+        ctx.shadowBlur = 0;
+      } else if (penTool === 'glow') {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.lineWidth = size;
+        ctx.globalAlpha = 1.0;
+        ctx.shadowBlur = 16;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.lineWidth = size;
+        ctx.globalAlpha = 1.0;
+        ctx.shadowBlur = 0;
+      }
+
       ctx.lineTo(coords.x, coords.y);
       ctx.stroke();
     }
@@ -712,6 +753,9 @@
       if (isDrawing) {
         isDrawing = false;
         ctx.closePath();
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = 1.0;
+        ctx.shadowBlur = 0;
       }
     }
 
@@ -725,9 +769,6 @@
       playSound(currentDrawingIndex);
     }
 
-    /* ==========================================================================
-       7. MODAL LOGIC
-       ========================================================================== */
     function openModalForCharacter(index) {
       currentModalIndex = index;
       const item = TIBETAN_LETTERS[index];
@@ -750,13 +791,9 @@
       switchTab('drawing');
     }
 
-    /* ==========================================================================
-       8. INITIALIZATION ON LOAD
-       ========================================================================== */
     window.onload = function() {
-      renderGrid('all');
+      renderGrid();
       
-      // Auto adjust canvas on screen resize
       window.addEventListener('resize', () => {
         if (!document.getElementById('view-drawing').classList.contains('hidden')) {
           setupCanvas();
