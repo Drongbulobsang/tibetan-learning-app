@@ -75,23 +75,23 @@
             <span class="tibetan-font text-yellow-300 text-2xl sm:text-3xl">Bod-Yig</span>
             <span>Tibetan Learning Tool</span>
           </h1>
-          <p class="text-xs text-amber-200">Jomolhari Script • Textbook Illustrations & Audio</p>
+          <p class="text-xs text-amber-200">བོད་ཀྱི་གསལ་བྱེད་སུམ་ཅུ་སྦྱོང་དེབ།</p>
         </div>
       </div>
 
       <!-- Navigation -->
       <nav class="flex items-center gap-1 sm:gap-2 bg-black/30 p-1.5 rounded-2xl border border-white/10">
         <button id="nav-grid" onclick="switchTab('grid')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-yellow-400 text-red-950 shadow">
-          <span>🧩</span> Alphabet Grid
+          <span>🧩</span> གསལ་བྱེད་སུམ་ཅུ།
         </button>
         <button id="nav-flashcards" onclick="switchTab('flashcards')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎴</span> Flashcards
+          <span>🎴</span> བྱང་བུ།
         </button>
         <button id="nav-quiz" onclick="switchTab('quiz')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎯</span> Ear Quiz
+          <span>🎯</span> དྲི་རྩད།
         </button>
         <button id="nav-drawing" onclick="switchTab('drawing')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎨</span> Magic Pen
+          <span>🎨</span> ཡིག་གཟུགས་སྦྱོང་བརྡར།
         </button>
       </nav>
 
@@ -112,11 +112,11 @@
       </div>
       <div class="flex-1">
         <div class="flex items-center gap-2">
-          <span class="font-bold text-amber-900 text-sm sm:text-base">Tashi the Snow Lion</span>
+          <span class="font-bold text-amber-900 text-sm sm:text-base">ང་བཀྲ་ཤིས་ཡིན། </span>
           <span class="text-xs bg-amber-200 text-amber-900 font-semibold px-2.5 py-0.5 rounded-full">Guide</span>
         </div>
         <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium mt-0.5">
-          Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!
+          ང་ཚོས་མཉམ་དུ་གསལ་བྱེད་སུམ་ཅུ་སྦྱོང་ཡ།
         </p>
       </div>
     </div>
@@ -128,7 +128,7 @@
     <section id="view-grid" class="space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-bold text-slate-700">Display Layout:</span>
+          <span class="text-sm font-bold text-slate-700">ཀློག་ཨ།</span>
           <span class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200">
             Traditional Rows (4 Letters per Line)
           </span>
@@ -348,42 +348,42 @@
       All other characters have imgUrl: null.
     */
     const TIBETAN_LETTERS = [
-      // Row 1
+      // ཀ་སྡེ།
       { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: null },
       { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/kha.mp3", imgUrl: "images/kha.png" },
       { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: null },
       { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/nga.mp3", imgUrl: "images/nga.png" },
-      // Row 2
+      // ཅ་སྡེ།
       { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
       { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: null },
-      // Row 3
+      // ཏ་སྡེ།
       { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: null },
       { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: null },
       { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: null },
       { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/na.mp3", imgUrl: "images/na.png" },
-      // Row 4
+      // པ་སྡེ།
       { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: null },
       { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/pha.mp3", imgUrl: "images/pha.png" },
       { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/ba.mp3", imgUrl: "images/ba.png" },
       { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/ma.mp3", imgUrl: "images/ma.png" },
-      // Row 5
+      // ཙ་སྡེ།
       { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: null },
       { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: null },
       { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: null },
       { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/wa.mp3", imgUrl: "images/wa.png" },
-      // Row 6
+      // ཞ་སྡེ།
       { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: null },
       { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/za.mp3", imgUrl: "images/za.png" },
       { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: null },
       { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/ya.mp3", imgUrl: "images/ya.png" },
-      // Row 7
+      // ར་སྡེ།
       { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/ra.mp3", imgUrl: "images/ra.png" },
       { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "audio/la.mp3", imgUrl: "images/la.png" },
       { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/sha.mp3", imgUrl: "images/sha.png" },
       { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/sa.mp3", imgUrl: "images/sa.png" },
-      // Row 8
+      // ཧ་སྡེ།
       { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: null },
       { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: null }
     ];
