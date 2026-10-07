@@ -116,7 +116,7 @@
           <span class="text-xs bg-amber-200 text-amber-900 font-semibold px-2.5 py-0.5 rounded-full">Guide</span>
         </div>
         <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium mt-0.5">
-          Welcome! Explore all consonants with real textbook illustrations and audio recordings!
+          Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!
         </p>
       </div>
     </div>
@@ -145,7 +145,7 @@
     <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-4 space-y-6">
       <div class="text-center space-y-1">
         <h2 class="text-2xl font-bold text-amber-900">Flashcard Explorer</h2>
-        <p class="text-xs text-slate-600">Tap the card or sound button to listen, or view textbook illustrations!</p>
+        <p class="text-xs text-slate-600">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
       </div>
 
       <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
@@ -180,17 +180,24 @@
       </div>
     </section>
 
-    <!-- VIEW 3: Ear Training Audio Quiz -->
+    <!-- VIEW 3: Ear Training Audio Quiz (20 Questions Max) -->
     <section id="view-quiz" class="hidden flex flex-col items-center justify-center py-4 space-y-6 max-w-2xl mx-auto">
-      <div class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
+      
+      <!-- Quiz Active Box -->
+      <div id="quiz-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
         
         <div class="flex justify-between items-center border-b pb-3">
           <div class="flex items-center gap-2">
             <span class="text-2xl">🎯</span>
             <span class="font-bold text-slate-800 text-lg">Ear Training Quiz</span>
           </div>
-          <div class="bg-amber-100 text-amber-900 font-bold text-xs px-3.5 py-1 rounded-full border border-amber-200">
-            Score: <span id="quiz-score" class="text-sm font-extrabold text-red-900">0</span>
+          <div class="flex items-center gap-2">
+            <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-200">
+              Question 1 / 20
+            </span>
+            <div class="bg-yellow-100 text-yellow-900 font-bold text-xs px-3 py-1 rounded-full border border-yellow-300">
+              Score: <span id="quiz-score" class="text-sm font-extrabold text-red-900">0</span>
+            </div>
           </div>
         </div>
 
@@ -203,6 +210,26 @@
 
         <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
       </div>
+
+      <!-- Quiz Completed Summary Screen -->
+      <div id="quiz-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
+        <div class="text-6xl animate-bounce">🏆</div>
+        <div class="space-y-2">
+          <h2 class="text-3xl font-extrabold text-amber-900">Quiz Completed!</h2>
+          <p class="text-slate-600 text-sm font-medium">Great job practicing your Tibetan consonant listening skills!</p>
+        </div>
+
+        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
+          <div class="text-xs font-bold text-amber-800 uppercase tracking-wider">Final Score</div>
+          <div id="quiz-final-score" class="text-4xl font-black text-red-900">0 / 200</div>
+          <div id="quiz-accuracy-text" class="text-xs font-semibold text-slate-600">Accuracy: 0%</div>
+        </div>
+
+        <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-base transition card-bounce inline-flex items-center gap-2">
+          <span>🔄</span> Play Again
+        </button>
+      </div>
+
     </section>
 
     <!-- VIEW 4: Magic Pen Canvas -->
@@ -289,10 +316,10 @@
       <div class="text-center space-y-2">
         <span id="modal-char" class="tibetan-font text-8xl font-bold text-red-900 block select-none">ཀ</span>
         
-        <!-- Textbook Image inside Modal -->
+        <!-- Textbook Image inside Modal (only shown if imgUrl exists) -->
         <img id="modal-img" src="" alt="Material illustration" class="hidden max-h-36 mx-auto rounded-xl border border-amber-200 shadow">
 
-        <div class="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-200">
+        <div id="modal-badge" class="hidden inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-200">
           Pre-Primary Textbook Illustration
         </div>
       </div>
@@ -315,37 +342,41 @@
   </footer>
 
   <script>
-    /* Array containing audio paths and textbook images mapped to each character */
+    /* 
+      Array containing audio paths and textbook images mapped to each character.
+      Only: kha, nga, cha, ja, na, pha, ba, ma, wa, za, ya, ra, la, sha, sa have images.
+      All other characters have imgUrl: null.
+    */
     const TIBETAN_LETTERS = [
       // Row 1
-      { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: "images/ka.png" },
+      { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: null },
       { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/kha.mp3", imgUrl: "images/kha.png" },
-      { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: "images/ga.png" },
+      { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: null },
       { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/nga.mp3", imgUrl: "images/nga.png" },
       // Row 2
-      { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: "images/ca.png" },
+      { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
-      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: "images/nya.png" },
+      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: null },
       // Row 3
-      { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: "images/ta.png" },
-      { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: "images/tha.png" },
-      { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: "images/da.png" },
+      { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: null },
+      { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: null },
+      { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: null },
       { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/na.mp3", imgUrl: "images/na.png" },
       // Row 4
-      { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: "images/pa.png" },
+      { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: null },
       { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/pha.mp3", imgUrl: "images/pha.png" },
       { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/ba.mp3", imgUrl: "images/ba.png" },
       { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/ma.mp3", imgUrl: "images/ma.png" },
       // Row 5
-      { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: "images/tsa.png" },
-      { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: "images/tsha.png" },
-      { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: "images/dza.png" },
+      { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: null },
+      { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: null },
+      { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: null },
       { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/wa.mp3", imgUrl: "images/wa.png" },
       // Row 6
-      { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: "images/zha.png" },
+      { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: null },
       { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/za.mp3", imgUrl: "images/za.png" },
-      { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: "images/a.png" },
+      { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: null },
       { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/ya.mp3", imgUrl: "images/ya.png" },
       // Row 7
       { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/ra.mp3", imgUrl: "images/ra.png" },
@@ -353,16 +384,21 @@
       { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/sha.mp3", imgUrl: "images/sha.png" },
       { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/sa.mp3", imgUrl: "images/sa.png" },
       // Row 8
-      { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: "images/ha.png" },
-      { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: "images/a_high.png" }
+      { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: null },
+      { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: null }
     ];
 
     let starCount = 0;
     let currentFlashIndex = 0;
     let currentDrawingIndex = 0;
     let currentModalIndex = 0;
+
+    // Quiz Control Variables
     let quizTarget = null;
     let quizScore = 0;
+    let quizCurrentQuestion = 0;
+    const quizTotalQuestions = 20;
+    let quizAnsweredCurrent = false;
 
     let audioCtx = null;
 
@@ -445,7 +481,7 @@
       }
 
       if (tab === 'quiz') {
-        initQuiz();
+        restartQuiz();
       } else if (tab === 'drawing') {
         setupCanvas();
       } else if (tab === 'flashcards') {
@@ -488,6 +524,7 @@
         addStars(1);
       };
 
+      // Only render img tag if imgUrl exists
       const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-10 sm:h-12 object-contain my-1 rounded">` : '';
 
       card.innerHTML = `
@@ -515,6 +552,7 @@
         flashImg.src = item.imgUrl;
         flashImg.classList.remove('hidden');
       } else {
+        flashImg.src = "";
         flashImg.classList.add('hidden');
       }
     }
@@ -535,7 +573,27 @@
       speakCurrentFlashcard();
     }
 
-    function initQuiz() {
+    /* QUIZ LOGIC (20 QUESTIONS) */
+    function restartQuiz() {
+      quizScore = 0;
+      quizCurrentQuestion = 0;
+      document.getElementById('quiz-score').innerText = '0';
+      document.getElementById('quiz-active-card').classList.remove('hidden');
+      document.getElementById('quiz-completed-card').classList.add('hidden');
+      nextQuizQuestion();
+    }
+
+    function nextQuizQuestion() {
+      if (quizCurrentQuestion >= quizTotalQuestions) {
+        finishQuiz();
+        return;
+      }
+
+      quizCurrentQuestion++;
+      quizAnsweredCurrent = false;
+
+      document.getElementById('quiz-progress-badge').innerText = `Question ${quizCurrentQuestion} / ${quizTotalQuestions}`;
+
       const randomIndex = Math.floor(Math.random() * TIBETAN_LETTERS.length);
       quizTarget = TIBETAN_LETTERS[randomIndex];
 
@@ -566,7 +624,7 @@
         grid.appendChild(btn);
       });
 
-      mascotSpeak("Tap the speaker to listen, then select the right Tibetan character!");
+      mascotSpeak(`Question ${quizCurrentQuestion} of ${quizTotalQuestions}: Tap speaker to listen, then select the right Tibetan character!`);
       playQuizTargetAudio();
     }
 
@@ -577,7 +635,10 @@
     }
 
     function handleQuizAnswer(selected, buttonElem) {
+      if (quizAnsweredCurrent) return;
+
       if (selected.id === quizTarget.id) {
+        quizAnsweredCurrent = true;
         buttonElem.classList.add('bg-emerald-100', 'border-emerald-500');
         quizScore += 10;
         addStars(5);
@@ -586,15 +647,15 @@
 
         try {
           confetti({
-            particleCount: 50,
-            spread: 60,
+            particleCount: 40,
+            spread: 50,
             origin: { y: 0.7 }
           });
         } catch(e) {}
 
         setTimeout(() => {
-          initQuiz();
-        }, 1200);
+          nextQuizQuestion();
+        }, 1100);
       } else {
         buttonElem.classList.add('bg-red-100', 'border-red-400');
         mascotSpeak("Oops! Tap the speaker and try again!");
@@ -602,6 +663,28 @@
       }
     }
 
+    function finishQuiz() {
+      document.getElementById('quiz-active-card').classList.add('hidden');
+      document.getElementById('quiz-completed-card').classList.remove('hidden');
+
+      const totalPossible = quizTotalQuestions * 10;
+      const accuracy = Math.round((quizScore / totalPossible) * 100);
+
+      document.getElementById('quiz-final-score').innerText = `${quizScore} / ${totalPossible}`;
+      document.getElementById('quiz-accuracy-text').innerText = `Accuracy: ${accuracy}%`;
+
+      mascotSpeak(`🎉 Congratulations! You completed all 20 questions with a score of ${quizScore}!`);
+
+      try {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      } catch(e) {}
+    }
+
+    /* MAGIC PEN CANVAS LOGIC */
     let canvas, ctx;
     let isDrawing = false;
     let penColor = '#ef4444';
@@ -745,17 +828,23 @@
       playSound(currentDrawingIndex);
     }
 
+    /* MODAL LOGIC */
     function openModalForCharacter(index) {
       currentModalIndex = index;
       const item = TIBETAN_LETTERS[index];
       document.getElementById('modal-char').innerText = item.char;
 
       const modalImg = document.getElementById('modal-img');
+      const modalBadge = document.getElementById('modal-badge');
+
       if (item.imgUrl) {
         modalImg.src = item.imgUrl;
         modalImg.classList.remove('hidden');
+        if (modalBadge) modalBadge.classList.remove('hidden');
       } else {
+        modalImg.src = "";
         modalImg.classList.add('hidden');
+        if (modalBadge) modalBadge.classList.add('hidden');
       }
 
       document.getElementById('modal-backdrop').classList.remove('hidden');
