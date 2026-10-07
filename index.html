@@ -73,7 +73,7 @@
         </div>
         <div>
           <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
-            <span class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">'འབྲོང་བུ་ཚང་།'</span>
+            <span class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">འབྲོང་བུ་ཚང་།</span>
             <span class="tibetan-font text-base sm:text-xl hidden sm:inline">བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།</span>
           </h1>
           <p class="text-xs sm:text-sm text-amber-200 tibetan-font">སྦྱོང་དེབ་འདིའི་ནང་་རི་མོ་དང་སྒྲ་མཉམ་སྦྱར་བྱས་ཡོད།</p>
@@ -211,14 +211,14 @@
           </div>
 
           <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
-            <span>སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འདེམས། (སྐར་གྲངས་ +5 )</span>
-            <span>Chances left: <span id="quiz-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
+            <span>སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འདེམས། (སྐར་གྲངས། +5 )</span>
+            <span>གོ་སྐབས། <span id="quiz-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
           </div>
 
           <button id="quiz-audio-btn" onclick="playQuizTargetAudio()" class="w-24 h-24 bg-gradient-to-tr from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-4xl card-bounce border-4 border-white ring-4 ring-amber-200">
             🔊
           </button>
-          <p class="text-xs sm:text-sm text-amber-800 font-semibold tibetan-font">Tap speaker to replay sound</p>
+          <p class="text-xs sm:text-sm text-amber-800 font-semibold tibetan-font"></p>
 
           <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
         </div>
@@ -226,18 +226,18 @@
         <div id="quiz-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
           <div class="text-6xl animate-bounce">🏆</div>
           <div class="space-y-2">
-            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">Quiz Completed!</h2>
-            <p class="text-slate-600 text-base font-medium tibetan-font">Great job practicing your Tibetan consonant listening skills!</p>
+            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">རྟེན་འབྲེལ་ཞུ།</h2>
+            <p class="text-slate-600 text-base font-medium tibetan-font">དྲི་རྩད་མཉམ་ཞུགས་གནང་བ་ཐུགས་རྗེ་ཞུ།</p>
           </div>
 
           <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
-            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">མཐའ་མའི་སྐར་གྲངས།</div>
             <div id="quiz-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
-            <div id="quiz-accuracy-text" class="text-sm font-semibold text-slate-600 tibetan-font">Accuracy: 0%</div>
+            <div id="quiz-accuracy-text" class="text-sm font-semibold text-slate-600 tibetan-font">ཁྱེད་ཀྱི་ཐོབ་སྐར། 0%</div>
           </div>
 
           <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
-            <span>🔄</span> Play Again
+            <span>🔄</span> ཡང་བསྐྱར་དྲི་རྩད་སྦྱོངས
           </button>
         </div>
       </section>
@@ -249,21 +249,21 @@
           <div class="flex justify-between items-center border-b pb-3">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🖼️</span>
-              <span class="font-bold text-slate-800 text-xl tibetan-font">Matching Quiz (Drag & Drop)</span>
+              <span class="font-bold text-slate-800 text-xl tibetan-font">དྲི་རྩད་ཁག་གཉིས་པ།</span>
             </div>
             <div class="flex items-center gap-2">
               <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
-                Question 1 / 10
+                དྲི་བ། 1 / 10
               </span>
               <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
-                Score: <span id="dd-score" class="text-base font-extrabold text-red-900">0</span>
+                ཐོབ་སྐར། <span id="dd-score" class="text-base font-extrabold text-red-900">0</span>
               </div>
             </div>
           </div>
 
           <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
-            <span>Drag the image onto the matching Tibetan consonant!</span>
-            <span>Chances left: <span id="dd-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
+            <span>རི་མོ་དང་ཡི་གེ་གཉིས་མཐུན་སྦྱོར།</span>
+            <span>གོ་སྐབས། <span id="dd-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
           </div>
 
           <!-- Draggable Image Source Box -->
@@ -287,17 +287,17 @@
         <div id="dd-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
           <div class="text-6xl animate-bounce">🏆</div>
           <div class="space-y-2">
-            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">Matching Quiz Completed!</h2>
-            <p class="text-slate-600 text-base font-medium tibetan-font">Awesome job matching textbook illustrations to Tibetan consonants!</p>
+            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">རྟེན་འབྲེལ་ཞུ།</h2>
+            <p class="text-slate-600 text-base font-medium tibetan-font">དྲི་རྩད་ལ་མཉམ་ཞུགས་གནང་བ་ཐུགས་རྗེ་ཞུ།</p>
           </div>
 
           <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
-            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">མཐའ་མའི་སྐར་གྲངས།</div>
             <div id="dd-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
           </div>
 
           <button onclick="restartDragDropQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
-            <span>🔄</span> Play Again
+            <span>🔄</span> ཡང་བསྐྱར་དྲི་རྩད་སྦྱོངས།
           </button>
         </div>
       </section>
@@ -311,35 +311,35 @@
               <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font">
                 <span>🎨</span> Magic Pen Canvas
               </h2>
-              <p class="text-sm text-slate-500 tibetan-font">Trace and practice writing Tibetan letters in Jomolhari script!</p>
+              <p class="text-sm text-slate-500 tibetan-font">ཡིག་གཟུགས་སྦྱོང་།</p>
             </div>
             <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
-              <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">◀ Prev</button>
+              <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">◀ སྔོན་མ།</button>
               <span id="drawing-char-display" class="tibetan-font text-6xl sm:text-7xl font-extrabold text-red-900 px-4 drop-shadow-sm">ཀ</span>
-              <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">Next ▶</button>
+              <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font"> རྗེས་མ། ▶</button>
             </div>
           </div>
 
           <!-- Drawing Controls -->
           <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
             <div class="flex items-center gap-1.5">
-              <span class="text-sm font-bold text-slate-700 mr-1 tibetan-font">Pen Tools:</span>
+              <span class="text-sm font-bold text-slate-700 mr-1 tibetan-font">སྨྱུ་གུ།</span>
               <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font">
-                ✏️ Pen
+                ✏️ ཞ་སྨྱུག
               </button>
               <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
-                🖍️ Marker
+                🖍️ ལྕགས་སྨྱུག
               </button>
               <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
-                ✨ Glow Pen
+                ✨ ཚོན་གཏོང་བྱེད།
               </button>
               <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
-                🧹 Eraser
+                🧹 སུབ་བྱེད།
               </button>
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="text-sm font-bold text-slate-700 tibetan-font">Colors:</span>
+              <span class="text-sm font-bold text-slate-700 tibetan-font">ཚོན་མདོག</span>
               <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
               <button onclick="setPenColor('#3b82f6')" class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white shadow ring-2 ring-blue-400 hover:scale-110 transition"></button>
               <button onclick="setPenColor('#10b981')" class="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white shadow ring-2 ring-emerald-400 hover:scale-110 transition"></button>
@@ -348,7 +348,7 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <span class="text-sm font-bold text-slate-700 tibetan-font">Size:</span>
+              <span class="text-sm font-bold text-slate-700 tibetan-font">ཆེ་ཆུང་།</span>
               <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
               <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1 tibetan-font">
                 🗑️ Clear
@@ -364,9 +364,9 @@
           </div>
 
           <div class="flex justify-between items-center text-xs sm:text-sm text-slate-500 pt-2 tibetan-font">
-            <span>Tip: Select a pen tool and trace directly over the large guide character!</span>
+            <span>སྨྱུ་གུ་འདེམས་ནས་ཡིག་གཟུགས་སྦྱོངས།</span>
             <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1 tibetan-font">
-              🔊 Play Audio
+              🔊 སྒྲ་ལ་ཉོན།
             </button>
           </div>
 
@@ -408,47 +408,47 @@
   </div>
 
   <footer class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs sm:text-sm text-amber-900 font-medium tibetan-font">
-    Tibetan Alphabets Audio & Textbook Learning Tool
+    འབྲོང་བུ་ཚང་། བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།
   </footer>
 
   <script>
     const TIBETAN_LETTERS = [
-      // Row 1
+      // ཀ་སྡེ།
       { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: null },
       { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/kha.mp3", imgUrl: "images/kha.png" },
       { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: null },
       { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/nga.mp3", imgUrl: "images/nga.png" },
-      // Row 2
+      // ཅ་སྡེ།
       { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
       { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: "images/nya.png" },
-      // Row 3
+      // ཏ་སྡེ།
       { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: null },
       { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: null },
       { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: null },
       { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/na.mp3", imgUrl: "images/na.png" },
-      // Row 4
+      // པ་སྡེ།
       { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: null },
       { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/pha.mp3", imgUrl: "images/pha.png" },
       { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/ba.mp3", imgUrl: "images/ba.png" },
       { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/ma.mp3", imgUrl: "images/ma.png" },
-      // Row 5
+      // ཙ་སྡེ།
       { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: null },
       { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: null },
       { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: null },
       { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/wa.mp3", imgUrl: "images/wa.png" },
-      // Row 6
+      // ཞ་སྡེ།
       { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: null },
       { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/za.mp3", imgUrl: "images/za.png" },
       { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: null },
       { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/ya.mp3", imgUrl: "images/ya.png" },
-      // Row 7
+      // ར་སྡེ།
       { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/ra.mp3", imgUrl: "images/ra.png" },
       { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "audio/la.mp3", imgUrl: "images/la.png" },
       { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/sha.mp3", imgUrl: "images/sha.png" },
       { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/sa.mp3", imgUrl: "images/sa.png" },
-      // Row 8
+      // ཧ་སྡེ།
       { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: null },
       { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: null }
     ];
