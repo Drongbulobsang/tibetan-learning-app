@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts: Fredoka for kid UI & Jomolhari for authentic classical Tibetan script -->
+  <!-- Google Fonts: Fredoka for UI & Jomolhari for authentic classical Tibetan script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jomolhari&display=swap" rel="stylesheet">
@@ -18,12 +18,12 @@
 
   <style>
     body {
-      font-family: 'Fredoka', cursive, sans-serif;
+      font-family: 'Fredoka', 'Jomolhari', 'Noto Sans Tibetan', cursive, sans-serif;
       user-select: none;
       -webkit-user-select: none;
     }
     .tibetan-font {
-      font-family: 'Jomolhari', 'Noto Sans Tibetan', serif;
+      font-family: 'Jomolhari', 'Noto Sans Tibetan', serif !important;
     }
     ::-webkit-scrollbar {
       width: 10px;
@@ -62,248 +62,321 @@
 </head>
 <body class="bg-amber-50 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-amber-200">
 
+  <!-- Top Header Bar -->
   <header class="bg-gradient-to-r from-red-900 via-amber-800 to-indigo-950 text-white shadow-lg sticky top-0 z-30 border-b-4 border-yellow-400">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
-      <!-- Brand Logo & Mascot -->
+      <!-- Brand Logo & Wild Yak Icon Mascot -->
       <div class="flex items-center gap-3">
-        <div class="bg-yellow-400 p-2.5 rounded-2xl shadow-inner border-2 border-amber-200 mascot-float cursor-pointer hover:scale-110 transition" onclick="mascotSpeak('Tashi Delek! Let us learn Tibetan together!')">
-          <span class="text-3xl sm:text-4xl">🦁</span>
+        <div class="bg-yellow-400 p-1.5 sm:p-2 rounded-2xl shadow-inner border-2 border-amber-200 mascot-float cursor-pointer hover:scale-110 transition flex items-center justify-center overflow-hidden" onclick="mascotSpeak('Tashi Delek! Let us learn Tibetan together!')">
+          <!-- Yak Icon Image -->
+          <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-uHE2qFgGOBjfxqkBOE1fZZinsngoYs.png&w=1000&q=75" alt="Yak Icon" class="h-9 w-9 sm:h-11 sm:w-11 object-contain drop-shadow-sm">
         </div>
         <div>
           <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
-            <span class="tibetan-font text-yellow-300 text-2xl sm:text-3xl">Bod-Yig</span>
-            <span>Tibetan Learning Tool</span>
+            <span class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">Bod-Yig</span>
+            <span class="tibetan-font text-base sm:text-xl hidden sm:inline">Tibetan Learning Tool</span>
           </h1>
-          <p class="text-xs text-amber-200">བོད་ཀྱི་གསལ་བྱེད་སུམ་ཅུ་སྦྱོང་དེབ།</p>
+          <p class="text-xs sm:text-sm text-amber-200 tibetan-font">Jomolhari Script • Textbook Illustrations & Audio</p>
         </div>
       </div>
-
-      <!-- Navigation -->
-      <nav class="flex items-center gap-1 sm:gap-2 bg-black/30 p-1.5 rounded-2xl border border-white/10">
-        <button id="nav-grid" onclick="switchTab('grid')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-yellow-400 text-red-950 shadow">
-          <span>🧩</span> གསལ་བྱེད་སུམ་ཅུ།
-        </button>
-        <button id="nav-flashcards" onclick="switchTab('flashcards')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎴</span> བྱང་བུ།
-        </button>
-        <button id="nav-quiz" onclick="switchTab('quiz')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎯</span> དྲི་རྩད།
-        </button>
-        <button id="nav-drawing" onclick="switchTab('drawing')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60">
-          <span>🎨</span> ཡིག་གཟུགས་སྦྱོང་བརྡར།
-        </button>
-      </nav>
 
       <!-- Reward Stars -->
       <div class="flex items-center gap-2 bg-yellow-400/20 px-3.5 py-1.5 rounded-full border border-yellow-400/40">
         <span class="text-xl animate-bounce">⭐</span>
-        <span id="star-count" class="font-bold text-yellow-300 text-base">0</span>
+        <span id="star-count" class="font-bold text-yellow-300 text-lg">0</span>
       </div>
 
     </div>
   </header>
 
-  <!-- Mascot Banner -->
-  <div class="max-w-6xl mx-auto w-full px-4 pt-4">
-    <div class="bg-gradient-to-r from-amber-100 via-orange-100 to-amber-50 border-2 border-amber-300 rounded-2xl p-3 sm:p-4 shadow-sm flex items-center gap-3">
-      <div class="text-3xl sm:text-4xl bg-white p-2.5 rounded-2xl shadow-sm border border-amber-200">
-        🦁
-      </div>
-      <div class="flex-1">
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-amber-900 text-sm sm:text-base">ང་བཀྲ་ཤིས་ཡིན། </span>
-          <span class="text-xs bg-amber-200 text-amber-900 font-semibold px-2.5 py-0.5 rounded-full">Guide</span>
-        </div>
-        <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium mt-0.5">
-          ང་ཚོས་མཉམ་དུ་གསལ་བྱེད་སུམ་ཅུ་སྦྱོང་ཡ།
-        </p>
-      </div>
-    </div>
-  </div>
+  <!-- Main Container with Left Sidebar Layout -->
+  <div class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 flex flex-col md:flex-row gap-6">
 
-  <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-1">
-
-    <!-- VIEW 1: Tibetan Alphabet Grid -->
-    <section id="view-grid" class="space-y-6">
-      <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
-        <div class="flex items-center gap-2">
-          <span class="text-sm font-bold text-slate-700">ཀློག་ཨ།</span>
-          <span class="text-xs bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200">
-            Traditional Rows (4 Letters per Line)
-          </span>
-        </div>
-        <div class="text-xs text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-          Jomolhari Font • Audio & Textbook Images
-        </div>
-      </div>
-
-      <div id="grid-container" class="space-y-4 sm:space-y-6"></div>
-    </section>
-
-    <!-- VIEW 2: Interactive Flashcards -->
-    <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-4 space-y-6">
-      <div class="text-center space-y-1">
-        <h2 class="text-2xl font-bold text-amber-900">Flashcard Explorer</h2>
-        <p class="text-xs text-slate-600">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
-      </div>
-
-      <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
-        <div class="w-full flex justify-between items-center text-xs text-amber-800 font-bold">
-          <span id="flash-index-badge" class="bg-amber-100 px-3 py-1 rounded-full">1 / 30</span>
-          <button onclick="speakCurrentFlashcard()" class="p-2 bg-amber-100 rounded-full hover:bg-amber-200 text-amber-900 shadow-sm">
-            🔊 Sound
-          </button>
-        </div>
-
-        <div onclick="speakCurrentFlashcard()" class="cursor-pointer flex flex-col items-center justify-center my-auto transition hover:scale-105">
-          <span id="flash-character" class="tibetan-font text-8xl sm:text-9xl font-bold text-red-900 drop-shadow-md select-none">ཀ</span>
-          
-          <!-- Image preview inside flashcard if available -->
-          <img id="flash-image" src="" alt="Textbook Illustration" class="hidden h-24 object-contain mt-2 rounded-lg border border-amber-200 shadow-inner">
-        </div>
-
-        <div class="w-full flex gap-2 pt-2">
-          <button onclick="openModalForCharacter(currentFlashIndex)" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl font-bold text-xs sm:text-sm shadow flex items-center justify-center gap-1.5 transition">
-            <span>✏️</span> Practice Letter
-          </button>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition text-sm flex items-center gap-1">
-          ◀ Previous
-        </button>
-        <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow transition text-sm flex items-center gap-1">
-          Next ▶
-        </button>
-      </div>
-    </section>
-
-    <!-- VIEW 3: Ear Training Audio Quiz (20 Questions Max) -->
-    <section id="view-quiz" class="hidden flex flex-col items-center justify-center py-4 space-y-6 max-w-2xl mx-auto">
+    <!-- LEFT SIDEBAR: Navigation Menu & Wild Yak Guide -->
+    <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 space-y-4">
       
-      <!-- Quiz Active Box -->
-      <div id="quiz-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
-        
-        <div class="flex justify-between items-center border-b pb-3">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl">🎯</span>
-            <span class="font-bold text-slate-800 text-lg">Ear Training Quiz</span>
+      <!-- Navigation Bar -->
+      <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
+        <h2 class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Navigation Menu</h2>
+        <nav class="flex flex-col gap-1.5">
+          <button id="nav-grid" onclick="switchTab('grid')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font">
+            <span class="text-lg">🧩</span> <span>Alphabet Grid</span>
+          </button>
+          <button id="nav-flashcards" onclick="switchTab('flashcards')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span class="text-lg">🎴</span> <span>Flashcards</span>
+          </button>
+          <button id="nav-quiz" onclick="switchTab('quiz')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span class="text-lg">🎯</span> <span>Ear Quiz</span>
+          </button>
+          <button id="nav-dragdrop" onclick="switchTab('dragdrop')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span class="text-lg">🖼️</span> <span>Drag & Drop Quiz</span>
+          </button>
+          <button id="nav-drawing" onclick="switchTab('drawing')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span class="text-lg">🎨</span> <span>Magic Pen</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Wild Yak Mascot Banner -->
+      <div class="bg-gradient-to-r md:bg-gradient-to-b from-amber-100 via-orange-100 to-amber-50 border-2 border-amber-300 rounded-3xl p-4 shadow-sm flex md:flex-col items-center text-left md:text-center gap-3">
+        <div class="bg-amber-400 p-2.5 rounded-2xl shadow-inner border border-amber-300 flex-shrink-0">
+          <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-uHE2qFgGOBjfxqkBOE1fZZinsngoYs.png&w=1000&q=75" alt="Yak Icon" class="h-12 w-12 object-contain drop-shadow-sm">
+        </div>
+        <div class="flex-1 space-y-1">
+          <div class="flex md:justify-center items-center gap-2">
+            <span class="font-bold text-amber-900 text-base tibetan-font">Tashi the Wild Yak</span>
+            <span class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font">Guide</span>
           </div>
+          <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium leading-snug tibetan-font">
+            Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 w-full">
+
+      <!-- VIEW 1: Tibetan Alphabet Grid -->
+      <section id="view-grid" class="space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
           <div class="flex items-center gap-2">
-            <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs px-3 py-1 rounded-full border border-amber-200">
-              Question 1 / 20
+            <span class="text-base font-bold text-slate-700 tibetan-font">Display Layout:</span>
+            <span class="text-xs sm:text-sm bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font">
+              Traditional Rows (4 Letters per Line)
             </span>
-            <div class="bg-yellow-100 text-yellow-900 font-bold text-xs px-3 py-1 rounded-full border border-yellow-300">
-              Score: <span id="quiz-score" class="text-sm font-extrabold text-red-900">0</span>
+          </div>
+          <div class="text-xs sm:text-sm text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200 tibetan-font">
+            Jomolhari Font • Audio & Textbook Images
+          </div>
+        </div>
+
+        <div id="grid-container" class="space-y-4 sm:space-y-6"></div>
+      </section>
+
+      <!-- VIEW 2: Interactive Flashcards -->
+      <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-2 space-y-6">
+        <div class="text-center space-y-1">
+          <h2 class="text-3xl font-bold text-amber-900 tibetan-font">Flashcard Explorer</h2>
+          <p class="text-sm text-slate-600 tibetan-font">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
+        </div>
+
+        <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
+          <div class="w-full flex justify-between items-center text-sm text-amber-800 font-bold">
+            <span id="flash-index-badge" class="bg-amber-100 px-3 py-1 rounded-full">1 / 30</span>
+            <button onclick="speakCurrentFlashcard()" class="p-2 bg-amber-100 rounded-full hover:bg-amber-200 text-amber-900 shadow-sm tibetan-font">
+              🔊 Sound
+            </button>
+          </div>
+
+          <div onclick="speakCurrentFlashcard()" class="cursor-pointer flex flex-col items-center justify-center my-auto w-full flex-1 transition hover:scale-105">
+            <span id="flash-character" class="tibetan-font text-9xl sm:text-[10rem] font-bold text-red-900 drop-shadow-md select-none leading-none">ཀ</span>
+            <img id="flash-image" src="" alt="Textbook Illustration" class="hidden h-36 sm:h-44 object-contain mt-3 rounded-lg border border-amber-200 shadow-inner">
+          </div>
+
+          <div class="w-full flex gap-2 pt-2">
+            <button onclick="openModalForCharacter(currentFlashIndex)" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl font-bold text-sm sm:text-base shadow flex items-center justify-center gap-1.5 transition tibetan-font">
+              <span>✏️</span> Practice Letter
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
+            ◀ Previous
+          </button>
+          <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
+            Next ▶
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 3: Ear Training Audio Quiz -->
+      <section id="view-quiz" class="hidden flex flex-col items-center justify-center py-2 space-y-6 max-w-2xl mx-auto">
+        <div id="quiz-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
+          <div class="flex justify-between items-center border-b pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🎯</span>
+              <span class="font-bold text-slate-800 text-xl tibetan-font">Ear Training Quiz</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+                Question 1 / 20
+              </span>
+              <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
+                Score: <span id="quiz-score" class="text-base font-extrabold text-red-900">0</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <p class="text-sm text-slate-600 font-medium">Listen to Tashi play a sound, then tap the matching Tibetan character!</p>
-
-        <button id="quiz-audio-btn" onclick="playQuizTargetAudio()" class="w-24 h-24 bg-gradient-to-tr from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-4xl card-bounce border-4 border-white ring-4 ring-amber-200">
-          🔊
-        </button>
-        <p class="text-xs text-amber-800 font-semibold">Tap speaker to replay sound</p>
-
-        <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
-      </div>
-
-      <!-- Quiz Completed Summary Screen -->
-      <div id="quiz-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
-        <div class="text-6xl animate-bounce">🏆</div>
-        <div class="space-y-2">
-          <h2 class="text-3xl font-extrabold text-amber-900">Quiz Completed!</h2>
-          <p class="text-slate-600 text-sm font-medium">Great job practicing your Tibetan consonant listening skills!</p>
-        </div>
-
-        <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
-          <div class="text-xs font-bold text-amber-800 uppercase tracking-wider">Final Score</div>
-          <div id="quiz-final-score" class="text-4xl font-black text-red-900">0 / 200</div>
-          <div id="quiz-accuracy-text" class="text-xs font-semibold text-slate-600">Accuracy: 0%</div>
-        </div>
-
-        <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-base transition card-bounce inline-flex items-center gap-2">
-          <span>🔄</span> Play Again
-        </button>
-      </div>
-
-    </section>
-
-    <!-- VIEW 4: Magic Pen Canvas -->
-    <section id="view-drawing" class="hidden space-y-4 max-w-3xl mx-auto">
-      <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4">
-        
-        <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
-          <div>
-            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-              <span>🎨</span> Magic Pen Canvas
-            </h2>
-            <p class="text-xs text-slate-500">Trace and practice writing Tibetan letters in Jomolhari script!</p>
-          </div>
-          <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
-            <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-sm hover:bg-amber-300 transition">◀ Prev</button>
-            <span id="drawing-char-display" class="tibetan-font text-5xl sm:text-6xl font-extrabold text-red-900 px-4 drop-shadow-sm">ཀ</span>
-            <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-sm hover:bg-amber-300 transition">Next ▶</button>
-          </div>
-        </div>
-
-        <!-- Drawing Controls -->
-        <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
-          <div class="flex items-center gap-1.5">
-            <span class="text-xs font-bold text-slate-700 mr-1">Pen Tools:</span>
-            <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1">
-              ✏️ Pen
-            </button>
-            <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
-              🖍️ Marker
-            </button>
-            <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
-              ✨ Glow Pen
-            </button>
-            <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200">
-              🧹 Eraser
-            </button>
+          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
+            <span>Listen and tap the correct Tibetan character! (+5 pts)</span>
+            <span>Chances left: <span id="quiz-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
           </div>
 
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-slate-700">Colors:</span>
-            <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
-            <button onclick="setPenColor('#3b82f6')" class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white shadow ring-2 ring-blue-400 hover:scale-110 transition"></button>
-            <button onclick="setPenColor('#10b981')" class="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white shadow ring-2 ring-emerald-400 hover:scale-110 transition"></button>
-            <button onclick="setPenColor('#8b5cf6')" class="w-7 h-7 rounded-full bg-purple-500 border-2 border-white shadow ring-2 ring-purple-400 hover:scale-110 transition"></button>
-            <button onclick="setPenColor('#1e293b')" class="w-7 h-7 rounded-full bg-slate-800 border-2 border-white shadow ring-2 ring-slate-700 hover:scale-110 transition"></button>
-          </div>
+          <button id="quiz-audio-btn" onclick="playQuizTargetAudio()" class="w-24 h-24 bg-gradient-to-tr from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-4xl card-bounce border-4 border-white ring-4 ring-amber-200">
+            🔊
+          </button>
+          <p class="text-xs sm:text-sm text-amber-800 font-semibold tibetan-font">Tap speaker to replay sound</p>
 
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-bold text-slate-700">Size:</span>
-            <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
-            <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs font-bold transition flex items-center gap-1">
-              🗑️ Clear
-            </button>
-          </div>
+          <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
         </div>
 
-        <div class="relative w-full aspect-square max-w-lg mx-auto bg-amber-50/50 rounded-3xl border-4 border-dashed border-amber-300 overflow-hidden shadow-inner flex items-center justify-center">
-          <span id="canvas-guide-text" class="tibetan-font text-[220px] sm:text-[280px] font-extrabold text-amber-200/80 select-none pointer-events-none absolute inset-0 flex items-center justify-center leading-none text-center transform -translate-y-4">
-            ཀ
-          </span>
-          <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-pen touch-none"></canvas>
-        </div>
+        <div id="quiz-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
+          <div class="text-6xl animate-bounce">🏆</div>
+          <div class="space-y-2">
+            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">Quiz Completed!</h2>
+            <p class="text-slate-600 text-base font-medium tibetan-font">Great job practicing your Tibetan consonant listening skills!</p>
+          </div>
 
-        <div class="flex justify-between items-center text-xs text-slate-500 pt-2">
-          <span>Tip: Select a pen tool and trace directly over the large guide character!</span>
-          <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1">
-            🔊 Play Audio
+          <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
+            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div id="quiz-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
+            <div id="quiz-accuracy-text" class="text-sm font-semibold text-slate-600 tibetan-font">Accuracy: 0%</div>
+          </div>
+
+          <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
+            <span>🔄</span> Play Again
           </button>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- VIEW 4: DRAG AND DROP QUIZ -->
+      <section id="view-dragdrop" class="hidden flex flex-col items-center justify-center py-2 space-y-6 max-w-3xl mx-auto">
+        <div id="dd-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-6">
+          
+          <div class="flex justify-between items-center border-b pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🖼️</span>
+              <span class="font-bold text-slate-800 text-xl tibetan-font">Matching Quiz (Drag & Drop)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+                Question 1 / 10
+              </span>
+              <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
+                Score: <span id="dd-score" class="text-base font-extrabold text-red-900">0</span>
+              </div>
+            </div>
+          </div>
 
-  </main>
+          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
+            <span>Drag the image onto the matching Tibetan consonant!</span>
+            <span>Chances left: <span id="dd-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
+          </div>
+
+          <!-- Draggable Image Source Box -->
+          <div class="flex flex-col items-center justify-center py-2 min-h-[140px]">
+            <div id="dd-image-container" 
+                 draggable="true" 
+                 ondragstart="handleDragStart(event)" 
+                 onclick="handleImageClick(event)"
+                 class="bg-amber-100/80 border-2 border-dashed border-amber-400 p-3 rounded-2xl cursor-grab active:cursor-grabbing hover:scale-105 transition shadow-sm max-w-[180px] flex flex-col items-center justify-center">
+              <img id="dd-target-img" src="" alt="Target Illustration" class="h-28 sm:h-32 object-contain pointer-events-none rounded-lg">
+              <span class="text-[10px] text-amber-800 font-bold mt-1">↕️ Drag or Tap to select</span>
+            </div>
+          </div>
+
+          <!-- Drop Targets Grid (4 Consonants) -->
+          <div id="dd-targets-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2"></div>
+
+        </div>
+
+        <!-- Drag & Drop Quiz Summary Screen -->
+        <div id="dd-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
+          <div class="text-6xl animate-bounce">🏆</div>
+          <div class="space-y-2">
+            <h2 class="text-3xl font-extrabold text-amber-900 tibetan-font">Matching Quiz Completed!</h2>
+            <p class="text-slate-600 text-base font-medium tibetan-font">Awesome job matching textbook illustrations to Tibetan consonants!</p>
+          </div>
+
+          <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
+            <div class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div id="dd-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
+          </div>
+
+          <button onclick="restartDragDropQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
+            <span>🔄</span> Play Again
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 5: Magic Pen Canvas -->
+      <section id="view-drawing" class="hidden space-y-4 max-w-3xl mx-auto">
+        <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4">
+          
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
+            <div>
+              <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font">
+                <span>🎨</span> Magic Pen Canvas
+              </h2>
+              <p class="text-sm text-slate-500 tibetan-font">Trace and practice writing Tibetan letters in Jomolhari script!</p>
+            </div>
+            <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
+              <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">◀ Prev</button>
+              <span id="drawing-char-display" class="tibetan-font text-6xl sm:text-7xl font-extrabold text-red-900 px-4 drop-shadow-sm">ཀ</span>
+              <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">Next ▶</button>
+            </div>
+          </div>
+
+          <!-- Drawing Controls -->
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm font-bold text-slate-700 mr-1 tibetan-font">Pen Tools:</span>
+              <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font">
+                ✏️ Pen
+              </button>
+              <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+                🖍️ Marker
+              </button>
+              <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+                ✨ Glow Pen
+              </button>
+              <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+                🧹 Eraser
+              </button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-slate-700 tibetan-font">Colors:</span>
+              <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
+              <button onclick="setPenColor('#3b82f6')" class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white shadow ring-2 ring-blue-400 hover:scale-110 transition"></button>
+              <button onclick="setPenColor('#10b981')" class="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white shadow ring-2 ring-emerald-400 hover:scale-110 transition"></button>
+              <button onclick="setPenColor('#8b5cf6')" class="w-7 h-7 rounded-full bg-purple-500 border-2 border-white shadow ring-2 ring-purple-400 hover:scale-110 transition"></button>
+              <button onclick="setPenColor('#1e293b')" class="w-7 h-7 rounded-full bg-slate-800 border-2 border-white shadow ring-2 ring-slate-700 hover:scale-110 transition"></button>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-bold text-slate-700 tibetan-font">Size:</span>
+              <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
+              <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1 tibetan-font">
+                🗑️ Clear
+              </button>
+            </div>
+          </div>
+
+          <div class="relative w-full aspect-square max-w-lg mx-auto bg-amber-50/50 rounded-3xl border-4 border-dashed border-amber-300 overflow-hidden shadow-inner flex items-center justify-center">
+            <span id="canvas-guide-text" class="tibetan-font text-[240px] sm:text-[300px] font-extrabold text-amber-200/80 select-none pointer-events-none absolute inset-0 flex items-center justify-center leading-none text-center transform -translate-y-4">
+              ཀ
+            </span>
+            <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-pen touch-none"></canvas>
+          </div>
+
+          <div class="flex justify-between items-center text-xs sm:text-sm text-slate-500 pt-2 tibetan-font">
+            <span>Tip: Select a pen tool and trace directly over the large guide character!</span>
+            <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1 tibetan-font">
+              🔊 Play Audio
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+  </div>
 
   <!-- Character Detail Modal -->
   <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
@@ -313,23 +386,21 @@
         ✕
       </button>
 
-      <div class="text-center space-y-2">
-        <span id="modal-char" class="tibetan-font text-8xl font-bold text-red-900 block select-none">ཀ</span>
-        
-        <!-- Textbook Image inside Modal (only shown if imgUrl exists) -->
-        <img id="modal-img" src="" alt="Material illustration" class="hidden max-h-36 mx-auto rounded-xl border border-amber-200 shadow">
+      <div class="text-center space-y-3 flex flex-col items-center justify-center min-h-[220px]">
+        <span id="modal-char" class="tibetan-font text-9xl font-bold text-red-900 block select-none leading-none">ཀ</span>
+        <img id="modal-img" src="" alt="Material illustration" class="hidden h-40 object-contain mx-auto rounded-xl border border-amber-200 shadow">
 
-        <div id="modal-badge" class="hidden inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-200">
+        <div id="modal-badge" class="hidden inline-block bg-amber-100 text-amber-900 text-xs sm:text-sm font-bold px-3.5 py-1 rounded-full border border-amber-200 tibetan-font">
           Pre-Primary Textbook Illustration
         </div>
       </div>
 
       <div class="space-y-3">
-        <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base flex items-center justify-center gap-2 transition">
+        <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
           <span>🔊</span> Play Sound
         </button>
 
-        <button onclick="jumpToMagicPenFromModal()" class="w-full py-3 bg-red-900 hover:bg-red-950 text-white rounded-2xl font-bold shadow-md text-base flex items-center justify-center gap-2 transition">
+        <button onclick="jumpToMagicPenFromModal()" class="w-full py-3 bg-red-900 hover:bg-red-950 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
           <span>🎨</span> Practice Writing in Magic Pen
         </button>
       </div>
@@ -337,53 +408,48 @@
     </div>
   </div>
 
-  <footer class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs text-amber-900 font-medium">
+  <footer class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs sm:text-sm text-amber-900 font-medium tibetan-font">
     Tibetan Alphabets Audio & Textbook Learning Tool
   </footer>
 
   <script>
-    /* 
-      Array containing audio paths and textbook images mapped to each character.
-      Only: kha, nga, cha, ja, na, pha, ba, ma, wa, za, ya, ra, la, sha, sa have images.
-      All other characters have imgUrl: null.
-    */
     const TIBETAN_LETTERS = [
-      // ཀ་སྡེ།
+      // Row 1
       { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: null },
       { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/kha.mp3", imgUrl: "images/kha.png" },
       { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: null },
       { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/nga.mp3", imgUrl: "images/nga.png" },
-      // ཅ་སྡེ།
+      // Row 2
       { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
       { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: null },
-      // ཏ་སྡེ།
+      // Row 3
       { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: null },
       { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: null },
       { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: null },
       { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/na.mp3", imgUrl: "images/na.png" },
-      // པ་སྡེ།
+      // Row 4
       { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: null },
       { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/pha.mp3", imgUrl: "images/pha.png" },
       { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/ba.mp3", imgUrl: "images/ba.png" },
       { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/ma.mp3", imgUrl: "images/ma.png" },
-      // ཙ་སྡེ།
+      // Row 5
       { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: null },
       { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: null },
       { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: null },
       { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/wa.mp3", imgUrl: "images/wa.png" },
-      // ཞ་སྡེ།
+      // Row 6
       { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: null },
       { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/za.mp3", imgUrl: "images/za.png" },
       { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: null },
       { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/ya.mp3", imgUrl: "images/ya.png" },
-      // ར་སྡེ།
+      // Row 7
       { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/ra.mp3", imgUrl: "images/ra.png" },
       { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "audio/la.mp3", imgUrl: "images/la.png" },
       { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/sha.mp3", imgUrl: "images/sha.png" },
       { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/sa.mp3", imgUrl: "images/sa.png" },
-      // ཧ་སྡེ།
+      // Row 8
       { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: null },
       { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: null }
     ];
@@ -393,12 +459,23 @@
     let currentDrawingIndex = 0;
     let currentModalIndex = 0;
 
-    // Quiz Control Variables
+    // EAR QUIZ VARIABLES
     let quizTarget = null;
     let quizScore = 0;
     let quizCurrentQuestion = 0;
     const quizTotalQuestions = 20;
-    let quizAnsweredCurrent = false;
+    let quizChancesLeft = 2;
+    let quizAnswered = false;
+
+    // DRAG AND DROP QUIZ VARIABLES
+    const IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
+    let ddTarget = null;
+    let ddScore = 0;
+    let ddCurrentQuestion = 0;
+    const ddTotalQuestions = 10;
+    let ddChancesLeft = 2;
+    let ddAnswered = false;
+    let ddSelectedMobile = false;
 
     let audioCtx = null;
 
@@ -436,7 +513,7 @@
       if (item.audioUrl) {
         const audio = new Audio(item.audioUrl);
         audio.play().catch(err => {
-          console.warn("Audio file playback failed, switching to synthesized tone", err);
+          console.warn("Audio file playback failed, switching to tone", err);
           playCharacterTone(item.freq);
         });
       } else {
@@ -462,17 +539,20 @@
       document.getElementById('view-grid').classList.add('hidden');
       document.getElementById('view-flashcards').classList.add('hidden');
       document.getElementById('view-quiz').classList.add('hidden');
+      document.getElementById('view-dragdrop').classList.add('hidden');
       document.getElementById('view-drawing').classList.add('hidden');
 
-      const navBtns = ['nav-grid', 'nav-flashcards', 'nav-quiz', 'nav-drawing'];
+      const navBtns = ['nav-grid', 'nav-flashcards', 'nav-quiz', 'nav-dragdrop', 'nav-drawing'];
       navBtns.forEach(id => {
         const btn = document.getElementById(id);
-        btn.className = "px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 text-amber-100 hover:bg-red-800/60";
+        if (btn) {
+          btn.className = "w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font";
+        }
       });
 
       const activeBtn = document.getElementById(`nav-${tab}`);
       if (activeBtn) {
-        activeBtn.className = "px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-yellow-400 text-red-950 shadow";
+        activeBtn.className = "w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font";
       }
 
       const activeView = document.getElementById(`view-${tab}`);
@@ -482,6 +562,8 @@
 
       if (tab === 'quiz') {
         restartQuiz();
+      } else if (tab === 'dragdrop') {
+        restartDragDropQuiz();
       } else if (tab === 'drawing') {
         setupCanvas();
       } else if (tab === 'flashcards') {
@@ -499,7 +581,7 @@
         rowBox.className = "bg-white p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-sm space-y-2";
         
         rowBox.innerHTML = `
-          <div class="text-xs font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center">
+          <div class="text-sm font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center tibetan-font">
             <span>Row ${r}</span>
             <span class="text-amber-700 font-normal">${rowItems.length} Consonants</span>
           </div>
@@ -517,24 +599,25 @@
 
     function createLetterCard(item) {
       const card = document.createElement('div');
-      card.className = "bg-amber-50/60 border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-2 sm:p-3 shadow-sm card-bounce flex flex-col items-center justify-between gap-1.5 sm:gap-2 cursor-pointer relative group";
+      card.className = "bg-amber-50/60 border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-2 sm:p-3 shadow-sm card-bounce flex flex-col items-center justify-between gap-1.5 sm:gap-2 cursor-pointer relative min-h-[140px] sm:min-h-[180px]";
       
       card.onclick = () => {
         playSound(item.id);
         addStars(1);
       };
 
-      // Only render img tag if imgUrl exists
-      const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-10 sm:h-12 object-contain my-1 rounded">` : '';
+      const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-20 sm:h-28 max-w-full object-contain my-1 rounded">` : '';
 
       card.innerHTML = `
-        <span class="tibetan-font text-3xl sm:text-4xl font-bold text-red-900 select-none">${item.char}</span>
-        ${imgHtml}
+        <div class="flex-1 flex flex-col items-center justify-center w-full my-auto">
+          <span class="tibetan-font text-5xl sm:text-6xl font-bold text-red-900 select-none leading-none">${item.char}</span>
+          ${imgHtml}
+        </div>
         <div class="flex items-center gap-1 w-full pt-1">
-          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-[10px] sm:text-xs font-bold flex items-center justify-center gap-0.5 transition">
+          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-0.5 transition tibetan-font">
             🔊 <span class="hidden sm:inline">Sound</span>
           </button>
-          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-[10px] sm:text-xs font-bold transition">
+          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs sm:text-sm font-bold transition tibetan-font">
             ✏️
           </button>
         </div>
@@ -573,7 +656,7 @@
       speakCurrentFlashcard();
     }
 
-    /* QUIZ LOGIC (20 QUESTIONS) */
+    /* EAR QUIZ LOGIC */
     function restartQuiz() {
       quizScore = 0;
       quizCurrentQuestion = 0;
@@ -590,9 +673,11 @@
       }
 
       quizCurrentQuestion++;
-      quizAnsweredCurrent = false;
+      quizChancesLeft = 2;
+      quizAnswered = false;
 
       document.getElementById('quiz-progress-badge').innerText = `Question ${quizCurrentQuestion} / ${quizTotalQuestions}`;
+      document.getElementById('quiz-chances').innerText = quizChancesLeft;
 
       const randomIndex = Math.floor(Math.random() * TIBETAN_LETTERS.length);
       quizTarget = TIBETAN_LETTERS[randomIndex];
@@ -612,14 +697,16 @@
 
       choices.forEach(item => {
         const btn = document.createElement('button');
-        btn.className = "bg-white border-2 border-amber-200 hover:border-amber-400 p-6 rounded-2xl shadow-sm text-center card-bounce transition flex flex-col items-center justify-center gap-2";
+        btn.className = "bg-white border-2 border-amber-200 hover:border-amber-400 p-4 sm:p-6 rounded-2xl shadow-sm text-center card-bounce transition flex flex-col items-center justify-center gap-2 min-h-[140px]";
         btn.onclick = () => handleQuizAnswer(item, btn);
 
-        const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="h-10 object-contain">` : '';
+        const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="h-16 sm:h-20 object-contain">` : '';
 
         btn.innerHTML = `
-          <span class="tibetan-font text-4xl font-bold text-slate-800 select-none">${item.char}</span>
-          ${imgHtml}
+          <div class="flex-1 flex flex-col items-center justify-center my-auto">
+            <span class="tibetan-font text-5xl sm:text-6xl font-bold text-slate-800 select-none leading-none">${item.char}</span>
+            ${imgHtml}
+          </div>
         `;
         grid.appendChild(btn);
       });
@@ -635,31 +722,40 @@
     }
 
     function handleQuizAnswer(selected, buttonElem) {
-      if (quizAnsweredCurrent) return;
+      if (quizAnswered) return;
 
       if (selected.id === quizTarget.id) {
-        quizAnsweredCurrent = true;
+        quizAnswered = true;
         buttonElem.classList.add('bg-emerald-100', 'border-emerald-500');
-        quizScore += 10;
-        addStars(5);
+        
+        const earnedStars = (quizChancesLeft === 2) ? 5 : 2;
+        quizScore += 5;
+        addStars(earnedStars);
         document.getElementById('quiz-score').innerText = quizScore;
-        mascotSpeak("🎉 Fantastic job! You found the correct Tibetan letter!");
+        mascotSpeak("🎉 Fantastic job! You found the correct Tibetan letter! (+5 pts)");
 
         try {
-          confetti({
-            particleCount: 40,
-            spread: 50,
-            origin: { y: 0.7 }
-          });
+          confetti({ particleCount: 40, spread: 50, origin: { y: 0.7 } });
         } catch(e) {}
 
         setTimeout(() => {
           nextQuizQuestion();
         }, 1100);
       } else {
+        quizChancesLeft--;
+        document.getElementById('quiz-chances').innerText = quizChancesLeft;
         buttonElem.classList.add('bg-red-100', 'border-red-400');
-        mascotSpeak("Oops! Tap the speaker and try again!");
         playSound(selected.id);
+
+        if (quizChancesLeft > 0) {
+          mascotSpeak("Oops! That's not correct. Tap the speaker and try 1 more time!");
+        } else {
+          quizAnswered = true;
+          mascotSpeak("No chances left for this question! Let's move to the next one.");
+          setTimeout(() => {
+            nextQuizQuestion();
+          }, 1400);
+        }
       }
     }
 
@@ -667,7 +763,7 @@
       document.getElementById('quiz-active-card').classList.add('hidden');
       document.getElementById('quiz-completed-card').classList.remove('hidden');
 
-      const totalPossible = quizTotalQuestions * 10;
+      const totalPossible = quizTotalQuestions * 5;
       const accuracy = Math.round((quizScore / totalPossible) * 100);
 
       document.getElementById('quiz-final-score').innerText = `${quizScore} / ${totalPossible}`;
@@ -676,11 +772,171 @@
       mascotSpeak(`🎉 Congratulations! You completed all 20 questions with a score of ${quizScore}!`);
 
       try {
-        confetti({
-          particleCount: 120,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+      } catch(e) {}
+    }
+
+    /* DRAG AND DROP QUIZ LOGIC */
+    function restartDragDropQuiz() {
+      ddScore = 0;
+      ddCurrentQuestion = 0;
+      document.getElementById('dd-score').innerText = '0';
+      document.getElementById('dd-active-card').classList.remove('hidden');
+      document.getElementById('dd-completed-card').classList.add('hidden');
+      nextDragDropQuestion();
+    }
+
+    function nextDragDropQuestion() {
+      if (ddCurrentQuestion >= ddTotalQuestions) {
+        finishDragDropQuiz();
+        return;
+      }
+
+      ddCurrentQuestion++;
+      ddChancesLeft = 2;
+      ddAnswered = false;
+      ddSelectedMobile = false;
+
+      document.getElementById('dd-progress-badge').innerText = `Question ${ddCurrentQuestion} / ${ddTotalQuestions}`;
+      document.getElementById('dd-chances').innerText = ddChancesLeft;
+
+      const targetIndex = Math.floor(Math.random() * IMAGE_LETTERS.length);
+      ddTarget = IMAGE_LETTERS[targetIndex];
+
+      document.getElementById('dd-target-img').src = ddTarget.imgUrl;
+
+      const choices = [ddTarget];
+      while (choices.length < 4) {
+        const rand = TIBETAN_LETTERS[Math.floor(Math.random() * TIBETAN_LETTERS.length)];
+        if (!choices.some(item => item.id === rand.id)) {
+          choices.push(rand);
+        }
+      }
+
+      choices.sort(() => Math.random() - 0.5);
+
+      const grid = document.getElementById('dd-targets-grid');
+      grid.innerHTML = '';
+
+      choices.forEach(item => {
+        const dropBox = document.createElement('div');
+        dropBox.className = "bg-white border-4 border-dashed border-amber-200 hover:border-amber-400 p-4 sm:p-6 rounded-3xl shadow-sm text-center flex flex-col items-center justify-center min-h-[140px] transition cursor-pointer";
+        dropBox.dataset.id = item.id;
+
+        dropBox.ondragover = (e) => handleDragOver(e, dropBox);
+        dropBox.ondragleave = () => handleDragLeave(dropBox);
+        dropBox.ondrop = (e) => handleDrop(e, item, dropBox);
+        dropBox.onclick = () => handleTargetTap(item, dropBox);
+
+        dropBox.innerHTML = `
+          <span class="tibetan-font text-6xl sm:text-7xl font-bold text-red-900 select-none leading-none pointer-events-none">${item.char}</span>
+          <span class="text-xs text-amber-800/60 font-bold mt-2 pointer-events-none">Drop here</span>
+        `;
+        grid.appendChild(dropBox);
+      });
+
+      const container = document.getElementById('dd-image-container');
+      container.classList.remove('ring-4', 'ring-amber-400', 'bg-yellow-200');
+
+      mascotSpeak(`Question ${ddCurrentQuestion} of ${ddTotalQuestions}: Drag the textbook picture onto the right Tibetan consonant!`);
+    }
+
+    function handleImageClick(e) {
+      if (ddAnswered) return;
+      ddSelectedMobile = !ddSelectedMobile;
+      const container = document.getElementById('dd-image-container');
+      if (ddSelectedMobile) {
+        container.classList.add('ring-4', 'ring-amber-400', 'bg-yellow-200');
+        mascotSpeak("Image selected! Now tap the matching Tibetan letter.");
+      } else {
+        container.classList.remove('ring-4', 'ring-amber-400', 'bg-yellow-200');
+      }
+    }
+
+    function handleTargetTap(item, dropBox) {
+      if (ddSelectedMobile && !ddAnswered) {
+        evaluateDDAnswer(item, dropBox);
+      }
+    }
+
+    function handleDragStart(e) {
+      if (ddAnswered) return;
+      e.dataTransfer.setData("text/plain", ddTarget.id);
+    }
+
+    function handleDragOver(e, element) {
+      e.preventDefault();
+      if (!ddAnswered) {
+        element.classList.add('border-amber-500', 'bg-amber-50');
+      }
+    }
+
+    function handleDragLeave(element) {
+      element.classList.remove('border-amber-500', 'bg-amber-50');
+    }
+
+    function handleDrop(e, item, dropBox) {
+      e.preventDefault();
+      handleDragLeave(dropBox);
+      if (ddAnswered) return;
+      evaluateDDAnswer(item, dropBox);
+    }
+
+    function evaluateDDAnswer(selectedItem, dropBox) {
+      playSound(selectedItem.id);
+
+      if (selectedItem.id === ddTarget.id) {
+        ddAnswered = true;
+        dropBox.classList.remove('border-dashed', 'border-amber-200', 'border-amber-400');
+        dropBox.classList.add('bg-emerald-100', 'border-emerald-500', 'border-solid');
+        
+        let earnedPoints = (ddChancesLeft === 2) ? 10 : 5;
+        let earnedStars = (ddChancesLeft === 2) ? 5 : 2;
+        
+        ddScore += earnedPoints;
+        addStars(earnedStars);
+        document.getElementById('dd-score').innerText = ddScore;
+
+        mascotSpeak(`🎉 Correct! You matched ${selectedItem.char}! +${earnedPoints} points!`);
+
+        try {
+          confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+        } catch(e) {}
+
+        setTimeout(() => {
+          nextDragDropQuestion();
+        }, 1200);
+
+      } else {
+        ddChancesLeft--;
+        document.getElementById('dd-chances').innerText = ddChancesLeft;
+        dropBox.classList.add('bg-red-100', 'border-red-400');
+
+        if (ddChancesLeft > 0) {
+          mascotSpeak(`Oops! That's not the right match. You have 1 chance left!`);
+        } else {
+          ddAnswered = true;
+          mascotSpeak(`No chances left for this question! Let's try the next one.`);
+          setTimeout(() => {
+            nextDragDropQuestion();
+          }, 1400);
+        }
+      }
+
+      ddSelectedMobile = false;
+      const container = document.getElementById('dd-image-container');
+      if (container) container.classList.remove('ring-4', 'ring-amber-400', 'bg-yellow-200');
+    }
+
+    function finishDragDropQuiz() {
+      document.getElementById('dd-active-card').classList.add('hidden');
+      document.getElementById('dd-completed-card').classList.remove('hidden');
+      document.getElementById('dd-final-score').innerText = `${ddScore} / ${ddTotalQuestions * 10}`;
+
+      mascotSpeak(`🎉 Outstanding! You completed the Drag & Drop matching quiz with a score of ${ddScore}!`);
+
+      try {
+        confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       } catch(e) {}
     }
 
@@ -729,8 +985,8 @@
         const btn = document.getElementById(`tool-${t}`);
         if (btn) {
           btn.className = (t === tool) 
-            ? "px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1"
-            : "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200";
+            ? "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font"
+            : "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font";
         }
       });
 
