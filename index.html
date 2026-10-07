@@ -69,7 +69,6 @@
       <!-- Brand Logo & Wild Yak Icon Mascot -->
       <div class="flex items-center gap-3">
         <div class="bg-yellow-400 p-1.5 sm:p-2 rounded-2xl shadow-inner border-2 border-amber-200 mascot-float cursor-pointer hover:scale-110 transition flex items-center justify-center overflow-hidden" onclick="mascotSpeak('Tashi Delek! Let us learn Tibetan together!')">
-          <!-- Yak Icon Image -->
           <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-uHE2qFgGOBjfxqkBOE1fZZinsngoYs.png&w=1000&q=75" alt="Yak Icon" class="h-9 w-9 sm:h-11 sm:w-11 object-contain drop-shadow-sm">
         </div>
         <div>
@@ -423,7 +422,7 @@
       { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
-      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: null },
+      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: "images/nya.png" },
       // Row 3
       { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: null },
       { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: null },
@@ -466,9 +465,10 @@
     const quizTotalQuestions = 20;
     let quizChancesLeft = 2;
     let quizAnswered = false;
+    let quizRemainingPool = [];
 
     // DRAG AND DROP QUIZ VARIABLES
-    const IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
+    let IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
     let ddTarget = null;
     let ddScore = 0;
     let ddCurrentQuestion = 0;
@@ -476,6 +476,7 @@
     let ddChancesLeft = 2;
     let ddAnswered = false;
     let ddSelectedMobile = false;
+    let ddRemainingPool = [];
 
     let audioCtx = null;
 
@@ -660,6 +661,7 @@
     function restartQuiz() {
       quizScore = 0;
       quizCurrentQuestion = 0;
+      quizRemainingPool = [...TIBETAN_LETTERS].sort(() => Math.random() - 0.5);
       document.getElementById('quiz-score').innerText = '0';
       document.getElementById('quiz-active-card').classList.remove('hidden');
       document.getElementById('quiz-completed-card').classList.add('hidden');
@@ -667,7 +669,7 @@
     }
 
     function nextQuizQuestion() {
-      if (quizCurrentQuestion >= quizTotalQuestions) {
+      if (quizCurrentQuestion >= quizTotalQuestions || quizRemainingPool.length === 0) {
         finishQuiz();
         return;
       }
@@ -679,13 +681,12 @@
       document.getElementById('quiz-progress-badge').innerText = `Question ${quizCurrentQuestion} / ${quizTotalQuestions}`;
       document.getElementById('quiz-chances').innerText = quizChancesLeft;
 
-      const randomIndex = Math.floor(Math.random() * TIBETAN_LETTERS.length);
-      quizTarget = TIBETAN_LETTERS[randomIndex];
+      quizTarget = quizRemainingPool.pop();
 
       const choices = [quizTarget];
       while (choices.length < 4) {
         const rand = TIBETAN_LETTERS[Math.floor(Math.random() * TIBETAN_LETTERS.length)];
-        if (!choices.includes(rand)) {
+        if (!choices.some(item => item.id === rand.id)) {
           choices.push(rand);
         }
       }
@@ -778,8 +779,10 @@
 
     /* DRAG AND DROP QUIZ LOGIC */
     function restartDragDropQuiz() {
+      IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
       ddScore = 0;
       ddCurrentQuestion = 0;
+      ddRemainingPool = [...IMAGE_LETTERS].sort(() => Math.random() - 0.5);
       document.getElementById('dd-score').innerText = '0';
       document.getElementById('dd-active-card').classList.remove('hidden');
       document.getElementById('dd-completed-card').classList.add('hidden');
@@ -787,7 +790,7 @@
     }
 
     function nextDragDropQuestion() {
-      if (ddCurrentQuestion >= ddTotalQuestions) {
+      if (ddCurrentQuestion >= ddTotalQuestions || ddRemainingPool.length === 0) {
         finishDragDropQuiz();
         return;
       }
@@ -800,8 +803,7 @@
       document.getElementById('dd-progress-badge').innerText = `Question ${ddCurrentQuestion} / ${ddTotalQuestions}`;
       document.getElementById('dd-chances').innerText = ddChancesLeft;
 
-      const targetIndex = Math.floor(Math.random() * IMAGE_LETTERS.length);
-      ddTarget = IMAGE_LETTERS[targetIndex];
+      ddTarget = ddRemainingPool.pop();
 
       document.getElementById('dd-target-img').src = ddTarget.imgUrl;
 
