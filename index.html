@@ -678,7 +678,7 @@
       quizChancesLeft = 2;
       quizAnswered = false;
 
-      document.getElementById('quiz-progress-badge').innerText = `Question ${quizCurrentQuestion} / ${quizTotalQuestions}`;
+      document.getElementById('quiz-progress-badge').innerText = `དྲི་བ། ${quizCurrentQuestion} / ${quizTotalQuestions}`;
       document.getElementById('quiz-chances').innerText = quizChancesLeft;
 
       quizTarget = quizRemainingPool.pop();
@@ -712,7 +712,7 @@
         grid.appendChild(btn);
       });
 
-      mascotSpeak(`Question ${quizCurrentQuestion} of ${quizTotalQuestions}: Tap speaker to listen, then select the right Tibetan character!`);
+      mascotSpeak(`དྲི་བ། ${quizCurrentQuestion} of ${quizTotalQuestions}: Tap speaker to listen, then select the right Tibetan character!`);
       playQuizTargetAudio();
     }
 
@@ -840,7 +840,7 @@
       const container = document.getElementById('dd-image-container');
       container.classList.remove('ring-4', 'ring-amber-400', 'bg-yellow-200');
 
-      mascotSpeak(`Question ${ddCurrentQuestion} of ${ddTotalQuestions}: Drag the textbook picture onto the right Tibetan consonant!`);
+      mascotSpeak(`Question ${ddCurrentQuestion} of ${ddTotalQuestions}: རི་མོ་དང་ཡི་གེ་མཐུན་སྦྱོར་བྱོས།`);
     }
 
     function handleImageClick(e) {
