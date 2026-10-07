@@ -73,10 +73,10 @@
         </div>
         <div>
           <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
-            <span class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">Bod-Yig</span>
-            <span class="tibetan-font text-base sm:text-xl hidden sm:inline">Tibetan Learning Tool</span>
+            <span class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">'འབྲོང་བུ་ཚང་།'</span>
+            <span class="tibetan-font text-base sm:text-xl hidden sm:inline">བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།</span>
           </h1>
-          <p class="text-xs sm:text-sm text-amber-200 tibetan-font">Jomolhari Script • Textbook Illustrations & Audio</p>
+          <p class="text-xs sm:text-sm text-amber-200 tibetan-font">སྦྱོང་དེབ་འདིའི་ནང་་རི་མོ་དང་སྒྲ་མཉམ་སྦྱར་བྱས་ཡོད།</p>
         </div>
       </div>
 
@@ -100,19 +100,19 @@
         <h2 class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Navigation Menu</h2>
         <nav class="flex flex-col gap-1.5">
           <button id="nav-grid" onclick="switchTab('grid')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font">
-            <span class="text-lg">🧩</span> <span>Alphabet Grid</span>
+            <span class="text-lg">🧩</span> <span>གསལ་བྱེད་སུམ་ཅུ།</span>
           </button>
           <button id="nav-flashcards" onclick="switchTab('flashcards')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
-            <span class="text-lg">🎴</span> <span>Flashcards</span>
+            <span class="text-lg">🎴</span> <span>བྱང་བུ།</span>
           </button>
           <button id="nav-quiz" onclick="switchTab('quiz')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
-            <span class="text-lg">🎯</span> <span>Ear Quiz</span>
+            <span class="text-lg">🎯</span> <span>དྲི་རྩད་ཁག་དང་པོ།</span>
           </button>
           <button id="nav-dragdrop" onclick="switchTab('dragdrop')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
-            <span class="text-lg">🖼️</span> <span>Drag & Drop Quiz</span>
+            <span class="text-lg">🖼️</span> <span>དྲི་རྩད་ཁག་གཉིས་པ།</span>
           </button>
           <button id="nav-drawing" onclick="switchTab('drawing')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
-            <span class="text-lg">🎨</span> <span>Magic Pen</span>
+            <span class="text-lg">🎨</span> <span>ཡིག་གཟུགས་སྦྱོང་དེབ།</span>
           </button>
         </nav>
       </div>
@@ -124,7 +124,7 @@
         </div>
         <div class="flex-1 space-y-1">
           <div class="flex md:justify-center items-center gap-2">
-            <span class="font-bold text-amber-900 text-base tibetan-font">Tashi the Wild Yak</span>
+            <span class="font-bold text-amber-900 text-base tibetan-font">ང་འབྲོང་ཕྲུག་བཀྲ་ཤིས་ཡིན།</span>
             <span class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font">Guide</span>
           </div>
           <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium leading-snug tibetan-font">
@@ -142,13 +142,13 @@
       <section id="view-grid" class="space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
           <div class="flex items-center gap-2">
-            <span class="text-base font-bold text-slate-700 tibetan-font">Display Layout:</span>
+            <span class="text-base font-bold text-slate-700 tibetan-font">གསལ་བྱེད་སུམ་ཅུ།:</span>
             <span class="text-xs sm:text-sm bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font">
-              Traditional Rows (4 Letters per Line)
+              ཀ་སྡེ་ནས་ཧ་སྡེ་བར་སྡེ་བ་བདུན་དང་ཕྱེད་ཀ་ཡོད།
             </span>
           </div>
           <div class="text-xs sm:text-sm text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200 tibetan-font">
-            Jomolhari Font • Audio & Textbook Images
+            རི་མོ་དང་སྒྲ་ལ་ཉན་ནས་བོད་ཀྱི་གསལ་བྱེད་སུམ་ཅུ་ལ་སྦྱོང་བ་བྱོས།
           </div>
         </div>
 
@@ -158,7 +158,7 @@
       <!-- VIEW 2: Interactive Flashcards -->
       <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-2 space-y-6">
         <div class="text-center space-y-1">
-          <h2 class="text-3xl font-bold text-amber-900 tibetan-font">Flashcard Explorer</h2>
+          <h2 class="text-3xl font-bold text-amber-900 tibetan-font">བྱང་བུ།</h2>
           <p class="text-sm text-slate-600 tibetan-font">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
         </div>
 
@@ -166,7 +166,7 @@
           <div class="w-full flex justify-between items-center text-sm text-amber-800 font-bold">
             <span id="flash-index-badge" class="bg-amber-100 px-3 py-1 rounded-full">1 / 30</span>
             <button onclick="speakCurrentFlashcard()" class="p-2 bg-amber-100 rounded-full hover:bg-amber-200 text-amber-900 shadow-sm tibetan-font">
-              🔊 Sound
+              🔊
             </button>
           </div>
 
@@ -177,7 +177,7 @@
 
           <div class="w-full flex gap-2 pt-2">
             <button onclick="openModalForCharacter(currentFlashIndex)" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl font-bold text-sm sm:text-base shadow flex items-center justify-center gap-1.5 transition tibetan-font">
-              <span>✏️</span> Practice Letter
+              <span>✏️</span> ཡིག་གཟུགས་སྦྱོང་།
             </button>
           </div>
         </div>
@@ -198,7 +198,7 @@
           <div class="flex justify-between items-center border-b pb-3">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🎯</span>
-              <span class="font-bold text-slate-800 text-xl tibetan-font">Ear Training Quiz</span>
+              <span class="font-bold text-slate-800 text-xl tibetan-font">དྲི་རྩད་ཁག་དང་པོ།</span>
             </div>
             <div class="flex items-center gap-2">
               <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
@@ -211,7 +211,7 @@
           </div>
 
           <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
-            <span>Listen and tap the correct Tibetan character! (+5 pts)</span>
+            <span>སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འདེམས། (སྐར་གྲངས་ +5 )</span>
             <span>Chances left: <span id="quiz-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
           </div>
 
