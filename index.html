@@ -97,7 +97,7 @@
       
       <!-- Navigation Bar -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
-        <h2 class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Navigation Menu</h2>
+        <h2 class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">དཀར་ཆག</h2>
         <nav class="flex flex-col gap-1.5">
           <button id="nav-grid" onclick="switchTab('grid')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font">
             <span class="text-lg">🧩</span> <span>གསལ་བྱེད་སུམ་ཅུ།</span>
@@ -125,7 +125,7 @@
         <div class="flex-1 space-y-1">
           <div class="flex md:justify-center items-center gap-2">
             <span class="font-bold text-amber-900 text-base tibetan-font">ང་འབྲོང་ཕྲུག་བཀྲ་ཤིས་ཡིན།</span>
-            <span class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font">Guide</span>
+            <span class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font"></span>
           </div>
           <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium leading-snug tibetan-font">
             Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!
@@ -159,7 +159,7 @@
       <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-2 space-y-6">
         <div class="text-center space-y-1">
           <h2 class="text-3xl font-bold text-amber-900 tibetan-font">བྱང་བུ།</h2>
-          <p class="text-sm text-slate-600 tibetan-font">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
+          <p class="text-sm text-slate-600 tibetan-font">ཡི་གེའམ་རི་མོའི་སྟེང་བསྣུན་ནས་སྒྲ་ལ་ཉོན།</p>
         </div>
 
         <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
@@ -184,10 +184,10 @@
 
         <div class="flex items-center gap-4">
           <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
-            ◀ Previous
+            ◀ སྔོན་མ།
           </button>
           <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
-            Next ▶
+            རྗེས་མ། ▶
           </button>
         </div>
       </section>
@@ -202,7 +202,7 @@
             </div>
             <div class="flex items-center gap-2">
               <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
-                Question 1 / 20
+                དྲི་བ། 1 / 20
               </span>
               <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
                 Score: <span id="quiz-score" class="text-base font-extrabold text-red-900">0</span>
@@ -274,7 +274,7 @@
                  onclick="handleImageClick(event)"
                  class="bg-amber-100/80 border-2 border-dashed border-amber-400 p-3 rounded-2xl cursor-grab active:cursor-grabbing hover:scale-105 transition shadow-sm max-w-[180px] flex flex-col items-center justify-center">
               <img id="dd-target-img" src="" alt="Target Illustration" class="h-28 sm:h-32 object-contain pointer-events-none rounded-lg">
-              <span class="text-[10px] text-amber-800 font-bold mt-1">↕️ Drag or Tap to select</span>
+              <span class="text-[10px] text-amber-800 font-bold mt-1">↕️ འོག་གི་གསལ་བྱེད་སྟེང་འཇོག་རོགས།</span>
             </div>
           </div>
 
@@ -309,7 +309,7 @@
           <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
             <div>
               <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font">
-                <span>🎨</span> Magic Pen Canvas
+                <span>🎨</span> ཡིག་གཟུགས་སྦྱོངས་ས།
               </h2>
               <p class="text-sm text-slate-500 tibetan-font">ཡིག་གཟུགས་སྦྱོང་།</p>
             </div>
@@ -351,7 +351,7 @@
               <span class="text-sm font-bold text-slate-700 tibetan-font">ཆེ་ཆུང་།</span>
               <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
               <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1 tibetan-font">
-                🗑️ Clear
+                🗑️ ཚང་མ་སུབ།
               </button>
             </div>
           </div>
@@ -396,7 +396,7 @@
 
       <div class="space-y-3">
         <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
-          <span>🔊</span> Play Sound
+          <span>🔊</span>
         </button>
 
         <button onclick="jumpToMagicPenFromModal()" class="w-full py-3 bg-red-900 hover:bg-red-950 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
@@ -521,7 +521,7 @@
         playCharacterTone(item.freq);
       }
 
-      mascotSpeak(`Playing sound for Tibetan consonant ${item.char}`);
+      mascotSpeak(`གསལ་བྱེད་ཡི་གེ།  ${item.char}`);
     }
 
     function mascotSpeak(msg) {
@@ -749,10 +749,10 @@
         playSound(selected.id);
 
         if (quizChancesLeft > 0) {
-          mascotSpeak("Oops! That's not correct. Tap the speaker and try 1 more time!");
+          mascotSpeak("ལན་འགྲིག་མ་སོང་། གོ་སྐབས་ཐེངས་གཅིག་མ་གཏོགས་མེད།");
         } else {
           quizAnswered = true;
-          mascotSpeak("No chances left for this question! Let's move to the next one.");
+          mascotSpeak("ལན་འགྲིག་མ་སོང་། དྲི་བ་རྗེས་མར་ལན་ཐོབས།");
           setTimeout(() => {
             nextQuizQuestion();
           }, 1400);
@@ -832,7 +832,7 @@
 
         dropBox.innerHTML = `
           <span class="tibetan-font text-6xl sm:text-7xl font-bold text-red-900 select-none leading-none pointer-events-none">${item.char}</span>
-          <span class="text-xs text-amber-800/60 font-bold mt-2 pointer-events-none">Drop here</span>
+          <span class="text-xs text-amber-800/60 font-bold mt-2 pointer-events-none">'འདིར་ཞོག'</span>
         `;
         grid.appendChild(dropBox);
       });
