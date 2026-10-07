@@ -25,7 +25,6 @@
     .tibetan-font {
       font-family: 'Jomolhari', 'Noto Sans Tibetan', serif;
     }
-    /* Custom scrollbar styled with warm gold accents */
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -36,7 +35,6 @@
       background: #f59e0b;
       border-radius: 5px;
     }
-    /* Bouncy responsive hover card animation */
     .card-bounce {
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
     }
@@ -46,7 +44,6 @@
     .card-bounce:active {
       transform: translateY(2px) scale(0.97);
     }
-    /* Gentle floating effect for mascot lion */
     @keyframes gentle-float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
@@ -55,7 +52,6 @@
       animation: gentle-float 4s ease-in-out infinite;
     }
 
-    /* Custom SVG Drawing Cursors for Magic Pen */
     .cursor-pen {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>') 0 22, crosshair !important;
     }
@@ -69,7 +65,7 @@
   <header class="bg-gradient-to-r from-red-900 via-amber-800 to-indigo-950 text-white shadow-lg sticky top-0 z-30 border-b-4 border-yellow-400">
     <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       
-      <!-- Brand Logo & Tashi Mascot -->
+      <!-- Brand Logo & Mascot -->
       <div class="flex items-center gap-3">
         <div class="bg-yellow-400 p-2.5 rounded-2xl shadow-inner border-2 border-amber-200 mascot-float cursor-pointer hover:scale-110 transition" onclick="mascotSpeak('Tashi Delek! Let us learn Tibetan together!')">
           <span class="text-3xl sm:text-4xl">🦁</span>
@@ -77,13 +73,13 @@
         <div>
           <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
             <span class="tibetan-font text-yellow-300 text-2xl sm:text-3xl">Bod-Yig</span>
-            <span>Tibetan Tool</span>
+            <span>Tibetan Learning Tool</span>
           </h1>
-          <p class="text-xs text-amber-200">Jomolhari Script • Audio & Games</p>
+          <p class="text-xs text-amber-200">Jomolhari Script • Textbook Illustrations & Audio</p>
         </div>
       </div>
 
-      <!-- Main Navigation Buttons -->
+      <!-- Navigation -->
       <nav class="flex items-center gap-1 sm:gap-2 bg-black/30 p-1.5 rounded-2xl border border-white/10">
         <button id="nav-grid" onclick="switchTab('grid')" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1.5 bg-yellow-400 text-red-950 shadow">
           <span>🧩</span> Alphabet Grid
@@ -99,7 +95,7 @@
         </button>
       </nav>
 
-      <!-- Interactive Star Counter Reward System -->
+      <!-- Reward Stars -->
       <div class="flex items-center gap-2 bg-yellow-400/20 px-3.5 py-1.5 rounded-full border border-yellow-400/40">
         <span class="text-xl animate-bounce">⭐</span>
         <span id="star-count" class="font-bold text-yellow-300 text-base">0</span>
@@ -120,7 +116,7 @@
           <span class="text-xs bg-amber-200 text-amber-900 font-semibold px-2.5 py-0.5 rounded-full">Guide</span>
         </div>
         <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium mt-0.5">
-          Welcome! Explore all 30 consonants rendered in beautiful Jomolhari Tibetan font!
+          Welcome! Explore all consonants with real textbook illustrations and audio recordings!
         </p>
       </div>
     </div>
@@ -128,10 +124,8 @@
 
   <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-1">
 
-    <!-- VIEW 1: Pure Tibetan Alphabet Grid View -->
+    <!-- VIEW 1: Tibetan Alphabet Grid -->
     <section id="view-grid" class="space-y-6">
-      
-      <!-- Display Filters -->
       <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
         <div class="flex items-center gap-2">
           <span class="text-sm font-bold text-slate-700">Display Layout:</span>
@@ -140,24 +134,20 @@
           </span>
         </div>
         <div class="text-xs text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-          Jomolhari Font • Clean View
+          Jomolhari Font • Audio & Textbook Images
         </div>
       </div>
 
-      <!-- Dynamic Grid Container for Row-by-Row Lines -->
-      <div id="grid-container" class="space-y-4 sm:space-y-6">
-        <!-- Injected via JavaScript in 8 horizontal row lines -->
-      </div>
+      <div id="grid-container" class="space-y-4 sm:space-y-6"></div>
     </section>
 
-    <!-- VIEW 2: Interactive Flashcards View -->
+    <!-- VIEW 2: Interactive Flashcards -->
     <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-4 space-y-6">
       <div class="text-center space-y-1">
         <h2 class="text-2xl font-bold text-amber-900">Flashcard Explorer</h2>
-        <p class="text-xs text-slate-600">Tap the card to play audio or practice drawing!</p>
+        <p class="text-xs text-slate-600">Tap the card or sound button to listen, or view textbook illustrations!</p>
       </div>
 
-      <!-- Main Interactive Flashcard -->
       <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
         <div class="w-full flex justify-between items-center text-xs text-amber-800 font-bold">
           <span id="flash-index-badge" class="bg-amber-100 px-3 py-1 rounded-full">1 / 30</span>
@@ -168,6 +158,9 @@
 
         <div onclick="speakCurrentFlashcard()" class="cursor-pointer flex flex-col items-center justify-center my-auto transition hover:scale-105">
           <span id="flash-character" class="tibetan-font text-8xl sm:text-9xl font-bold text-red-900 drop-shadow-md select-none">ཀ</span>
+          
+          <!-- Image preview inside flashcard if available -->
+          <img id="flash-image" src="" alt="Textbook Illustration" class="hidden h-24 object-contain mt-2 rounded-lg border border-amber-200 shadow-inner">
         </div>
 
         <div class="w-full flex gap-2 pt-2">
@@ -177,7 +170,6 @@
         </div>
       </div>
 
-      <!-- Navigation Arrows -->
       <div class="flex items-center gap-4">
         <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition text-sm flex items-center gap-1">
           ◀ Previous
@@ -204,25 +196,19 @@
 
         <p class="text-sm text-slate-600 font-medium">Listen to Tashi play a sound, then tap the matching Tibetan character!</p>
 
-        <!-- Big Interactive Audio Speaker Button -->
         <button id="quiz-audio-btn" onclick="playQuizTargetAudio()" class="w-24 h-24 bg-gradient-to-tr from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-4xl card-bounce border-4 border-white ring-4 ring-amber-200">
           🔊
         </button>
         <p class="text-xs text-amber-800 font-semibold">Tap speaker to replay sound</p>
 
-        <!-- Quiz Options Grid -->
-        <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
-          <!-- Quiz buttons dynamically injected -->
-        </div>
-
+        <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
       </div>
     </section>
 
-    <!-- VIEW 4: Magic Pen Handwriting Practice Canvas -->
+    <!-- VIEW 4: Magic Pen Canvas -->
     <section id="view-drawing" class="hidden space-y-4 max-w-3xl mx-auto">
       <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4">
         
-        <!-- Canvas Header & Letter Selector -->
         <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
           <div>
             <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
@@ -237,10 +223,8 @@
           </div>
         </div>
 
-        <!-- Tool Selection & Crayon Controls Bar -->
+        <!-- Drawing Controls -->
         <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
-          
-          <!-- Pen Tool Options -->
           <div class="flex items-center gap-1.5">
             <span class="text-xs font-bold text-slate-700 mr-1">Pen Tools:</span>
             <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1">
@@ -257,7 +241,6 @@
             </button>
           </div>
 
-          <!-- Color Palette -->
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-slate-700">Colors:</span>
             <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
@@ -267,7 +250,6 @@
             <button onclick="setPenColor('#1e293b')" class="w-7 h-7 rounded-full bg-slate-800 border-2 border-white shadow ring-2 ring-slate-700 hover:scale-110 transition"></button>
           </div>
 
-          <!-- Stroke Size & Clear -->
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-slate-700">Size:</span>
             <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
@@ -275,18 +257,12 @@
               🗑️ Clear
             </button>
           </div>
-
         </div>
 
-        <!-- Canvas Box with Centered Consonant Template -->
         <div class="relative w-full aspect-square max-w-lg mx-auto bg-amber-50/50 rounded-3xl border-4 border-dashed border-amber-300 overflow-hidden shadow-inner flex items-center justify-center">
-          
-          <!-- Perfectly Centered Jomolhari Template Character -->
           <span id="canvas-guide-text" class="tibetan-font text-[220px] sm:text-[280px] font-extrabold text-amber-200/80 select-none pointer-events-none absolute inset-0 flex items-center justify-center leading-none text-center transform -translate-y-4">
             ཀ
           </span>
-          
-          <!-- Interactive Drawing Surface -->
           <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-pen touch-none"></canvas>
         </div>
 
@@ -302,24 +278,25 @@
 
   </main>
 
-  <!-- Character Detail Popup Modal -->
+  <!-- Character Detail Modal -->
   <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border-4 border-amber-400 shadow-2xl max-w-sm w-full p-6 space-y-6 relative animate-in fade-in zoom-in duration-200">
+    <div class="bg-white rounded-3xl border-4 border-amber-400 shadow-2xl max-w-sm w-full p-6 space-y-6 relative">
       
-      <!-- Close Button -->
       <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 font-bold text-lg flex items-center justify-center shadow-sm">
         ✕
       </button>
 
-      <!-- Modal Content -->
       <div class="text-center space-y-2">
-        <span id="modal-char" class="tibetan-font text-9xl font-bold text-red-900 block my-2 select-none">ཀ</span>
+        <span id="modal-char" class="tibetan-font text-8xl font-bold text-red-900 block select-none">ཀ</span>
+        
+        <!-- Textbook Image inside Modal -->
+        <img id="modal-img" src="" alt="Material illustration" class="hidden max-h-36 mx-auto rounded-xl border border-amber-200 shadow">
+
         <div class="inline-block bg-amber-100 text-amber-900 text-xs font-bold px-3.5 py-1 rounded-full border border-amber-200">
-          Jomolhari Consonant
+          Pre-Primary Textbook Illustration
         </div>
       </div>
 
-      <!-- Modal Action Buttons -->
       <div class="space-y-3">
         <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base flex items-center justify-center gap-2 transition">
           <span>🔊</span> Play Sound
@@ -334,52 +311,52 @@
   </div>
 
   <footer class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs text-amber-900 font-medium">
-    Tibetan Alphabets Audio Tool • Jomolhari Script Mode
+    Tibetan Alphabets Audio & Textbook Learning Tool
   </footer>
 
   <script>
+    /* Array containing audio paths and textbook images mapped to each character */
     const TIBETAN_LETTERS = [
       // Row 1
-      { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ka.mp3" },
-      { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/kha.mp3" },
-      { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ga.mp3" },
-      { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/nga.mp3" },
+      { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/ka.mp3", imgUrl: "images/ka.png" },
+      { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/kha.mp3", imgUrl: "images/kha.png" },
+      { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/ga.mp3", imgUrl: "images/ga.png" },
+      { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/nga.mp3", imgUrl: "images/nga.png" },
       // Row 2
-      { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ca.mp3" },
-      { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/cha.mp3" },
-      { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ja.mp3" },
-      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/nya.mp3" },
+      { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/ca.mp3", imgUrl: "images/ca.png" },
+      { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/cha.mp3", imgUrl: "images/cha.png" },
+      { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/ja.mp3", imgUrl: "images/ja.png" },
+      { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/nya.mp3", imgUrl: "images/nya.png" },
       // Row 3
-      { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ta.mp3" },
-      { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tha.mp3" },
-      { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/da.mp3" },
-      { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/na.mp3" },
+      { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/ta.mp3", imgUrl: "images/ta.png" },
+      { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/tha.mp3", imgUrl: "images/tha.png" },
+      { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/da.mp3", imgUrl: "images/da.png" },
+      { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/na.mp3", imgUrl: "images/na.png" },
       // Row 4
-      { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/pa.mp3" },
-      { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/pha.mp3" },
-      { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ba.mp3" },
-      { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ma.mp3" },
+      { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/pa.mp3", imgUrl: "images/pa.png" },
+      { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/pha.mp3", imgUrl: "images/pha.png" },
+      { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/ba.mp3", imgUrl: "images/ba.png" },
+      { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/ma.mp3", imgUrl: "images/ma.png" },
       // Row 5
-      { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tsa.mp3" },
-      { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/tsha.mp3" },
-      { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/dza.mp3" },
-      { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/wa.mp3" },
+      { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/tsa.mp3", imgUrl: "images/tsa.png" },
+      { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/tsha.mp3", imgUrl: "images/tsha.png" },
+      { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/dza.mp3", imgUrl: "images/dza.png" },
+      { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/wa.mp3", imgUrl: "images/wa.png" },
       // Row 6
-      { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/zha.mp3" },
-      { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/za.mp3" },
-      { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/a.mp3" },
-      { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ya.mp3" },
+      { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/zha.mp3", imgUrl: "images/zha.png" },
+      { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/za.mp3", imgUrl: "images/za.png" },
+      { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/a.mp3", imgUrl: "images/a.png" },
+      { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/ya.mp3", imgUrl: "images/ya.png" },
       // Row 7
-      { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ra.mp3" },
-      { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/la.mp3" },
-      { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/sha.mp3" },
-      { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/sa.mp3" },
+      { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/ra.mp3", imgUrl: "images/ra.png" },
+      { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "audio/la.mp3", imgUrl: "images/la.png" },
+      { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/sha.mp3", imgUrl: "images/sha.png" },
+      { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/sa.mp3", imgUrl: "images/sa.png" },
       // Row 8
-      { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/ha.mp3" },
-      { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/audio/a_high.mp3" }
+      { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/ha.mp3", imgUrl: "images/ha.png" },
+      { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/a_high.mp3", imgUrl: "images/a_high.png" }
     ];
 
-    /* State Variables */
     let starCount = 0;
     let currentFlashIndex = 0;
     let currentDrawingIndex = 0;
@@ -387,7 +364,6 @@
     let quizTarget = null;
     let quizScore = 0;
 
-    /* Web Audio Synthesizer & MP3 Player */
     let audioCtx = null;
 
     function initAudio() {
@@ -404,16 +380,12 @@
       try {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        
         gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.9);
-        
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-        
         osc.start();
         osc.stop(audioCtx.currentTime + 0.9);
       } catch(e) {
@@ -425,10 +397,10 @@
       const item = TIBETAN_LETTERS[index];
       if (!item) return;
 
-      if (item.audioUrl && !item.audioUrl.includes('YOUR_USERNAME')) {
+      if (item.audioUrl) {
         const audio = new Audio(item.audioUrl);
         audio.play().catch(err => {
-          console.warn("Audio file playback failed, using tone synthesis instead", err);
+          console.warn("Audio file playback failed, switching to synthesized tone", err);
           playCharacterTone(item.freq);
         });
       } else {
@@ -485,21 +457,17 @@
       const container = document.getElementById('grid-container');
       container.innerHTML = '';
 
-      // Render all 8 traditional Tibetan rows, placing 4 letters per line in each row
       for (let r = 1; r <= 8; r++) {
         const rowItems = TIBETAN_LETTERS.filter(i => i.row === r);
         const rowBox = document.createElement('div');
         rowBox.className = "bg-white p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-sm space-y-2";
         
-        // Strict 4-column layout to guarantee four letters per line
-        const colsClass = "grid grid-cols-4 gap-2 sm:gap-4";
-
         rowBox.innerHTML = `
           <div class="text-xs font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center">
             <span>Row ${r}</span>
             <span class="text-amber-700 font-normal">${rowItems.length} Consonants</span>
           </div>
-          <div class="${colsClass}"></div>
+          <div class="grid grid-cols-4 gap-2 sm:gap-4"></div>
         `;
 
         const subGrid = rowBox.querySelector('.grid');
@@ -513,16 +481,18 @@
 
     function createLetterCard(item) {
       const card = document.createElement('div');
-      card.className = "bg-amber-50/60 border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-2 sm:p-4 shadow-sm card-bounce flex flex-col items-center justify-between gap-1.5 sm:gap-3 cursor-pointer relative group";
+      card.className = "bg-amber-50/60 border-2 border-amber-200 hover:border-yellow-400 rounded-2xl p-2 sm:p-3 shadow-sm card-bounce flex flex-col items-center justify-between gap-1.5 sm:gap-2 cursor-pointer relative group";
       
       card.onclick = () => {
         playSound(item.id);
         addStars(1);
       };
 
+      const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-10 sm:h-12 object-contain my-1 rounded">` : '';
+
       card.innerHTML = `
-        <span class="tibetan-font text-3xl sm:text-5xl font-bold text-red-900 select-none my-1 sm:my-2">${item.char}</span>
-        
+        <span class="tibetan-font text-3xl sm:text-4xl font-bold text-red-900 select-none">${item.char}</span>
+        ${imgHtml}
         <div class="flex items-center gap-1 w-full pt-1">
           <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-[10px] sm:text-xs font-bold flex items-center justify-center gap-0.5 transition">
             🔊 <span class="hidden sm:inline">Sound</span>
@@ -539,6 +509,14 @@
       const item = TIBETAN_LETTERS[currentFlashIndex];
       document.getElementById('flash-index-badge').innerText = `${currentFlashIndex + 1} / 30`;
       document.getElementById('flash-character').innerText = item.char;
+
+      const flashImg = document.getElementById('flash-image');
+      if (item.imgUrl) {
+        flashImg.src = item.imgUrl;
+        flashImg.classList.remove('hidden');
+      } else {
+        flashImg.classList.add('hidden');
+      }
     }
 
     function speakCurrentFlashcard() {
@@ -576,10 +554,14 @@
 
       choices.forEach(item => {
         const btn = document.createElement('button');
-        btn.className = "bg-white border-2 border-amber-200 hover:border-amber-400 p-6 rounded-2xl shadow-sm text-center card-bounce transition";
+        btn.className = "bg-white border-2 border-amber-200 hover:border-amber-400 p-6 rounded-2xl shadow-sm text-center card-bounce transition flex flex-col items-center justify-center gap-2";
         btn.onclick = () => handleQuizAnswer(item, btn);
+
+        const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="h-10 object-contain">` : '';
+
         btn.innerHTML = `
-          <span class="tibetan-font text-5xl font-bold text-slate-800 block select-none">${item.char}</span>
+          <span class="tibetan-font text-4xl font-bold text-slate-800 select-none">${item.char}</span>
+          ${imgHtml}
         `;
         grid.appendChild(btn);
       });
@@ -663,20 +645,16 @@
       tools.forEach(t => {
         const btn = document.getElementById(`tool-${t}`);
         if (btn) {
-          if (t === tool) {
-            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1";
-          } else {
-            btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200";
-          }
+          btn.className = (t === tool) 
+            ? "px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1"
+            : "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200";
         }
       });
 
       if (canvas) {
-        if (penTool === 'eraser') {
-          canvas.className = "w-full h-full relative z-10 cursor-eraser touch-none";
-        } else {
-          canvas.className = "w-full h-full relative z-10 cursor-pen touch-none";
-        }
+        canvas.className = (penTool === 'eraser') 
+          ? "w-full h-full relative z-10 cursor-eraser touch-none" 
+          : "w-full h-full relative z-10 cursor-pen touch-none";
       }
     }
 
@@ -695,9 +673,7 @@
 
     function setPenColor(color) {
       penColor = color;
-      if (penTool === 'eraser') {
-        setPenTool('pen');
-      }
+      if (penTool === 'eraser') setPenTool('pen');
     }
 
     function getCanvasCoordinates(e) {
@@ -773,6 +749,15 @@
       currentModalIndex = index;
       const item = TIBETAN_LETTERS[index];
       document.getElementById('modal-char').innerText = item.char;
+
+      const modalImg = document.getElementById('modal-img');
+      if (item.imgUrl) {
+        modalImg.src = item.imgUrl;
+        modalImg.classList.remove('hidden');
+      } else {
+        modalImg.classList.add('hidden');
+      }
+
       document.getElementById('modal-backdrop').classList.remove('hidden');
       playSound(index);
     }
@@ -793,7 +778,6 @@
 
     window.onload = function() {
       renderGrid();
-      
       window.addEventListener('resize', () => {
         if (!document.getElementById('view-drawing').classList.contains('hidden')) {
           setupCanvas();
