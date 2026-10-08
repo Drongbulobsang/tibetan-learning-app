@@ -1044,7 +1044,7 @@
       ddAnswered = false;
       ddSelectedMobile = false;
 
-      document.getElementById('dd-progress-badge').innerText = `${currentLang === 'en' ? 'Question' : 'དྲི་བ།'} ${ddCurrentQuestion} / ${ddTotalQuestions}`;
+      document.getElementById('dd-progress-badge').innerText = `${currentLang === 'en' ? 'Question' : 'score:'} ${ddCurrentQuestion} / ${ddTotalQuestions}`;
       document.getElementById('dd-chances').innerText = ddChancesLeft;
 
       ddTarget = ddRemainingPool.pop();
