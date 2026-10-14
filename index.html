@@ -143,6 +143,15 @@
         </div>
       </div>
 
+      <!-- Visitor Counter Badge Card -->
+      <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3.5 rounded-3xl border-2 border-yellow-400 shadow-lg text-center space-y-2">
+        <h3 id="txt-visitor-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider tibetan-font">Website Visitors</h3>
+        <div class="bg-white/10 p-2.5 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
+          <!-- Note: Change 'drongbu.tibetan-tool' to your actual GitHub repository name or unique page ID -->
+          <img src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool" alt="Visitor Count" class="h-6">
+        </div>
+      </div>
+
     </aside>
 
     <!-- MAIN CONTENT AREA -->
@@ -410,7 +419,7 @@
 
     <!-- RIGHT SIDEBAR: Advanced Tibetan Modules -->
     <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
-      <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
+      <div class="bg-gradient-to-b from-indigo-950 to-red-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
         <h2 id="txt-modules-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Advanced Modules</h2>
         <nav class="flex flex-col gap-1.5">
           <!-- 1. Multi-consonant Vocabulary -->
@@ -590,7 +599,8 @@
         modalPractice: "Practice Writing in Magic Pen",
         modalBadge: "Pre-Primary Textbook Illustration",
         footer: "Tibetan Alphabets Audio & Textbook Learning Tool",
-        cardSoundBtn: ""
+        cardSoundBtn: "",
+        visitorHeader: "Website Visitors"
       },
       bo: {
         bodYig: "འབྲོང་བུ་ཚང་།",
@@ -668,7 +678,8 @@
         modalPractice: "སྨྱུག་ཐོག་ཏུ་འབྲི་སྦྱོང་བྱེད།",
         modalBadge: "སྔོན་འགྲོའི་སློབ་དེབ་རི་མོ།",
         footer: "འབྲོང་བུ་ཚང་། བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།",
-        cardSoundBtn: ""
+        cardSoundBtn: "",
+        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།"
       }
     };
 
@@ -741,6 +752,7 @@
       document.getElementById('txt-modal-practice').innerText = t.modalPractice;
       document.getElementById('modal-badge').innerText = t.modalBadge;
       document.getElementById('txt-footer').innerText = t.footer;
+      document.getElementById('txt-visitor-header').innerText = t.visitorHeader;
 
       document.getElementById('txt-modules-header').innerText = t.modulesHeader;
       document.getElementById('txt-mod-multi').innerText = t.modMulti;
