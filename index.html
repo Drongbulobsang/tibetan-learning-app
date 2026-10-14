@@ -73,10 +73,10 @@
         </div>
         <div>
           <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
-            <span id="txt-app-brand" class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">Bod-Yig</span>
+            <span id="txt-app-brand" class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">Drongbu Tsang</span>
             <span id="txt-app-title" class="tibetan-font text-base sm:text-xl hidden sm:inline">Tibetan Learning Tool</span>
           </h1>
-          <p id="txt-app-subtitle" class="text-xs sm:text-sm text-amber-200 tibetan-font">Jomolhari Script • Textbook Illustrations & Audio</p>
+          <p id="txt-app-subtitle" class="text-xs sm:text-sm text-amber-200 tibetan-font">Textbook Illustrations & Audio</p>
         </div>
       </div>
 
@@ -96,11 +96,11 @@
     </div>
   </header>
 
-  <!-- Main Container with Left Sidebar Layout -->
-  <div class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 flex flex-col md:flex-row gap-6">
+  <!-- Main Container with Left Sidebar, Center Main, and Right Sidebar Layout -->
+  <div class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 flex flex-col lg:flex-row gap-6">
 
     <!-- LEFT SIDEBAR: Navigation Menu & Wild Yak Guide -->
-    <aside class="w-full md:w-64 lg:w-72 flex-shrink-0 space-y-4">
+    <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
       
       <!-- Navigation Bar -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
@@ -128,12 +128,12 @@
       </div>
 
       <!-- Wild Yak Mascot Banner -->
-      <div class="bg-gradient-to-r md:bg-gradient-to-b from-amber-100 via-orange-100 to-amber-50 border-2 border-amber-300 rounded-3xl p-4 shadow-sm flex md:flex-col items-center text-left md:text-center gap-3">
+      <div class="bg-gradient-to-r lg:bg-gradient-to-b from-amber-100 via-orange-100 to-amber-50 border-2 border-amber-300 rounded-3xl p-4 shadow-sm flex lg:flex-col items-center text-left lg:text-center gap-3">
         <div class="bg-amber-400 p-2.5 rounded-2xl shadow-inner border border-amber-300 flex-shrink-0">
           <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-uHE2qFgGOBjfxqkBOE1fZZinsngoYs.png&w=1000&q=75" alt="Yak Icon" class="h-12 w-12 object-contain drop-shadow-sm">
         </div>
         <div class="flex-1 space-y-1">
-          <div class="flex md:justify-center items-center gap-2">
+          <div class="flex lg:justify-center items-center gap-2">
             <span id="txt-mascot-name" class="font-bold text-amber-900 text-base tibetan-font">Tashi the Wild Yak</span>
             <span id="txt-mascot-badge" class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font">Guide</span>
           </div>
@@ -158,7 +158,7 @@
             </span>
           </div>
           <div id="txt-grid-tag" class="text-xs sm:text-sm text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200 tibetan-font">
-            Jomolhari Font • Audio & Textbook Images
+            Audio & Textbook Images
           </div>
         </div>
 
@@ -344,7 +344,7 @@
               <h2 id="txt-draw-header" class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font">
                 <span>🎨</span> Magic Pen Canvas
               </h2>
-              <p id="txt-draw-subtitle" class="text-sm text-slate-500 tibetan-font">Trace and practice writing Tibetan letters in Jomolhari script!</p>
+              <p id="txt-draw-subtitle" class="text-sm text-slate-500 tibetan-font">Trace and practice writing Tibetan letters</p>
             </div>
             <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
               <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">◀ <span id="txt-draw-prev">Prev</span></button>
@@ -408,6 +408,72 @@
 
     </main>
 
+    <!-- RIGHT SIDEBAR: Advanced Tibetan Modules -->
+    <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
+      <div class="bg-gradient-to-b from-indigo-950 to-red-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
+        <h2 id="txt-modules-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Advanced Modules</h2>
+        <nav class="flex flex-col gap-1.5">
+          <!-- 1. Multi-consonant Vocabulary -->
+          <a href="multiconsonant.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span>🔸</span> <span id="txt-mod-multi">Multiconsonant Vocab</span>
+          </a>
+          <!-- 2. Vowels -->
+          <a href="vowels.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span>🔹</span> <span id="txt-mod-vowels">4 Vowels (Dbyangs)</span>
+          </a>
+          <!-- 3. Suffix -->
+          <a href="suffixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span>➡️</span> <span id="txt-mod-suffix">Suffixes (Rjes-jug)</span>
+          </a>
+          <!-- 4. Second Suffix -->
+          <a href="subsuffixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span>↪️</span> <span id="txt-mod-subsuffix">Second Suffix (Yang-jug)</span>
+          </a>
+          <!-- 5. Prefix -->
+          <a href="prefixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+            <span>⬅️</span> <span id="txt-mod-prefix">Prefixes (Sngon-jug)</span>
+          </a>
+          <!-- 6. Super Scripts (with subtopics) -->
+          <div class="space-y-1">
+            <div class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-3 text-yellow-300 tibetan-font">
+              <span>🔺</span> <span id="txt-mod-super">Super Scripts (Mgo-can)</span>
+            </div>
+            <div class="pl-6 space-y-1">
+              <a href="ra-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-ramgo">ར་མགོ། (Ra-mgo)</span>
+              </a>
+              <a href="la-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-lamgo">ལ་མགོ། (La-mgo)</span>
+              </a>
+              <a href="sa-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-samgo">ས་མགོ། (Sa-mgo)</span>
+              </a>
+            </div>
+          </div>
+          <!-- 7. Sub-Scripts (with subtopics) -->
+          <div class="space-y-1 pt-1">
+            <div class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-3 text-yellow-300 tibetan-font">
+              <span>🔻</span> <span id="txt-mod-sub">Sub Scripts (Dogs-can)</span>
+            </div>
+            <div class="pl-6 space-y-1">
+              <a href="ya-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-yabtags">ཡ་བཏགས། (Ya-btags)</span>
+              </a>
+              <a href="ra-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-rabtags">ར་བཏགས། (Ra-btags)</span>
+              </a>
+              <a href="la-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-labtags">ལ་བཏགས། (La-btags)</span>
+              </a>
+              <a href="wa-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+                <span>▫️</span> <span id="txt-mod-wabtags">ཝ་བཏགས། (Wa-btags)</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </aside>
+
   </div>
 
   <!-- Character Detail Modal -->
@@ -459,6 +525,21 @@
         navDragdrop: "Drag & Drop Quiz",
         navSing: "Let's Sing",
         navDrawing: "Magic Pen",
+        modulesHeader: "Advanced Modules",
+        modMulti: "Multiconsonant Vocab",
+        modVowels: "4 Vowels (Dbyangs)",
+        modSuffix: "Suffixes (Rjes-jug)",
+        modSubsuffix: "Second Suffix (Yang-jug)",
+        modPrefix: "Prefixes (Sngon-jug)",
+        modSuper: "Super Scripts (Mgo-can)",
+        modRamgo: "ར་མགོ། (Ra-mgo)",
+        modLamgo: "ལ་མགོ། (La-mgo)",
+        modSamgo: "ས་མགོ། (Sa-mgo)",
+        modSub: "Sub Scripts (Dogs-can)",
+        modYabtags: "ཡ་བཏགས། (Ya-btags)",
+        modRabtags: "ར་བཏགས། (Ra-btags)",
+        modLabtags: "ལ་བཏགས། (La-btags)",
+        modWabtags: "ཝ་བཏགས། (Wa-btags)",
         mascotName: "Tashi the Wild Yak",
         mascotBadge: "Guide",
         mascotDefault: "Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!",
@@ -522,6 +603,21 @@
         navDragdrop: "དྲི་རྩད་ཁག་གཉིས་པ།",
         navSing: "གླུ་དབྱངས་ལེན།",
         navDrawing: "ཡིག་གཟུགས་སྦྱོང་།",
+        modulesHeader: "ཡིག་གཟུགས་འཕར་མ།",
+        modMulti: "མཁའ་འགྲོའི་ཚིག",
+        modVowels: "དབྱངས་བཞི།",
+        modSuffix: "རྗེས་འཇུག",
+        modSubsuffix: "ཡང་འཇུག",
+        modPrefix: "སྔོན་འཇུག",
+        modSuper: "མོ་འགོ།",
+        modRamgo: "ར་མགོ།",
+        modLamgo: "ལ་མགོ།",
+        modSamgo: "ས་མགོ།",
+        modSub: "དོགས་ཅན།",
+        modYabtags: "ཡ་བཏགས།",
+        modRabtags: "ར་བཏགས།",
+        modLabtags: "ལ་བཏགས།",
+        modWabtags: "ཝ་བཏགས།",
         mascotName: "ང་འབྲོང་ཕྲུག་བཀྲ་ཤིས་ཡིན། ང་བོད་པ་ཡིན། ང་བོད་ཡིག་ལ་དགའ།",
         mascotBadge: "",
         mascotDefault: "ཁྱེད་ཉིད་ཕེབས་པར་དགའ་བསུ་ཞུ། ང་ཚོས་མཉམ་དུ་བོད་ཡིག་སློབ་སྦྱོང་བྱེད།",
@@ -645,6 +741,22 @@
       document.getElementById('txt-modal-practice').innerText = t.modalPractice;
       document.getElementById('modal-badge').innerText = t.modalBadge;
       document.getElementById('txt-footer').innerText = t.footer;
+
+      document.getElementById('txt-modules-header').innerText = t.modulesHeader;
+      document.getElementById('txt-mod-multi').innerText = t.modMulti;
+      document.getElementById('txt-mod-vowels').innerText = t.modVowels;
+      document.getElementById('txt-mod-suffix').innerText = t.modSuffix;
+      document.getElementById('txt-mod-subsuffix').innerText = t.modSubsuffix;
+      document.getElementById('txt-mod-prefix').innerText = t.modPrefix;
+      document.getElementById('txt-mod-super').innerText = t.modSuper;
+      document.getElementById('txt-mod-ramgo').innerText = t.modRamgo;
+      document.getElementById('txt-mod-lamgo').innerText = t.modLamgo;
+      document.getElementById('txt-mod-samgo').innerText = t.modSamgo;
+      document.getElementById('txt-mod-sub').innerText = t.modSub;
+      document.getElementById('txt-mod-yabtags').innerText = t.modYabtags;
+      document.getElementById('txt-mod-rabtags').innerText = t.modRabtags;
+      document.getElementById('txt-mod-labtags').innerText = t.modLabtags;
+      document.getElementById('txt-mod-wabtags').innerText = t.modWabtags;
 
       document.getElementById('lang-btn-text').innerText = currentLang === 'en' ? 'བོད་ཡིག' : 'English';
       mascotSpeak(t.mascotDefault);
