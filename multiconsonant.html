@@ -326,7 +326,7 @@
         </div>
       </section>
 
-      <!-- NEW ACTIVITY 1: Spelling / Unscramble Challenge -->
+      <!-- SPELLING CHALLENGE -->
       <section id="view-spelling" class="hidden flex flex-col items-center justify-center py-2 space-y-6 max-w-2xl mx-auto">
         <div id="spell-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
           <div class="flex justify-between items-center border-b pb-3">
@@ -370,7 +370,7 @@
         </div>
       </section>
 
-      <!-- NEW ACTIVITY 2: Speed Memory Match Game -->
+      <!-- MEMORY MATCH GAME -->
       <section id="view-memory" class="hidden flex flex-col items-center justify-center py-2 space-y-6 max-w-3xl mx-auto">
         <div id="mem-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-6 shadow-md text-center space-y-5">
           <div class="flex justify-between items-center border-b pb-3">
@@ -689,7 +689,7 @@
         appTitle: "གསལ་བྱེད་གཉིས་ལྡན་གྱི་མིང་ཚིག",
         appSubtitle: "མིང་ཚིག་གི་རི་མོ་དང་སྒྲ།",
         navHeader: "དཀར་ཆག",
-        navGrid: "མིང་ཚིག་ཐོར་བུ།",
+        navGrid: "མིང་ཚིག་ཐོེར་བུ།",
         navFlashcards: "བྱང་བུ།",
         navQuiz: "དྲི་རྩད་ཁག་དང་པོ།",
         navDragdrop: "དྲི་རྩད་ཁག་གཉིས་པ།",
@@ -767,35 +767,35 @@
       }
     };
 
-    // Complete Multiconsonant Vocabulary List matching audio and image names
+    // Complete Multiconsonant Vocabulary List synchronized with exact GitHub audio and image names
     const MULTICONSONANT_VOCAB = [
-      { id: 0, char: "ཀ་ར", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར.jpg" },
+      { id: 0, char: "ཀ་ར།", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར.jpg" },
       { id: 1, char: "ཁ་ཤ", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/02_kha_sha_ཁ་ཤ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/02_kha_sha_ཁ་ཤ.jpg" },
       { id: 2, char: "ག་ཤ", freq: 329.63, audioUrl: "audio/02_multiconsonant_vocabulary/03_ga_sha_ག་ཤ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/03_ga_sha_ག་ཤ.jpg" },
       { id: 3, char: "ཅ་ག", freq: 349.23, audioUrl: "audio/02_multiconsonant_vocabulary/04_ca_ga_ཅ་ག.mp3", imgUrl: "images/02_multiconsonant_vocabulary/04_ca_ga_ཅ་ག.jpg" },
-      { id: 4, char: "ཆ་ལ", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/05_cha_la_ཆ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/05_cha_la_ཆ་ལ.jpg" },
-      { id: 5, char: "ཇ་མ", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/06_ja_ma_ཇ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/06_ja_ma_ཇ་མ.jpg" },
-      { id: 6, char: "ཉ་པ", freq: 493.88, audioUrl: "audio/02_multiconsonant_vocabulary/07_nya_pa_ཉ་པ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/07_nya_pa_ཉ་པ.jpg" },
-      { id: 7, char: "ཏ་ལ", freq: 523.25, audioUrl: "audio/02_multiconsonant_vocabulary/08_ta_la_ཏ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/08_ta_la_ཏ་ལ.jpg" },
-      { id: 8, char: "ཐ་མ", freq: 587.33, audioUrl: "audio/02_multiconsonant_vocabulary/09_tha_ma_ཐ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/09_tha_ma_ཐ་མ.jpg" },
-      { id: 9, char: "ད་ར", freq: 659.25, audioUrl: "audio/02_multiconsonant_vocabulary/10_da_ra_ད་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/10_da_ra_ད་ར.jpg" },
-      { id: 10, char: "ན་ཁ", freq: 698.46, audioUrl: "audio/02_multiconsonant_vocabulary/11_na_kha_ན་ཁ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/11_na_kha_ན་ཁ.jpg" },
+      { id: 4, char: "ཆ་ལ།", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/05_cha_la_ཆ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/05_cha_la_ཆ་ལ.jpg" },
+      { id: 5, char: "ཇ་མ།", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/06_ja_ma_ཇ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/06_ja_ma_ཇ་མ.jpg" },
+      { id: 6, char: "ཉ་པ།", freq: 493.88, audioUrl: "audio/02_multiconsonant_vocabulary/07_nya_pa_ཉ་པ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/07_nya_pa_ཉ་པ.jpg" },
+      { id: 7, char: "ཏ་ལ།", freq: 523.25, audioUrl: "audio/02_multiconsonant_vocabulary/08_ta_la_ཏ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/08_ta_la_ཏ་ལ.jpg" },
+      { id: 8, char: "ཐ་མ།", freq: 587.33, audioUrl: "audio/02_multiconsonant_vocabulary/09_tha_ma_ཐ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/09_tha_ma_ཐ་མ.jpg" },
+      { id: 9, char: "ད་ར།", freq: 659.25, audioUrl: "audio/02_multiconsonant_vocabulary/10_da_ra_ད་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/10_da_ra_ད་ར.jpg" },
+      { id: 10, char: "ན་ཁ།", freq: 698.46, audioUrl: "audio/02_multiconsonant_vocabulary/11_na_kha_ན་ཁ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/11_na_kha_ན་ཁ.jpg" },
       { id: 11, char: "པ་ཕ", freq: 783.99, audioUrl: "audio/02_multiconsonant_vocabulary/12_pa_pha_པ་ཕ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/12_pa_pha_པ་ཕ.jpg" },
-      { id: 12, char: "ཕ་མ", freq: 880.00, audioUrl: "audio/02_multiconsonant_vocabulary/13_pha_ma_ཕ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/13_pha_ma_ཕ་མ.jpg" },
-      { id: 13, char: "བ་ར", freq: 987.77, audioUrl: "audio/02_multiconsonant_vocabulary/14_ba_ra_བ་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/14_ba_ra_བ་ར.jpg" },
-      { id: 14, char: "མ་མ", freq: 1046.50, audioUrl: "audio/02_multiconsonant_vocabulary/15_ma_ma_མ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/15_ma_ma_མ་མ.jpg" },
-      { id: 15, char: "ཚ་ཚ", freq: 1174.66, audioUrl: "audio/02_multiconsonant_vocabulary/16_tsa_tsa_ཚ་ཚ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/16_tsa_tsa_ཚ་ཚ.jpg" },
-      { id: 16, char: "ཛ་ལ", freq: 1318.51, audioUrl: "audio/02_multiconsonant_vocabulary/17_dza_la_ཛ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/17_dza_la_ཛ་ལ.jpg" },
+      { id: 12, char: "ཕ་མ།", freq: 880.00, audioUrl: "audio/02_multiconsonant_vocabulary/13_pha_ma_ཕ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/13_pha_ma_ཕ་མ.jpg" },
+      { id: 13, char: "བ་ར།", freq: 987.77, audioUrl: "audio/02_multiconsonant_vocabulary/14_ba_ra_བ་ར.mp3", imgUrl: "images/02_multiconsonant_vocabulary/14_ba_ra_བ་ར.jpg" },
+      { id: 14, char: "མ་མ།", freq: 1046.50, audioUrl: "audio/02_multiconsonant_vocabulary/15_ma_ma_མ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/15_ma_ma_མ་མ.jpg" },
+      { id: 15, char: "ཚ་ཚ།", freq: 1174.66, audioUrl: "audio/02_multiconsonant_vocabulary/16_tsa_tsa_ཚ་ཚ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/16_tsa_tsa_ཚ་ཚ.jpg" },
+      { id: 16, char: "ཛ་ལ།", freq: 1318.51, audioUrl: "audio/02_multiconsonant_vocabulary/17_dza_la_ཛ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/17_dza_la_ཛ་ལ.jpg" },
       { id: 17, char: "ཝ་ཁ", freq: 1396.91, audioUrl: "audio/02_multiconsonant_vocabulary/18_wa_kha_ཝ་ཁ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/18_wa_kha_ཝ་ཁ.jpg" },
-      { id: 18, char: "ཟ་མ", freq: 1567.98, audioUrl: "audio/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ.jpg" },
-      { id: 19, char: "འ་ཆ", freq: 1760.00, audioUrl: "audio/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ.jpg" },
-      { id: 20, char: "ཡ་མ", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ.jpg" },
-      { id: 21, char: "ར་མ", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/22_ra_ma_ར་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/22_ra_ma_ར་མ.jpg" },
-      { id: 22, char: "ལ་ཁ", freq: 329.63, audioUrl: "audio/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ.jpg" },
-      { id: 23, char: "ཤ་ལ", freq: 349.23, audioUrl: "audio/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ.jpg" },
-      { id: 24, char: "ས་ཆ", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ.jpg" },
-      { id: 25, char: "ཧ་ཧ", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ.jpg" },
-      { id: 26, char: "ཨ་མ", freq: 493.88, audioUrl: "audio/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ.png" }
+      { id: 18, char: "ཟ་མ།", freq: 1567.98, audioUrl: "audio/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ.jpg" },
+      { id: 19, char: "འ་ཆ།", freq: 1760.00, audioUrl: "audio/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ.jpg" },
+      { id: 20, char: "ཡ་མ།", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ.jpg" },
+      { id: 21, char: "ར་མ།", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/22_ra_ma_ར་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/22_ra_ma_ར་མ.jpg" },
+      { id: 22, char: "ལ་ཁ།", freq: 329.63, audioUrl: "audio/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ.jpg" },
+      { id: 23, char: "ཤ་ལ།", freq: 349.23, audioUrl: "audio/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ.jpg" },
+      { id: 24, char: "ས་ཆ།", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ.jpg" },
+      { id: 25, char: "ཧ་ཧ།", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ.jpg" },
+      { id: 26, char: "ཨ་མ།", freq: 493.88, audioUrl: "audio/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ.png" }
     ];
 
     let starCount = 0;
@@ -1065,7 +1065,7 @@
         addStars(1);
       };
 
-      const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-24 sm:h-28 max-w-full object-contain my-1 rounded">` : '';
+      const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" alt="${item.char}" class="h-24 sm:h-28 max-w-full object-contain my-1 rounded" onerror="this.style.display='none'">` : '';
 
       card.innerHTML = `
         <div class="flex-1 flex flex-col items-center justify-center w-full my-auto">
@@ -1159,7 +1159,7 @@
         btn.className = "bg-white border-2 border-amber-200 hover:border-amber-400 p-4 sm:p-6 rounded-2xl shadow-sm text-center card-bounce transition flex flex-col items-center justify-center gap-2 min-h-[140px]";
         btn.onclick = () => handleQuizAnswer(item, btn);
 
-        const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="h-16 sm:h-20 object-contain">` : '';
+        const imgHtml = item.imgUrl ? `<img src="${item.imgUrl}" class="h-16 sm:h-20 object-contain" onerror="this.style.display='none'">` : '';
 
         btn.innerHTML = `
           <div class="flex-1 flex flex-col items-center justify-center my-auto">
@@ -1525,7 +1525,7 @@
         btnElem.innerHTML = `<span class="tibetan-font text-3xl font-bold text-red-900">${card.content}</span>`;
         playSound(card.id);
       } else {
-        btnElem.innerHTML = `<img src="${card.content}" class="h-16 object-contain">`;
+        btnElem.innerHTML = `<img src="${card.content}" class="h-16 object-contain" onerror="this.style.display='none'">`;
       }
 
       flippedCards.push({ index, card, elem: btnElem });
