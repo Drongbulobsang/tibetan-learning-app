@@ -153,7 +153,7 @@
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3.5 rounded-3xl border-2 border-yellow-400 shadow-lg text-center space-y-2">
         <h3 id="txt-visitor-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider tibetan-font">Website Visitors</h3>
         <div class="bg-white/10 p-2.5 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
-          <img src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant" alt="Visitor Count" class="h-6">
+          <img id="visitor-badge-img" src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant&title=visitors" alt="Visitor Count" class="h-6">
         </div>
       </div>
 
@@ -225,7 +225,7 @@
               <span id="txt-quiz-header" class="font-bold text-slate-800 text-xl tibetan-font">Ear Training Quiz</span>
             </div>
             <div class="flex items-center gap-2">
-              <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+              <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200 tibetan-font">
                 Question 1 / 10
               </span>
               <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
@@ -276,7 +276,7 @@
               <span id="txt-dd-header" class="font-bold text-slate-800 text-xl tibetan-font">Matching Quiz (Drag & Drop)</span>
             </div>
             <div class="flex items-center gap-2">
-              <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+              <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200 tibetan-font">
                 Question 1 / 10
               </span>
               <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
@@ -335,7 +335,7 @@
               <span id="txt-spell-header" class="font-bold text-slate-800 text-xl tibetan-font">Spelling Challenge</span>
             </div>
             <div class="flex items-center gap-2">
-              <span id="spell-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+              <span id="spell-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200 tibetan-font">
                 Question 1 / 10
               </span>
               <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
@@ -649,6 +649,7 @@
         quizInstruction: "Listen and tap the correct vocabulary item! (+5 pts)",
         quizChancesLbl: "Chances left:",
         quizReplay: "Tap speaker to replay sound",
+        quizQuestionLbl: "Question",
         quizCompletedTitle: "Quiz Completed!",
         quizCompletedDesc: "Great job practicing your listening skills!",
         quizFinalLbl: "Final Score",
@@ -695,7 +696,8 @@
         modalPractice: "Practice Writing in Magic Pen",
         modalBadge: "Multiconsonant Vocabulary Illustration",
         footer: "Multiconsonant Vocabulary Audio & Illustration Learning Tool",
-        visitorHeader: "Website Visitors"
+        visitorHeader: "Website Visitors",
+        visitorText: "visitors"
       },
       bo: {
         bodYig: "འབྲོང་བུ་ཚང་།",
@@ -743,6 +745,7 @@
         quizInstruction: "སྒྲ་ལ་ཉན་ནས་མིང་ཚིག་འགྲིག་པ་དེ་འདེམས།",
         quizChancesLbl: "གོ་སྐབས།",
         quizReplay: "",
+        quizQuestionLbl: "དྲི་བ།",
         quizCompletedTitle: "རྟེན་འབྲེལ་ཞུ།",
         quizCompletedDesc: "དྲི་རྩད་མཉམ་ཞུགས་གནང་བ་ཐུགས་རྗེ་ཞུ།",
         quizFinalLbl: "མཐའ་མའི་ཐོབ་སྐར།",
@@ -789,7 +792,8 @@
         modalPractice: "སྨྱུག་ཐོག་ཏུ་འབྲི་སྦྱོང་བྱེད།",
         modalBadge: "མིང་ཚིག་གི་རི་མོ།",
         footer: "འབྲོང་བུ་ཚང་། གསལ་བྱེད་གཉིས་ལྡན་གྱི་མིང་ཚིག",
-        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།"
+        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།",
+        visitorText: "ལྟ་མཁན།"
       }
     };
 
@@ -815,12 +819,12 @@
       { id: 17, char: "ཝ་ཁ", freq: 1396.91, audioUrl: "audio/02_multiconsonant_vocabulary/18_wa_kha_ཝ་ཁ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/18_wa_kha_ཝ་ཁ།.jpg" },
       { id: 18, char: "ཟ་མ།", freq: 1567.98, audioUrl: "audio/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/19_za_ma_ཟ་མ།.jpg" },
       { id: 19, char: "འ་ཆ།", freq: 1760.00, audioUrl: "audio/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/20__a_cha_འ་ཆ།.jpg" },
-      { id: 20, char: "ཡ་མ།", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ།.jpg" },
-      { id: 21, char: "ར་མ།", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/22_ra_ma_ར་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/22_ra_ma_ར་མ།.jpg" },
-      { id: 22, char: "ལ་ཁ།", freq: 329.63, audioUrl: "audio/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ།.jpg" },
-      { id: 23, char: "ཤ་ལ།", freq: 349.23, audioUrl: "audio/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ།.jpg" },
-      { id: 24, char: "ས་ཆ།", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ།.jpg" },
-      { id: 25, char: "ཧ་ཧ།", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ།.jpg" },
+      { id: 20, char: "ཡ་མ།", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/21_ya_ma_ཡ་མ།.mp3" },
+      { id: 21, char: "ར་མ།", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/22_ra_ma_ར་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/22_ra_ma_ར་མ།.mp3" },
+      { id: 22, char: "ལ་ཁ།", freq: 329.63, audioUrl: "audio/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/23_la_kha_ལ་ཁ།.mp3" },
+      { id: 23, char: "ཤ་ལ།", freq: 349.23, audioUrl: "audio/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/24_sha_la_ཤ་ལ།.mp3" },
+      { id: 24, char: "ས་ཆ།", freq: 392.00, audioUrl: "audio/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/25_sa_cha_ས་ཆ།.mp3" },
+      { id: 25, char: "ཧ་ཧ།", freq: 440.00, audioUrl: "audio/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/26_ha_ha_ཧ་ཧ།.mp3" },
       { id: 26, char: "ཨ་མ།", freq: 493.88, audioUrl: "audio/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/27_a_ma_ཨ་མ།.png" }
     ];
 
@@ -1046,6 +1050,26 @@
       document.getElementById('txt-footer').innerText = t.footer;
       document.getElementById('txt-visitor-header').innerText = t.visitorHeader;
 
+      // Update Visitor Badge image URL with localized title parameter
+      const visitorImg = document.getElementById('visitor-badge-img');
+      if (visitorImg) {
+        visitorImg.src = `https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant&title=${encodeURIComponent(t.visitorText)}`;
+      }
+
+      // Re-render active progress badges to reflect language change immediately
+      if (quizTarget) {
+        const qNum = quizCurrentQuestion > 0 ? quizCurrentQuestion : 1;
+        document.getElementById('quiz-progress-badge').innerText = `${t.quizQuestionLbl} ${qNum} / ${quizTotalQuestions}`;
+      }
+      if (ddTarget) {
+        const dNum = ddCurrentQuestion > 0 ? ddCurrentQuestion : 1;
+        document.getElementById('dd-progress-badge').innerText = `${t.quizQuestionLbl} ${dNum} / ${ddTotalQuestions}`;
+      }
+      if (spellTarget) {
+        const sNum = spellCurrentQ > 0 ? spellCurrentQ : 1;
+        document.getElementById('spell-progress-badge').innerText = `${t.quizQuestionLbl} ${sNum} / ${spellTotalQ}`;
+      }
+
       document.getElementById('txt-modules-header').innerText = t.modulesHeader;
       document.getElementById('txt-mod-multi').innerText = t.modMulti;
       document.getElementById('txt-mod-vowels').innerText = t.modVowels;
@@ -1068,7 +1092,6 @@
 
       renderGrid();
       
-      // Update active drop-zone texts if drop elements exist
       document.querySelectorAll('.drop-here-text').forEach(el => {
         el.innerText = t.ddDropHere;
       });
@@ -1087,9 +1110,6 @@
       rowBox.className = "bg-white p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-sm space-y-2";
       
       rowBox.innerHTML = `
-        <div class="text-sm font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center tibetan-font">
-          <span>Multiconsonant Vocabulary (02_multiconsonant_vocabulary)</span>
-        </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"></div>
       `;
 
@@ -1181,7 +1201,8 @@
       quizChancesLeft = 2;
       quizAnswered = false;
 
-      document.getElementById('quiz-progress-badge').innerText = `Question ${quizCurrentQuestion} / ${quizTotalQuestions}`;
+      const t = TRANSLATIONS[currentLang];
+      document.getElementById('quiz-progress-badge').innerText = `${t.quizQuestionLbl} ${quizCurrentQuestion} / ${quizTotalQuestions}`;
       document.getElementById('quiz-chances').innerText = quizChancesLeft;
 
       quizTarget = quizRemainingPool.pop();
@@ -1295,7 +1316,8 @@
       ddAnswered = false;
       ddSelectedMobile = false;
 
-      document.getElementById('dd-progress-badge').innerText = `Question ${ddCurrentQuestion} / ${ddTotalQuestions}`;
+      const t = TRANSLATIONS[currentLang];
+      document.getElementById('dd-progress-badge').innerText = `${t.quizQuestionLbl} ${ddCurrentQuestion} / ${ddTotalQuestions}`;
       document.getElementById('dd-chances').innerText = ddChancesLeft;
 
       ddTarget = ddRemainingPool.pop();
@@ -1314,8 +1336,6 @@
 
       const grid = document.getElementById('dd-targets-grid');
       grid.innerHTML = '';
-
-      const t = TRANSLATIONS[currentLang];
 
       choices.forEach(item => {
         const dropBox = document.createElement('div');
@@ -1450,7 +1470,8 @@
       }
 
       spellCurrentQ++;
-      document.getElementById('spell-progress-badge').innerText = `Question ${spellCurrentQ} / ${spellTotalQ}`;
+      const t = TRANSLATIONS[currentLang];
+      document.getElementById('spell-progress-badge').innerText = `${t.quizQuestionLbl} ${spellCurrentQ} / ${spellTotalQ}`;
       spellTarget = spellPool.pop();
       document.getElementById('spell-target-img').src = spellTarget.imgUrl;
 
