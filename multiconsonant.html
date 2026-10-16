@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,13 @@
   <style>
     body {
       font-family: 'Fredoka', 'Jomolhari', 'Noto Sans Tibetan', cursive, sans-serif;
-      font-size: 1.1rem; /* Global website font size set to 1.1rem */
+      font-size: 1.1rem;
       user-select: none;
       -webkit-user-select: none;
     }
     .tibetan-font {
       font-family: 'Jomolhari', 'Noto Sans Tibetan', serif !important;
     }
-    /* Increase Tibetan UI font size to 1.5rem ONLY when Tibetan language mode is active, leaving English unchanged */
     html[lang="bo"] .tibetan-ui-lg {
       font-size: 1.4rem !important;
       line-height: 1.5 !important;
@@ -79,7 +78,6 @@
         </div>
         <div>
           <h1 class="font-bold tracking-wide flex items-center gap-2">
-            <!-- Brand Title dynamically switches between English & Tibetan -->
             <a href="index.html" id="txt-brand-name" class="tibetan-font text-yellow-300 text-2xl sm:text-4xl hover:underline">Drongbu Tsang</a>
             <span id="txt-app-title" class="tibetan-font tibetan-ui-lg hidden sm:inline">Multiconsonant Vocab</span>
           </h1>
@@ -88,8 +86,8 @@
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Language Switcher Button -->
-        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font tibetan-ui-lg">
+        <!-- Language Switcher Button (Font size fixed to match English exactly) -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font">
           🌐 <span id="lang-btn-text">English / བོད་ཡིག</span>
         </button>
 
@@ -156,11 +154,11 @@
         </div>
       </div>
 
-      <!-- Visitor Counter Badge Card -->
+      <!-- Visitor Counter Badge Card (Only numbers shown) -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3.5 rounded-3xl border-2 border-yellow-400 shadow-lg text-center space-y-2">
         <h3 id="txt-visitor-header" class="font-bold text-yellow-300 uppercase tracking-wider tibetan-font tibetan-ui-lg">Website Visitors</h3>
         <div class="bg-white/10 p-2.5 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
-          <img id="visitor-badge-img" src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant&title=visitors" alt="Visitor Count" class="h-6">
+          <img id="visitor-badge-img" src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant&title=" alt="Visitor Count" class="h-6">
         </div>
       </div>
 
@@ -607,7 +605,8 @@
   </footer>
 
   <script>
-    let currentLang = 'en';
+    // Default language defaults to Tibetan ('bo') and persists via localStorage
+    let currentLang = localStorage.getItem('tibetan_lang') || 'bo';
 
     const TRANSLATIONS = {
       en: {
@@ -703,8 +702,7 @@
         modalPractice: "Practice Writing in Magic Pen",
         modalBadge: "Multiconsonant Vocabulary Illustration",
         footer: "Multiconsonant Vocabulary Audio & Illustration Learning Tool",
-        visitorHeader: "Website Visitors",
-        visitorText: "visitors"
+        visitorHeader: "Website Visitors"
       },
       bo: {
         bodYig: "འབྲོང་བུ་ཚང་།",
@@ -799,12 +797,10 @@
         modalPractice: "",
         modalBadge: "",
         footer: "འབྲོང་བུ་ཚང་། གསལ་བྱེད་གཉིས་ལྡན་གྱི་མིང་ཚིག",
-        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།",
-        visitorText: ""
+        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།"
       }
     };
 
-    // Complete Multiconsonant Vocabulary List synchronized with exact GitHub audio and image names
     const MULTICONSONANT_VOCAB = [
       { id: 0, char: "ཀ་ར།", freq: 261.63, audioUrl: "audio/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར།.mp3", imgUrl: "images/02_multiconsonant_vocabulary/01_ka_ra_ཀ་ར།.jpg" },
       { id: 1, char: "ཁ་ཤ", freq: 293.66, audioUrl: "audio/02_multiconsonant_vocabulary/02_kha_sha_ཁ་ཤ.mp3", imgUrl: "images/02_multiconsonant_vocabulary/02_kha_sha_ཁ་ཤ.jpg" },
@@ -840,7 +836,6 @@
     let currentDrawingIndex = 0;
     let currentModalIndex = 0;
 
-    // QUIZ VARIABLES
     let quizTarget = null;
     let quizScore = 0;
     let quizCurrentQuestion = 0;
@@ -849,7 +844,6 @@
     let quizAnswered = false;
     let quizRemainingPool = [];
 
-    // DRAG AND DROP QUIZ VARIABLES
     let ddTarget = null;
     let ddScore = 0;
     let ddCurrentQuestion = 0;
@@ -859,7 +853,6 @@
     let ddSelectedMobile = false;
     let ddRemainingPool = [];
 
-    // SPELLING GAME VARIABLES
     let spellTarget = null;
     let spellScore = 0;
     let spellCurrentQ = 0;
@@ -867,7 +860,6 @@
     let spellPool = [];
     let spellUserSlots = [];
 
-    // MEMORY MATCH VARIABLES
     let memoryCards = [];
     let flippedCards = [];
     let matchedPairsCount = 0;
@@ -974,10 +966,8 @@
     function updateLanguageUI() {
       const t = TRANSLATIONS[currentLang];
 
-      // Set the root html lang attribute so CSS selector targets only Tibetan mode
       document.documentElement.lang = currentLang;
 
-      // Update Header Title (Drongbu Tsang / འབྲོང་བུ་ཚང་།)
       document.getElementById('txt-brand-name').innerText = t.bodYig;
       document.getElementById('txt-app-title').innerText = t.appTitle;
       document.getElementById('txt-app-subtitle').innerText = t.appSubtitle;
@@ -1062,13 +1052,6 @@
       document.getElementById('txt-footer').innerText = t.footer;
       document.getElementById('txt-visitor-header').innerText = t.visitorHeader;
 
-      // Update Visitor Badge image URL with localized title parameter
-      const visitorImg = document.getElementById('visitor-badge-img');
-      if (visitorImg) {
-        visitorImg.src = `https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool.multiconsonant&title=${encodeURIComponent(t.visitorText)}`;
-      }
-
-      // Re-render active progress badges to reflect language change immediately
       if (quizTarget) {
         const qNum = quizCurrentQuestion > 0 ? quizCurrentQuestion : 1;
         document.getElementById('quiz-progress-badge').innerText = `${t.quizQuestionLbl} ${qNum} / ${quizTotalQuestions}`;
@@ -1111,6 +1094,7 @@
 
     function toggleLanguage() {
       currentLang = (currentLang === 'en') ? 'bo' : 'en';
+      localStorage.setItem('tibetan_lang', currentLang);
       updateLanguageUI();
     }
 
@@ -1192,7 +1176,6 @@
       speakCurrentFlashcard();
     }
 
-    /* EAR QUIZ LOGIC */
     function restartQuiz() {
       quizScore = 0;
       quizCurrentQuestion = 0;
@@ -1306,7 +1289,6 @@
       } catch(e) {}
     }
 
-    /* DRAG AND DROP QUIZ LOGIC */
     function restartDragDropQuiz() {
       ddScore = 0;
       ddCurrentQuestion = 0;
@@ -1461,7 +1443,6 @@
       } catch(e) {}
     }
 
-    /* SPELLING CHALLENGE LOGIC */
     function restartSpellingGame() {
       spellScore = 0;
       spellCurrentQ = 0;
@@ -1562,7 +1543,6 @@
       renderSpellingBank();
     }
 
-    /* MEMORY MATCH GAME LOGIC */
     function restartMemoryGame() {
       matchedPairsCount = 0;
       flippedCards = [];
@@ -1640,7 +1620,6 @@
       }
     }
 
-    /* MAGIC PEN CANVAS LOGIC */
     let canvas, ctx;
     let isDrawing = false;
     let penColor = '#ef4444';
@@ -1785,7 +1764,6 @@
       playSound(currentDrawingIndex);
     }
 
-    /* MODAL LOGIC */
     function openModalForCharacter(index) {
       currentModalIndex = index;
       const item = MULTICONSONANT_VOCAB[index];
