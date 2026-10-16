@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,13 @@
   <style>
     body {
       font-family: 'Fredoka', 'Jomolhari', 'Noto Sans Tibetan', cursive, sans-serif;
-      font-size: 1.1rem; /* Base font size matching multiconsonant pages */
+      font-size: 1.1rem;
       user-select: none;
       -webkit-user-select: none;
     }
     .tibetan-font {
       font-family: 'Jomolhari', 'Noto Sans Tibetan', serif !important;
     }
-    /* Distinct font size adjustment for Tibetan UI text when Tibetan language mode is active */
     html[lang="bo"] .tibetan-ui-scale {
       font-size: 1.4rem !important;
       line-height: 1.5 !important;
@@ -87,8 +86,8 @@
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Language Switcher Button -->
-        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font tibetan-ui-scale">
+        <!-- Language Switcher Button (Font size fixed to match English exactly) -->
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font">
           🌐 <span id="lang-btn-text">English / བོད་ཡིག</span>
         </button>
 
@@ -149,11 +148,11 @@
         </div>
       </div>
 
-      <!-- Visitor Counter Badge Card -->
+      <!-- Visitor Counter Badge Card (Only numbers shown) -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3.5 rounded-3xl border-2 border-yellow-400 shadow-lg text-center space-y-2">
         <h3 id="txt-visitor-header" class="font-bold text-yellow-300 uppercase tracking-wider tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Website Visitors</h3>
         <div class="bg-white/10 p-2.5 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
-          <img src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool" alt="Visitor Count" class="h-6">
+          <img src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool&title=" alt="Visitor Count" class="h-6">
         </div>
       </div>
 
@@ -525,7 +524,8 @@
   </footer>
 
   <script>
-    let currentLang = 'en';
+    // Default language defaults to Tibetan ('bo') and persists via localStorage
+    let currentLang = localStorage.getItem('tibetan_lang') || 'bo';
 
     const TRANSLATIONS = {
       en: {
@@ -684,14 +684,13 @@
         modalBadge: "སྔོན་འགྲོའི་སློབ་དེབ་རི་མོ།",
         footer: "འབྲོང་བུ་ཚང་། བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།",
         cardSoundBtn: "",
-        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས་ཀ།"
+        visitorHeader: "ལྟ་མཁན་གྱི་གྲངས།"
       }
     };
 
     function updateLanguageUI() {
       const t = TRANSLATIONS[currentLang];
 
-      // Keep root lang attribute synchronized for CSS language-based font sizing rules
       document.documentElement.lang = currentLang;
 
       document.getElementById('txt-app-brand').innerText = t.bodYig;
@@ -786,46 +785,39 @@
 
     function toggleLanguage() {
       currentLang = (currentLang === 'en') ? 'bo' : 'en';
+      localStorage.setItem('tibetan_lang', currentLang);
       updateLanguageUI();
     }
 
     const TIBETAN_LETTERS = [
-      // Row 1
       { id: 0, char: "ཀ", row: 1, freq: 261.63, audioUrl: "audio/01_30_consonant/ka.mp3", imgUrl: null },
       { id: 1, char: "ཁ", row: 1, freq: 293.66, audioUrl: "audio/01_30_consonant/kha.mp3", imgUrl: "images/01_30_consonant/kha.png" },
       { id: 2, char: "ག", row: 1, freq: 329.63, audioUrl: "audio/01_30_consonant/ga.mp3", imgUrl: null },
       { id: 3, char: "ང", row: 1, freq: 349.23, audioUrl: "audio/01_30_consonant/nga.mp3", imgUrl: "images/01_30_consonant/nga.png" },
-      // Row 2
       { id: 4, char: "ཅ", row: 2, freq: 392.00, audioUrl: "audio/01_30_consonant/ca.mp3", imgUrl: null },
       { id: 5, char: "ཆ", row: 2, freq: 440.00, audioUrl: "audio/01_30_consonant/cha.mp3", imgUrl: "images/01_30_consonant/cha.png" },
       { id: 6, char: "ཇ", row: 2, freq: 493.88, audioUrl: "audio/01_30_consonant/ja.mp3", imgUrl: "images/01_30_consonant/ja.png" },
       { id: 7, char: "ཉ", row: 2, freq: 523.25, audioUrl: "audio/01_30_consonant/nya.mp3", imgUrl: "images/01_30_consonant/nya.png" },
-      // Row 3
       { id: 8, char: "ཏ", row: 3, freq: 587.33, audioUrl: "audio/01_30_consonant/ta.mp3", imgUrl: null },
       { id: 9, char: "ཐ", row: 3, freq: 659.25, audioUrl: "audio/01_30_consonant/tha.mp3", imgUrl: null },
       { id: 10, char: "ད", row: 3, freq: 698.46, audioUrl: "audio/01_30_consonant/da.mp3", imgUrl: null },
       { id: 11, char: "ན", row: 3, freq: 783.99, audioUrl: "audio/01_30_consonant/na.mp3", imgUrl: "images/01_30_consonant/na.png" },
-      // Row 4
       { id: 12, char: "པ", row: 4, freq: 880.00, audioUrl: "audio/01_30_consonant/pa.mp3", imgUrl: null },
       { id: 13, char: "ཕ", row: 4, freq: 987.77, audioUrl: "audio/01_30_consonant/pha.mp3", imgUrl: "images/01_30_consonant/pha.png" },
       { id: 14, char: "བ", row: 4, freq: 1046.50, audioUrl: "audio/01_30_consonant/ba.mp3", imgUrl: "images/01_30_consonant/ba.png" },
       { id: 15, char: "མ", row: 4, freq: 1174.66, audioUrl: "audio/01_30_consonant/ma.mp3", imgUrl: "images/01_30_consonant/ma.png" },
-      // Row 5
       { id: 16, char: "ཙ", row: 5, freq: 1318.51, audioUrl: "audio/01_30_consonant/tsa.mp3", imgUrl: null },
       { id: 17, char: "ཚ", row: 5, freq: 1396.91, audioUrl: "audio/01_30_consonant/tsha.mp3", imgUrl: null },
       { id: 18, char: "ཛ", row: 5, freq: 1567.98, audioUrl: "audio/01_30_consonant/dza.mp3", imgUrl: null },
       { id: 19, char: "ཝ", row: 5, freq: 1760.00, audioUrl: "audio/01_30_consonant/wa.mp3", imgUrl: "images/01_30_consonant/wa.png" },
-      // Row 6
       { id: 20, char: "ཞ", row: 6, freq: 261.63, audioUrl: "audio/01_30_consonant/zha.mp3", imgUrl: null },
       { id: 21, char: "ཟ", row: 6, freq: 293.66, audioUrl: "audio/01_30_consonant/za.mp3", imgUrl: "images/01_30_consonant/za.png" },
       { id: 22, char: "འ", row: 6, freq: 329.63, audioUrl: "audio/01_30_consonant/a.mp3", imgUrl: null },
       { id: 23, char: "ཡ", row: 6, freq: 349.23, audioUrl: "audio/01_30_consonant/ya.mp3", imgUrl: "images/01_30_consonant/ya.png" },
-      // Row 7
       { id: 24, char: "ར", row: 7, freq: 392.00, audioUrl: "audio/01_30_consonant/ra.mp3", imgUrl: "images/01_30_consonant/ra.png" },
       { id: 25, char: "ལ", row: 7, freq: 440.00, audioUrl: "audio/01_30_consonant/la.mp3", imgUrl: "images/01_30_consonant/la.png" },
       { id: 26, char: "ཤ", row: 7, freq: 493.88, audioUrl: "audio/01_30_consonant/sha.mp3", imgUrl: "images/01_30_consonant/sha.png" },
       { id: 27, char: "ས", row: 7, freq: 523.25, audioUrl: "audio/01_30_consonant/sa.mp3", imgUrl: "images/01_30_consonant/sa.png" },
-      // Row 8
       { id: 28, char: "ཧ", row: 8, freq: 587.33, audioUrl: "audio/01_30_consonant/ha.mp3", imgUrl: null },
       { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/01_30_consonant/a_high.mp3", imgUrl: null }
     ];
@@ -840,7 +832,6 @@
     let currentDrawingIndex = 0;
     let currentModalIndex = 0;
 
-    // EAR QUIZ VARIABLES
     let quizTarget = null;
     let quizScore = 0;
     let quizCurrentQuestion = 0;
@@ -849,7 +840,6 @@
     let quizAnswered = false;
     let quizRemainingPool = [];
 
-    // DRAG AND DROP QUIZ VARIABLES
     let IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
     let ddTarget = null;
     let ddScore = 0;
@@ -1040,7 +1030,6 @@
       speakCurrentFlashcard();
     }
 
-    /* EAR QUIZ LOGIC */
     function restartQuiz() {
       quizScore = 0;
       quizCurrentQuestion = 0;
@@ -1153,7 +1142,6 @@
       } catch(e) {}
     }
 
-    /* DRAG AND DROP QUIZ LOGIC */
     function restartDragDropQuiz() {
       IMAGE_LETTERS = TIBETAN_LETTERS.filter(item => item.imgUrl !== null);
       ddScore = 0;
@@ -1308,7 +1296,6 @@
       } catch(e) {}
     }
 
-    /* MAGIC PEN CANVAS LOGIC */
     let canvas, ctx;
     let isDrawing = false;
     let penColor = '#ef4444';
@@ -1453,7 +1440,6 @@
       playSound(currentDrawingIndex);
     }
 
-    /* MODAL LOGIC */
     function openModalForCharacter(index) {
       currentModalIndex = index;
       const item = TIBETAN_LETTERS[index];
