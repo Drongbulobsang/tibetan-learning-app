@@ -19,11 +19,17 @@
   <style>
     body {
       font-family: 'Fredoka', 'Jomolhari', 'Noto Sans Tibetan', cursive, sans-serif;
+      font-size: 1.1rem; /* Base font size matching multiconsonant pages */
       user-select: none;
       -webkit-user-select: none;
     }
     .tibetan-font {
       font-family: 'Jomolhari', 'Noto Sans Tibetan', serif !important;
+    }
+    /* Distinct font size adjustment for Tibetan UI text when Tibetan language mode is active */
+    html[lang="bo"] .tibetan-ui-scale {
+      font-size: 1.35rem !important;
+      line-height: 1.5 !important;
     }
     ::-webkit-scrollbar {
       width: 10px;
@@ -72,24 +78,24 @@
           <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-uHE2qFgGOBjfxqkBOE1fZZinsngoYs.png&w=1000&q=75" alt="Yak Icon" class="h-9 w-9 sm:h-11 sm:w-11 object-contain drop-shadow-sm">
         </div>
         <div>
-          <h1 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center gap-2">
+          <h1 class="font-bold tracking-wide flex items-center gap-2">
             <span id="txt-app-brand" class="tibetan-font text-yellow-300 text-2xl sm:text-4xl">Drongbu Tsang</span>
-            <span id="txt-app-title" class="tibetan-font text-base sm:text-xl hidden sm:inline">Tibetan Learning Tool</span>
+            <span id="txt-app-title" class="tibetan-font tibetan-ui-scale hidden sm:inline">Tibetan Learning Tool</span>
           </h1>
-          <p id="txt-app-subtitle" class="text-xs sm:text-sm text-amber-200 tibetan-font">Textbook Illustrations & Audio</p>
+          <p id="txt-app-subtitle" class="text-amber-200 tibetan-font tibetan-ui-scale">Textbook Illustrations & Audio</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2 sm:gap-3">
         <!-- Language Switcher Button -->
-        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold text-xs sm:text-sm px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font">
+        <button id="lang-toggle-btn" onclick="toggleLanguage()" class="bg-yellow-400 hover:bg-yellow-300 text-red-950 font-extrabold px-3.5 py-1.5 rounded-full border-2 border-amber-200 shadow-sm transition flex items-center gap-1.5 tibetan-font tibetan-ui-scale">
           🌐 <span id="lang-btn-text">English / བོད་ཡིག</span>
         </button>
 
         <!-- Reward Stars -->
         <div class="flex items-center gap-2 bg-yellow-400/20 px-3.5 py-1.5 rounded-full border border-yellow-400/40">
           <span class="text-xl animate-bounce">⭐</span>
-          <span id="star-count" class="font-bold text-yellow-300 text-lg">0</span>
+          <span id="star-count" class="font-bold text-yellow-300">0</span>
         </div>
       </div>
 
@@ -104,24 +110,24 @@
       
       <!-- Navigation Bar -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
-        <h2 id="txt-nav-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Navigation Menu</h2>
+        <h2 id="txt-nav-header" class="font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Navigation Menu</h2>
         <nav class="flex flex-col gap-1.5">
-          <button id="nav-grid" onclick="switchTab('grid')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font">
+          <button id="nav-grid" onclick="switchTab('grid')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font tibetan-ui-scale">
             <span class="text-lg">🧩</span> <span id="txt-nav-grid">Alphabet Grid</span>
           </button>
-          <button id="nav-flashcards" onclick="switchTab('flashcards')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <button id="nav-flashcards" onclick="switchTab('flashcards')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🎴</span> <span id="txt-nav-flashcards">Flashcards</span>
           </button>
-          <button id="nav-quiz" onclick="switchTab('quiz')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <button id="nav-quiz" onclick="switchTab('quiz')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🎯</span> <span id="txt-nav-quiz">Ear Quiz</span>
           </button>
-          <button id="nav-dragdrop" onclick="switchTab('dragdrop')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <button id="nav-dragdrop" onclick="switchTab('dragdrop')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🖼️</span> <span id="txt-nav-dragdrop">Drag & Drop Quiz</span>
           </button>
-          <button id="nav-sing" onclick="switchTab('sing')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <button id="nav-sing" onclick="switchTab('sing')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🎵</span> <span id="txt-nav-sing">Let's Sing</span>
           </button>
-          <button id="nav-drawing" onclick="switchTab('drawing')" class="w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <button id="nav-drawing" onclick="switchTab('drawing')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🎨</span> <span id="txt-nav-drawing">Magic Pen</span>
           </button>
         </nav>
@@ -134,10 +140,10 @@
         </div>
         <div class="flex-1 space-y-1">
           <div class="flex lg:justify-center items-center gap-2">
-            <span id="txt-mascot-name" class="font-bold text-amber-900 text-base tibetan-font">Tashi the Wild Yak</span>
-            <span id="txt-mascot-badge" class="text-[10px] bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font">Guide</span>
+            <span id="txt-mascot-name" class="font-bold text-amber-900 tibetan-font tibetan-ui-scale">Tashi the Wild Yak</span>
+            <span id="txt-mascot-badge" class="bg-amber-200 text-amber-900 font-semibold px-2 py-0.5 rounded-full tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Guide</span>
           </div>
-          <p id="mascot-speech" class="text-xs sm:text-sm text-slate-700 font-medium leading-snug tibetan-font">
+          <p id="mascot-speech" class="text-slate-700 font-medium leading-snug tibetan-font tibetan-ui-scale">
             Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!
           </p>
         </div>
@@ -145,9 +151,8 @@
 
       <!-- Visitor Counter Badge Card -->
       <div class="bg-gradient-to-b from-red-950 to-indigo-950 p-3.5 rounded-3xl border-2 border-yellow-400 shadow-lg text-center space-y-2">
-        <h3 id="txt-visitor-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider tibetan-font">Website Visitors</h3>
+        <h3 id="txt-visitor-header" class="font-bold text-yellow-300 uppercase tracking-wider tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Website Visitors</h3>
         <div class="bg-white/10 p-2.5 rounded-2xl border border-yellow-400/30 flex items-center justify-center">
-          <!-- Note: Change 'drongbu.tibetan-tool' to your actual GitHub repository name or unique page ID -->
           <img src="https://visitor-badge.laobi.icu/badge?page_id=drongbu.tibetan-tool" alt="Visitor Count" class="h-6">
         </div>
       </div>
@@ -161,12 +166,12 @@
       <section id="view-grid" class="space-y-6">
         <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
           <div class="flex items-center gap-2">
-            <span id="txt-grid-layout-label" class="text-base font-bold text-slate-700 tibetan-font">Display Layout:</span>
-            <span id="txt-grid-layout-val" class="text-xs sm:text-sm bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font">
+            <span id="txt-grid-layout-label" class="font-bold text-slate-700 tibetan-font tibetan-ui-scale">Display Layout:</span>
+            <span id="txt-grid-layout-val" class="bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
               Traditional Rows (4 Letters per Line)
             </span>
           </div>
-          <div id="txt-grid-tag" class="text-xs sm:text-sm text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200 tibetan-font">
+          <div id="txt-grid-tag" class="text-amber-800 font-semibold bg-amber-50 px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
             Audio & Textbook Images
           </div>
         </div>
@@ -177,14 +182,14 @@
       <!-- VIEW 2: Interactive Flashcards -->
       <section id="view-flashcards" class="hidden flex flex-col items-center justify-center py-2 space-y-6">
         <div class="text-center space-y-1">
-          <h2 id="txt-flash-title" class="text-3xl font-bold text-amber-900 tibetan-font">Flashcard Explorer</h2>
-          <p id="txt-flash-desc" class="text-sm text-slate-600 tibetan-font">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
+          <h2 id="txt-flash-title" class="text-3xl font-bold text-amber-900 tibetan-font tibetan-ui-scale">Flashcard Explorer</h2>
+          <p id="txt-flash-desc" class="text-slate-600 tibetan-font tibetan-ui-scale">Tap the card or sound button to listen, or view textbook illustrations where available!</p>
         </div>
 
         <div class="w-full max-w-xs sm:max-w-sm aspect-[4/5] bg-white border-4 border-amber-300 rounded-3xl shadow-xl flex flex-col items-center justify-between p-6 relative card-bounce">
-          <div class="w-full flex justify-between items-center text-sm text-amber-800 font-bold">
+          <div class="w-full flex justify-between items-center text-amber-800 font-bold">
             <span id="flash-index-badge" class="bg-amber-100 px-3 py-1 rounded-full">1 / 30</span>
-            <button onclick="speakCurrentFlashcard()" class="p-2 bg-amber-100 rounded-full hover:bg-amber-200 text-amber-900 shadow-sm tibetan-font flex items-center gap-1">
+            <button onclick="speakCurrentFlashcard()" class="p-2 bg-amber-100 rounded-full hover:bg-amber-200 text-amber-900 shadow-sm tibetan-font tibetan-ui-scale flex items-center gap-1">
               🔊 <span id="txt-flash-sound">Sound</span>
             </button>
           </div>
@@ -195,17 +200,17 @@
           </div>
 
           <div class="w-full flex gap-2 pt-2">
-            <button onclick="openModalForCharacter(currentFlashIndex)" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl font-bold text-sm sm:text-base shadow flex items-center justify-center gap-1.5 transition tibetan-font">
+            <button onclick="openModalForCharacter(currentFlashIndex)" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white py-3 rounded-2xl font-bold shadow flex items-center justify-center gap-1.5 transition tibetan-font tibetan-ui-scale">
               <span>✏️</span> <span id="txt-flash-practice">Practice Letter</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center gap-4">
-          <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
+          <button onclick="prevFlashcard()" class="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold rounded-2xl shadow transition flex items-center gap-1 tibetan-font tibetan-ui-scale">
             ◀ <span id="txt-btn-prev">Previous</span>
           </button>
-          <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow transition text-base flex items-center gap-1 tibetan-font">
+          <button onclick="nextFlashcard()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-2xl shadow transition flex items-center gap-1 tibetan-font tibetan-ui-scale">
             <span id="txt-btn-next">Next</span> ▶
           </button>
         </div>
@@ -217,27 +222,27 @@
           <div class="flex justify-between items-center border-b pb-3">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🎯</span>
-              <span id="txt-quiz-header" class="font-bold text-slate-800 text-xl tibetan-font">Ear Training Quiz</span>
+              <span id="txt-quiz-header" class="font-bold text-slate-800 text-xl tibetan-font tibetan-ui-scale">Ear Training Quiz</span>
             </div>
             <div class="flex items-center gap-2">
-              <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+              <span id="quiz-progress-badge" class="bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
                 Question 1 / 20
               </span>
-              <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
-                <span id="txt-quiz-score-lbl">Score:</span> <span id="quiz-score" class="text-base font-extrabold text-red-900">0</span>
+              <div class="bg-yellow-100 text-yellow-900 font-bold px-3 py-1 rounded-full border border-yellow-300">
+                <span id="txt-quiz-score-lbl" class="tibetan-font tibetan-ui-scale">Score:</span> <span id="quiz-score" class="font-extrabold text-red-900">0</span>
               </div>
             </div>
           </div>
 
-          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
-            <span id="txt-quiz-instruction">Listen and tap the correct Tibetan character! (+5 pts)</span>
-            <span><span id="txt-quiz-chances-lbl">Chances left:</span> <span id="quiz-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
+          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 font-semibold text-amber-900">
+            <span id="txt-quiz-instruction" class="tibetan-font tibetan-ui-scale">Listen and tap the correct Tibetan character! (+5 pts)</span>
+            <span><span id="txt-quiz-chances-lbl" class="tibetan-font tibetan-ui-scale">Chances left:</span> <span id="quiz-chances" class="font-extrabold text-red-700">2</span> / 2</span>
           </div>
 
           <button id="quiz-audio-btn" onclick="playQuizTargetAudio()" class="w-24 h-24 bg-gradient-to-tr from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-full shadow-lg mx-auto flex items-center justify-center text-4xl card-bounce border-4 border-white ring-4 ring-amber-200">
             🔊
           </button>
-          <p id="txt-quiz-replay" class="text-xs sm:text-sm text-amber-800 font-semibold tibetan-font">Tap speaker to replay sound</p>
+          <p id="txt-quiz-replay" class="text-amber-800 font-semibold tibetan-font tibetan-ui-scale">Tap speaker to replay sound</p>
 
           <div id="quiz-options-grid" class="grid grid-cols-2 gap-3 sm:gap-4 pt-2"></div>
         </div>
@@ -245,17 +250,17 @@
         <div id="quiz-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
           <div class="text-6xl animate-bounce">🏆</div>
           <div class="space-y-2">
-            <h2 id="txt-quiz-completed-title" class="text-3xl font-extrabold text-amber-900 tibetan-font">Quiz Completed!</h2>
-            <p id="txt-quiz-completed-desc" class="text-slate-600 text-base font-medium tibetan-font">Great job practicing your Tibetan consonant listening skills!</p>
+            <h2 id="txt-quiz-completed-title" class="text-3xl font-extrabold text-amber-900 tibetan-font tibetan-ui-scale">Quiz Completed!</h2>
+            <p id="txt-quiz-completed-desc" class="text-slate-600 font-medium tibetan-font tibetan-ui-scale">Great job practicing your Tibetan consonant listening skills!</p>
           </div>
 
           <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
-            <div id="txt-quiz-final-lbl" class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div id="txt-quiz-final-lbl" class="font-bold text-amber-800 uppercase tracking-wider tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Final Score</div>
             <div id="quiz-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
-            <div id="quiz-accuracy-text" class="text-sm font-semibold text-slate-600 tibetan-font">Accuracy: 0%</div>
+            <div id="quiz-accuracy-text" class="font-semibold text-slate-600 tibetan-font tibetan-ui-scale">Accuracy: 0%</div>
           </div>
 
-          <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
+          <button onclick="restartQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font tibetan-ui-scale">
             <span>🔄</span> <span id="txt-quiz-play-again">Play Again</span>
           </button>
         </div>
@@ -268,21 +273,21 @@
           <div class="flex justify-between items-center border-b pb-3">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🖼️</span>
-              <span id="txt-dd-header" class="font-bold text-slate-800 text-xl tibetan-font">Matching Quiz (Drag & Drop)</span>
+              <span id="txt-dd-header" class="font-bold text-slate-800 text-xl tibetan-font tibetan-ui-scale">Matching Quiz (Drag & Drop)</span>
             </div>
             <div class="flex items-center gap-2">
-              <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-amber-200">
+              <span id="dd-progress-badge" class="bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
                 Question 1 / 10
               </span>
-              <div class="bg-yellow-100 text-yellow-900 font-bold text-xs sm:text-sm px-3 py-1 rounded-full border border-yellow-300">
-                <span id="txt-dd-score-lbl">Score:</span> <span id="dd-score" class="text-base font-extrabold text-red-900">0</span>
+              <div class="bg-yellow-100 text-yellow-900 font-bold px-3 py-1 rounded-full border border-yellow-300">
+                <span id="txt-dd-score-lbl" class="tibetan-font tibetan-ui-scale">Score:</span> <span id="dd-score" class="font-extrabold text-red-900">0</span>
               </div>
             </div>
           </div>
 
-          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 text-xs sm:text-sm font-semibold text-amber-900">
-            <span id="txt-dd-instruction">Drag the image onto the matching Tibetan consonant!</span>
-            <span><span id="txt-dd-chances-lbl">Chances left:</span> <span id="dd-chances" class="font-extrabold text-red-700 text-base">2</span> / 2</span>
+          <div class="flex justify-between items-center bg-amber-50 px-4 py-2 rounded-2xl border border-amber-200 font-semibold text-amber-900">
+            <span id="txt-dd-instruction" class="tibetan-font tibetan-ui-scale">Drag the image onto the matching Tibetan consonant!</span>
+            <span><span id="txt-dd-chances-lbl" class="tibetan-font tibetan-ui-scale">Chances left:</span> <span id="dd-chances" class="font-extrabold text-red-700">2</span> / 2</span>
           </div>
 
           <!-- Draggable Image Source Box -->
@@ -293,7 +298,7 @@
                  onclick="handleImageClick(event)"
                  class="bg-amber-100/80 border-2 border-dashed border-amber-400 p-3 rounded-2xl cursor-grab active:cursor-grabbing hover:scale-105 transition shadow-sm max-w-[180px] flex flex-col items-center justify-center">
               <img id="dd-target-img" src="" alt="Target Illustration" class="h-28 sm:h-32 object-contain pointer-events-none rounded-lg">
-              <span id="txt-dd-drag-hint" class="text-[10px] text-amber-800 font-bold mt-1">↕️ Drag or Tap to select</span>
+              <span id="txt-dd-drag-hint" class="text-amber-800 font-bold mt-1 tibetan-font tibetan-ui-scale" style="font-size: 0.8rem;">↕️ Drag or Tap to select</span>
             </div>
           </div>
 
@@ -306,16 +311,16 @@
         <div id="dd-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
           <div class="text-6xl animate-bounce">🏆</div>
           <div class="space-y-2">
-            <h2 id="txt-dd-completed-title" class="text-3xl font-extrabold text-amber-900 tibetan-font">Matching Quiz Completed!</h2>
-            <p id="txt-dd-completed-desc" class="text-slate-600 text-base font-medium tibetan-font">Awesome job matching textbook illustrations to Tibetan consonants!</p>
+            <h2 id="txt-dd-completed-title" class="text-3xl font-extrabold text-amber-900 tibetan-font tibetan-ui-scale">Matching Quiz Completed!</h2>
+            <p id="txt-dd-completed-desc" class="text-slate-600 font-medium tibetan-font tibetan-ui-scale">Awesome job matching textbook illustrations to Tibetan consonants!</p>
           </div>
 
           <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
-            <div id="txt-dd-final-lbl" class="text-xs font-bold text-amber-800 uppercase tracking-wider tibetan-font">Final Score</div>
+            <div id="txt-dd-final-lbl" class="font-bold text-amber-800 uppercase tracking-wider tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Final Score</div>
             <div id="dd-final-score" class="text-4xl font-black text-red-900">0 / 100</div>
           </div>
 
-          <button onclick="restartDragDropQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font">
+          <button onclick="restartDragDropQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font tibetan-ui-scale">
             <span>🔄</span> <span id="txt-dd-play-again">Play Again</span>
           </button>
         </div>
@@ -325,10 +330,10 @@
       <section id="view-sing" class="hidden space-y-6 max-w-4xl mx-auto">
         <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4 text-center">
           <div class="space-y-2">
-            <h2 id="txt-sing-title" class="text-2xl sm:text-3xl font-extrabold text-amber-900 tibetan-font flex items-center justify-center gap-2">
+            <h2 id="txt-sing-title" class="text-2xl sm:text-3xl font-extrabold text-amber-900 tibetan-font tibetan-ui-scale flex items-center justify-center gap-2">
               <span>🎵</span> Let's Sing Tibetan Alphabet Song! <span>🎤</span>
             </h2>
-            <p id="txt-sing-desc" class="text-sm text-slate-600 tibetan-font">Sing along with the song to master the 30 Tibetan consonants and their pronunciation!</p>
+            <p id="txt-sing-desc" class="text-slate-600 tibetan-font tibetan-ui-scale">Sing along with the song to master the 30 Tibetan consonants and their pronunciation!</p>
           </div>
 
           <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-4 border-amber-300 shadow-lg bg-black">
@@ -350,38 +355,38 @@
           
           <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3">
             <div>
-              <h2 id="txt-draw-header" class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font">
+              <h2 id="txt-draw-header" class="text-xl font-bold text-slate-800 flex items-center gap-2 tibetan-font tibetan-ui-scale">
                 <span>🎨</span> Magic Pen Canvas
               </h2>
-              <p id="txt-draw-subtitle" class="text-sm text-slate-500 tibetan-font">Trace and practice writing Tibetan letters</p>
+              <p id="txt-draw-subtitle" class="text-slate-500 tibetan-font tibetan-ui-scale">Trace and practice writing Tibetan letters</p>
             </div>
             <div class="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-2xl border border-amber-200">
-              <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font">◀ <span id="txt-draw-prev">Prev</span></button>
+              <button onclick="cycleCanvasCharacter(-1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl hover:bg-amber-300 transition tibetan-font tibetan-ui-scale">◀ <span id="txt-draw-prev">Prev</span></button>
               <span id="drawing-char-display" class="tibetan-font text-6xl sm:text-7xl font-extrabold text-red-900 px-4 drop-shadow-sm">ཀ</span>
-              <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl text-base hover:bg-amber-300 transition tibetan-font"><span id="txt-draw-next">Next</span> ▶</button>
+              <button onclick="cycleCanvasCharacter(1)" class="px-3 py-1.5 bg-amber-200 text-amber-950 font-bold rounded-xl hover:bg-amber-300 transition tibetan-font tibetan-ui-scale"><span id="txt-draw-next">Next</span> ▶</button>
             </div>
           </div>
 
           <!-- Drawing Controls -->
           <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
             <div class="flex items-center gap-1.5">
-              <span id="txt-tools-lbl" class="text-sm font-bold text-slate-700 mr-1 tibetan-font">Pen Tools:</span>
-              <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font">
+              <span id="txt-tools-lbl" class="font-bold text-slate-700 mr-1 tibetan-font tibetan-ui-scale">Pen Tools:</span>
+              <button id="tool-pen" onclick="setPenTool('pen')" class="px-3 py-1.5 rounded-xl font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
                 ✏️ <span id="txt-pen">Pen</span>
               </button>
-              <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+              <button id="tool-marker" onclick="setPenTool('marker')" class="px-3 py-1.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
                 🖍️ <span id="txt-marker">Marker</span>
               </button>
-              <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+              <button id="tool-glow" onclick="setPenTool('glow')" class="px-3 py-1.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
                 ✨ <span id="txt-glow">Glow Pen</span>
               </button>
-              <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font">
+              <button id="tool-eraser" onclick="setPenTool('eraser')" class="px-3 py-1.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
                 🧹 <span id="txt-eraser">Eraser</span>
               </button>
             </div>
 
             <div class="flex items-center gap-2">
-              <span id="txt-colors-lbl" class="text-sm font-bold text-slate-700 tibetan-font">Colors:</span>
+              <span id="txt-colors-lbl" class="font-bold text-slate-700 tibetan-font tibetan-ui-scale">Colors:</span>
               <button onclick="setPenColor('#ef4444')" class="w-7 h-7 rounded-full bg-red-500 border-2 border-white shadow ring-2 ring-red-400 hover:scale-110 transition"></button>
               <button onclick="setPenColor('#3b82f6')" class="w-7 h-7 rounded-full bg-blue-500 border-2 border-white shadow ring-2 ring-blue-400 hover:scale-110 transition"></button>
               <button onclick="setPenColor('#10b981')" class="w-7 h-7 rounded-full bg-emerald-500 border-2 border-white shadow ring-2 ring-emerald-400 hover:scale-110 transition"></button>
@@ -390,9 +395,9 @@
             </div>
 
             <div class="flex items-center gap-2">
-              <span id="txt-size-lbl" class="text-sm font-bold text-slate-700 tibetan-font">Size:</span>
+              <span id="txt-size-lbl" class="font-bold text-slate-700 tibetan-font tibetan-ui-scale">Size:</span>
               <input id="pen-size" type="range" min="4" max="30" value="12" class="w-20 accent-amber-500 cursor-pointer">
-              <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-1 tibetan-font">
+              <button onclick="clearCanvas()" class="ml-2 px-3.5 py-1.5 bg-red-100 text-red-800 hover:bg-red-200 rounded-xl font-bold transition flex items-center gap-1 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
                 🗑️ <span id="txt-clear">Clear</span>
               </button>
             </div>
@@ -405,9 +410,9 @@
             <canvas id="practice-canvas" class="w-full h-full relative z-10 cursor-pen touch-none"></canvas>
           </div>
 
-          <div class="flex justify-between items-center text-xs sm:text-sm text-slate-500 pt-2 tibetan-font">
+          <div class="flex justify-between items-center text-slate-500 pt-2 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span id="txt-canvas-tip">Tip: Select a pen tool and trace directly over the large guide character!</span>
-            <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1 tibetan-font">
+            <button onclick="playCanvasAudio()" class="px-4 py-2 bg-yellow-400 text-red-950 rounded-xl font-bold hover:bg-yellow-500 shadow transition flex items-center gap-1 tibetan-font tibetan-ui-scale">
               🔊 <span id="txt-canvas-sound">Play Audio</span>
             </button>
           </div>
@@ -420,61 +425,61 @@
     <!-- RIGHT SIDEBAR: Advanced Tibetan Modules -->
     <aside class="w-full lg:w-64 flex-shrink-0 space-y-4">
       <div class="bg-gradient-to-b from-indigo-950 to-red-950 p-3 sm:p-4 rounded-3xl border-2 border-yellow-400 shadow-lg space-y-2">
-        <h2 id="txt-modules-header" class="text-xs font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font">Advanced Modules</h2>
+        <h2 id="txt-modules-header" class="font-bold text-yellow-300 uppercase tracking-wider px-2 py-1 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">Advanced Modules</h2>
         <nav class="flex flex-col gap-1.5">
           <!-- 1. Multi-consonant Vocabulary -->
-          <a href="multiconsonant.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <a href="multiconsonant.html" class="w-full px-4 py-2.5 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span>🔸</span> <span id="txt-mod-multi">Multiconsonant Vocab</span>
           </a>
           <!-- 2. Vowels -->
-          <a href="vowels.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <a href="vowels.html" class="w-full px-4 py-2.5 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span>🔹</span> <span id="txt-mod-vowels">4 Vowels (Dbyangs)</span>
           </a>
           <!-- 3. Suffix -->
-          <a href="suffixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <a href="suffixes.html" class="w-full px-4 py-2.5 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span>➡️</span> <span id="txt-mod-suffix">Suffixes (Rjes-jug)</span>
           </a>
           <!-- 4. Second Suffix -->
-          <a href="subsuffixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <a href="subsuffixes.html" class="w-full px-4 py-2.5 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span>↪️</span> <span id="txt-mod-subsuffix">Second Suffix (Yang-jug)</span>
           </a>
           <!-- 5. Prefix -->
-          <a href="prefixes.html" class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font">
+          <a href="prefixes.html" class="w-full px-4 py-2.5 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             <span>⬅️</span> <span id="txt-mod-prefix">Prefixes (Sngon-jug)</span>
           </a>
           <!-- 6. Super Scripts (with subtopics) -->
           <div class="space-y-1">
-            <div class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-3 text-yellow-300 tibetan-font">
+            <div class="w-full px-4 py-2.5 rounded-2xl font-bold flex items-center gap-3 text-yellow-300 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
               <span>🔺</span> <span id="txt-mod-super">Super Scripts (Mgo-can)</span>
             </div>
             <div class="pl-6 space-y-1">
-              <a href="ra-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="ra-mgo.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-ramgo">ར་མགོ། (Ra-mgo)</span>
               </a>
-              <a href="la-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="la-mgo.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-lamgo">ལ་མགོ། (La-mgo)</span>
               </a>
-              <a href="sa-mgo.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="sa-mgo.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-samgo">ས་མགོ། (Sa-mgo)</span>
               </a>
             </div>
           </div>
           <!-- 7. Sub-Scripts (with subtopics) -->
           <div class="space-y-1 pt-1">
-            <div class="w-full px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-3 text-yellow-300 tibetan-font">
+            <div class="w-full px-4 py-2.5 rounded-2xl font-bold flex items-center gap-3 text-yellow-300 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
               <span>🔻</span> <span id="txt-mod-sub">Sub Scripts (Dogs-can)</span>
             </div>
             <div class="pl-6 space-y-1">
-              <a href="ya-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="ya-btags.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-yabtags">ཡ་བཏགས། (Ya-btags)</span>
               </a>
-              <a href="ra-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="ra-btags.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-rabtags">ར་བཏགས། (Ra-btags)</span>
               </a>
-              <a href="la-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="la-btags.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-labtags">ལ་བཏགས། (La-btags)</span>
               </a>
-              <a href="wa-btags.html" class="w-full px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font">
+              <a href="wa-btags.html" class="w-full px-3 py-1.5 rounded-xl font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">
                 <span>▫️</span> <span id="txt-mod-wabtags">ཝ་བཏགས། (Wa-btags)</span>
               </a>
             </div>
@@ -497,17 +502,17 @@
         <span id="modal-char" class="tibetan-font text-9xl font-bold text-red-900 block select-none leading-none">ཀ</span>
         <img id="modal-img" src="" alt="Material illustration" class="hidden h-40 object-contain mx-auto rounded-xl border border-amber-200 shadow">
 
-        <div id="modal-badge" class="hidden inline-block bg-amber-100 text-amber-900 text-xs sm:text-sm font-bold px-3.5 py-1 rounded-full border border-amber-200 tibetan-font">
+        <div id="modal-badge" class="hidden inline-block bg-amber-100 text-amber-900 font-bold px-3.5 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
           Pre-Primary Textbook Illustration
         </div>
       </div>
 
       <div class="space-y-3">
-        <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
+        <button id="modal-audio-btn" onclick="playModalAudio()" class="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font tibetan-ui-scale">
           <span>🔊</span> <span id="txt-modal-sound">Play Sound</span>
         </button>
 
-        <button onclick="jumpToMagicPenFromModal()" class="w-full py-3 bg-red-900 hover:bg-red-950 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font">
+        <button onclick="jumpToMagicPenFromModal()" class="w-full py-3 bg-red-900 hover:bg-red-950 text-white rounded-2xl font-bold shadow-md text-base sm:text-lg flex items-center justify-center gap-2 transition tibetan-font tibetan-ui-scale">
           <span>🎨</span> <span id="txt-modal-practice">Practice Writing in Magic Pen</span>
         </button>
       </div>
@@ -515,7 +520,7 @@
     </div>
   </div>
 
-  <footer id="txt-footer" class="bg-amber-100 border-t border-amber-200 text-center p-4 text-xs sm:text-sm text-amber-900 font-medium tibetan-font">
+  <footer id="txt-footer" class="bg-amber-100 border-t border-amber-200 text-center p-4 text-amber-900 font-medium tibetan-font tibetan-ui-scale">
     Tibetan Alphabets Audio & Textbook Learning Tool
   </footer>
 
@@ -552,7 +557,7 @@
         mascotName: "Tashi the Wild Yak",
         mascotBadge: "Guide",
         mascotDefault: "Welcome! Explore all consonants with real audio recordings and selected textbook illustrations!",
-        gridLayoutLabel: "Display Layout:",
+        gridLayoutLabel: "",
         gridLayoutVal: "Traditional Rows (4 Letters per Line)",
         gridTag: "Audio & Textbook Images",
         flashTitle: "Flashcard Explorer",
@@ -632,7 +637,7 @@
         mascotBadge: "",
         mascotDefault: "ཁྱེད་ཉིད་ཕེབས་པར་དགའ་བསུ་ཞུ། ང་ཚོས་མཉམ་དུ་བོད་ཡིག་སློབ་སྦྱོང་བྱེད།",
         gridLayoutLabel: "",
-        gridLayoutVal: "གསལ་བྱེད་སུམ་ཅུ། ཀ་སྡེ་ནས་ཧ་སྡེ་བར་སྡེ་བ་བདུན་དང་ཕྱེད་ཀ་ཡོད།",
+        gridLayoutVal: "གསལ་བྱེད་སུམ་ཅུ།",
         gridTag: "རི་མོ་དང་སྒྲ་ལ་ཉན་ནས་བོད་ཀྱི་གསལ་བྱེད་སུམ་ཅུ་ལ་སྦྱོང་བ་བྱོས།",
         flashTitle: "བྱང་བུ།",
         flashDesc: "ཡི་གེའམ་རི་མོའི་སྟེང་བསྣུན་ནས་སྒྲ་ལ་ཉོན།",
@@ -675,7 +680,7 @@
         canvasTip: "སྨྱུག་གུ་བདམས་ནས་ཡིག་གཟུགས་སྦྱོང་།",
         canvasSound: "སྒྲ་ལ་ཉོན།",
         modalSound: "སྒྲ་ལ་ཉོན།",
-        modalPractice: "སྨྱུག་ཐོག་ཏུ་འབྲི་སྦྱོང་བྱེད།",
+        modalPractice: "",
         modalBadge: "སྔོན་འགྲོའི་སློབ་དེབ་རི་མོ།",
         footer: "འབྲོང་བུ་ཚང་། བོད་ཀྱི་སྐད་དང་ཡི་གེ་སྦྱོང་དེབ།",
         cardSoundBtn: "",
@@ -685,6 +690,9 @@
 
     function updateLanguageUI() {
       const t = TRANSLATIONS[currentLang];
+
+      // Keep root lang attribute synchronized for CSS language-based font sizing rules
+      document.documentElement.lang = currentLang;
 
       document.getElementById('txt-app-brand').innerText = t.bodYig;
       document.getElementById('txt-app-title').innerText = t.appTitle;
@@ -920,13 +928,13 @@
       navBtns.forEach(id => {
         const btn = document.getElementById(id);
         if (btn) {
-          btn.className = "w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font";
+          btn.className = "w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale";
         }
       });
 
       const activeBtn = document.getElementById(`nav-${tab}`);
       if (activeBtn) {
-        activeBtn.className = "w-full px-4 py-3 rounded-2xl text-sm font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font";
+        activeBtn.className = "w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 bg-yellow-400 text-red-950 shadow tibetan-font tibetan-ui-scale";
       }
 
       const activeView = document.getElementById(`view-${tab}`);
@@ -957,7 +965,7 @@
         rowBox.className = "bg-white p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-sm space-y-2";
         
         rowBox.innerHTML = `
-          <div class="text-sm font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center tibetan-font">
+          <div class="font-bold text-amber-900 border-b border-amber-100 pb-1 flex justify-between items-center tibetan-font tibetan-ui-scale">
             <span>${rowList[r - 1]}</span>
           </div>
           <div class="grid grid-cols-4 gap-2 sm:gap-4"></div>
@@ -990,10 +998,10 @@
           ${imgHtml}
         </div>
         <div class="flex items-center gap-1 w-full pt-1">
-          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-0.5 transition tibetan-font">
+          <button onclick="event.stopPropagation(); playSound(${item.id})" class="flex-1 py-1 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl font-bold flex items-center justify-center gap-0.5 transition tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             🔊 <span class="hidden sm:inline">${soundText}</span>
           </button>
-          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs sm:text-sm font-bold transition tibetan-font">
+          <button onclick="event.stopPropagation(); openModalForCharacter(${item.id})" class="p-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-bold transition tibetan-font tibetan-ui-scale" style="font-size: 0.9rem;">
             ✏️
           </button>
         </div>
@@ -1200,7 +1208,7 @@
 
         dropBox.innerHTML = `
           <span class="tibetan-font text-6xl sm:text-7xl font-bold text-red-900 select-none leading-none pointer-events-none">${item.char}</span>
-          <span class="text-xs text-amber-800/60 font-bold mt-2 pointer-events-none">${currentLang === 'en' ? 'Drop here' : 'འདིར་ཞོག'}</span>
+          <span class="text-amber-800/60 font-bold mt-2 pointer-events-none tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">${currentLang === 'en' ? 'Drop here' : 'འདིར་ཞོག'}</span>
         `;
         grid.appendChild(dropBox);
       });
@@ -1345,8 +1353,9 @@
         const btn = document.getElementById(`tool-${t}`);
         if (btn) {
           btn.className = (t === tool) 
-            ? "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font"
-            : "px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font";
+            ? "px-3 py-1.5 rounded-xl font-bold bg-amber-500 text-white shadow-md transition flex items-center gap-1 tibetan-font tibetan-ui-scale"
+            : "px-3 py-1.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-amber-100 transition flex items-center gap-1 border border-amber-200 tibetan-font tibetan-ui-scale";
+          btn.style.fontSize = "0.9rem";
         }
       });
 
