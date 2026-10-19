@@ -44,7 +44,7 @@
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
     }
     .card-bounce:hover {
-      transform: translateY(-6px) scale(1.02);
+      transform: translateY(-4px) scale(1.05);
     }
     .card-bounce:active {
       transform: translateY(2px) scale(0.97);
@@ -63,12 +63,37 @@
     .cursor-eraser {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%23ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l12-12a1 1 0 0 1 1.4 0l4.3 4.3a1 1 0 0 1 0 1.4l-12 12a1 1 0 0 1-1.4 0Z"/><path d="M22 21H7"/><path d="m5 11 4.5 4.5"/></svg>') 0 22, pointer !important;
     }
+
+    /* SVG Apple Tree Interactive Elements - FIXED: Completely stable, zero shaking, smooth hover */
+    .apple-group {
+      cursor: pointer;
+      transform-origin: center;
+      transition: filter 0.2s ease, opacity 0.4s ease;
+    }
+    .apple-group:hover {
+      filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.5));
+    }
+    .apple-wrong {
+      opacity: 0.35;
+      filter: grayscale(80%);
+    }
+    
+    /* Apple falling animation when correct */
+    @keyframes apple-fall {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      30% { transform: translateY(40px) rotate(-15deg) scale(1.05); opacity: 1; }
+      100% { transform: translateY(550px) rotate(120deg) scale(0.8); opacity: 0; }
+    }
+    .apple-falling {
+      animation: apple-fall 0.9s ease-in forwards;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="bg-amber-50 min-h-screen text-slate-800 flex flex-col justify-between selection:bg-amber-200">
 
   <!-- Top Header Bar -->
-  <header class="bg-gradient-to-r from-red-900 via-amber-800 to-indigo-950 text-white shadow-lg sticky top-0 z-30 border-b-4 border-yellow-400">
+  <header class="bg-gradient-to-r from-red-950 via-amber-800 to-indigo-950 text-white shadow-lg sticky top-0 z-30 border-b-4 border-yellow-400">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
       
       <!-- Brand Logo & Wild Yak Icon Mascot -->
@@ -122,6 +147,9 @@
           </button>
           <button id="nav-dragdrop" onclick="switchTab('dragdrop')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🖼️</span> <span id="txt-nav-dragdrop">དྲི་རྩད་ཁག་གཉིས་པ།</span>
+          </button>
+          <button id="nav-searchtree" onclick="switchTab('searchtree')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
+            <span class="text-lg">🍎</span> <span id="txt-nav-searchtree">སྦྱོང་ཚན་འཚོལ་བ།</span>
           </button>
           <button id="nav-sing" onclick="switchTab('sing')" class="w-full px-4 py-3 rounded-2xl font-bold transition flex items-center gap-3 text-amber-100 hover:bg-white/10 tibetan-font tibetan-ui-scale">
             <span class="text-lg">🎵</span> <span id="txt-nav-sing">གླུ་དབྱངས་ལེན།</span>
@@ -317,7 +345,126 @@
         </div>
       </section>
 
-      <!-- VIEW 5: Let's Sing -->
+      <!-- VIEW 5: SEARCH FOR IT (APPLE TREE WITH FALLING CORRECT APPLE) -->
+      <section id="view-searchtree" class="hidden flex flex-col items-center justify-center py-2 space-y-5 max-w-4xl mx-auto">
+        <div id="st-active-card" class="w-full bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md text-center space-y-4">
+          
+          <div class="flex justify-between items-center border-b pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🍎</span>
+              <span id="txt-st-header" class="font-bold text-slate-800 text-xl tibetan-font tibetan-ui-scale">སྦྱོང་ཚན་འཚོལ་བ། (Search for it)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="st-progress-badge" class="bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
+                Question 1 / 30
+              </span>
+              <div class="bg-yellow-100 text-yellow-900 font-bold px-3 py-1 rounded-full border border-yellow-300">
+                <span id="txt-st-score-lbl" class="tibetan-font tibetan-ui-scale">ཐོབ་སྐར།</span> <span id="st-score" class="font-extrabold text-red-900">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-between items-center bg-amber-50 px-4 py-2.5 rounded-2xl border border-amber-200 font-semibold text-amber-900 gap-2">
+            <span id="txt-st-instruction" class="tibetan-font tibetan-ui-scale">སྒྲ་ལ་ཉན་ནས་ཤིང་སྡོང་གི་སྟེང་ནས་ཡི་གེ་འགྲིག་པ་དེ་འཚོལ།</span>
+            <button onclick="playSearchTreeTargetAudio()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl shadow transition flex items-center gap-1.5 tibetan-font tibetan-ui-scale font-bold">
+              🔊 <span id="txt-st-play-sound">སྒྲ་ཡང་བསྐྱར་ཉོན།</span>
+            </button>
+          </div>
+
+          <!-- SVG Vector Illustration Container -->
+          <div class="relative w-full aspect-[1000/980] max-w-3xl mx-auto bg-amber-50/20 rounded-3xl overflow-hidden border-2 border-amber-100 flex items-center justify-center p-1">
+            <svg id="apple-tree-svg" viewBox="0 0 1000 980" class="w-full h-full drop-shadow-md selection:bg-transparent">
+              <defs>
+                <!-- Apple Radial Shading Gradient -->
+                <radialGradient id="appleGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#f43f5e" />
+                  <stop offset="50%" stop-color="#be123c" />
+                  <stop offset="85%" stop-color="#881337" />
+                  <stop offset="100%" stop-color="#4c0519" />
+                </radialGradient>
+
+                <!-- Tree Foliage Shading -->
+                <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#15803d" />
+                  <stop offset="50%" stop-color="#166534" />
+                  <stop offset="100%" stop-color="#14532d" />
+                </linearGradient>
+
+                <!-- Trunk Wood Texture -->
+                <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#78350f" />
+                  <stop offset="50%" stop-color="#92400e" />
+                  <stop offset="100%" stop-color="#451a03" />
+                </linearGradient>
+              </defs>
+
+              <!-- TREE TRUNK, LONGER BASE & VISIBLE ROOTS -->
+              <g id="svg-trunk">
+                <path d="M 460 820 C 460 700, 410 600, 360 550 L 300 480 C 350 510, 410 530, 460 580 L 460 970 C 460 975, 465 980, 475 980 L 525 980 C 535 980, 540 975, 540 970 L 540 580 C 590 530, 650 510, 700 480 L 640 550 C 590 600, 540 700, 540 820 Z" fill="url(#trunkGrad)" />
+                <path d="M 475 975 C 420 970, 350 975, 290 960 C 340 955, 410 955, 470 965 Z" fill="#78350f" />
+                <path d="M 525 975 C 580 970, 650 975, 710 960 C 660 955, 590 955, 530 965 Z" fill="#78350f" />
+                <path d="M 490 978 C 470 975, 440 972, 410 965 C 450 963, 480 968, 500 972 Z" fill="#451a03" />
+                <path d="M 475 600 C 460 500, 420 400, 380 320 C 410 380, 450 460, 485 550 Z" fill="#451a03" />
+                <path d="M 500 580 C 520 480, 570 390, 620 310 C 580 380, 540 470, 495 560 Z" fill="#451a03" />
+              </g>
+
+              <!-- BUSHY GREEN CANOPY CLUSTERS -->
+              <g id="svg-foliage" fill="url(#leafGrad)" stroke="#052e16" stroke-width="6" stroke-linejoin="round">
+                <circle cx="500" cy="180" r="140" />
+                <circle cx="380" cy="200" r="130" />
+                <circle cx="620" cy="200" r="130" />
+                <circle cx="260" cy="260" r="120" />
+                <circle cx="740" cy="260" r="120" />
+                <circle cx="180" cy="350" r="110" />
+                <circle cx="820" cy="350" r="110" />
+                <circle cx="140" cy="480" r="100" />
+                <circle cx="860" cy="480" r="100" />
+                <circle cx="150" cy="610" r="95" />
+                <circle cx="850" cy="610" r="95" />
+                <circle cx="220" cy="720" r="90" />
+                <circle cx="780" cy="720" r="90" />
+                <circle cx="320" cy="780" r="85" />
+                <circle cx="680" cy="780" r="85" />
+                <circle cx="430" cy="810" r="75" />
+                <circle cx="570" cy="810" r="75" />
+                <circle cx="500" cy="340" r="230" />
+                <circle cx="350" cy="450" r="210" />
+                <circle cx="650" cy="450" r="210" />
+                <circle cx="500" cy="580" r="220" />
+              </g>
+
+              <!-- INTERACTIVE APPLES LAYER -->
+              <g id="svg-apples-layer"></g>
+            </svg>
+          </div>
+
+          <div class="flex justify-between items-center text-amber-800 text-sm font-semibold px-2">
+            <span><span id="txt-st-chances-lbl">གོ་སྐབས།</span>: <span id="st-chances" class="text-red-700 font-bold">2</span> / 2</span>
+            <span id="txt-st-tip" class="tibetan-font tibetan-ui-scale">ཤིང་སྡོང་གི་སྟེང་ཡོད་པའི་ཡི་གེ་རེ་རེ་བཞིན་བསྣུན་ནས་འཚོལ།</span>
+          </div>
+
+        </div>
+
+        <!-- Summary Screen -->
+        <div id="st-completed-card" class="hidden w-full bg-white border-4 border-yellow-400 rounded-3xl p-8 shadow-xl text-center space-y-6">
+          <div class="text-6xl animate-bounce">🏆</div>
+          <div class="space-y-2">
+            <h2 id="txt-st-completed-title" class="text-3xl font-extrabold text-amber-900 tibetan-font tibetan-ui-scale">རྟེན་འབྲེལ་ཞུ།</h2>
+            <p id="txt-st-completed-desc" class="text-slate-600 font-medium tibetan-font tibetan-ui-scale">སྦྱོང་ཚན་འཚོལ་བ་མཇུག་གྲུབ་སོང་།</p>
+          </div>
+
+          <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 max-w-xs mx-auto space-y-2">
+            <div id="txt-st-final-lbl" class="font-bold text-amber-800 uppercase tracking-wider tibetan-font tibetan-ui-scale" style="font-size: 0.85rem;">མཐའ་མའི་ཐོབ་སྐར།</div>
+            <div id="st-final-score" class="text-4xl font-black text-red-900">0 / 300</div>
+          </div>
+
+          <button onclick="restartSearchTreeQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-600 hover:to-yellow-500 text-white rounded-2xl font-bold shadow-lg text-lg transition card-bounce inline-flex items-center gap-2 tibetan-font tibetan-ui-scale">
+            <span>🔄</span> <span id="txt-st-play-again">ཡང་བསྐྱར་སྦྱོངས།</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- VIEW 6: Let's Sing -->
       <section id="view-sing" class="hidden space-y-6 max-w-4xl mx-auto">
         <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4 text-center">
           <div class="space-y-2">
@@ -340,7 +487,7 @@
         </div>
       </section>
 
-      <!-- VIEW 6: Magic Pen Canvas -->
+      <!-- VIEW 7: Magic Pen Canvas -->
       <section id="view-drawing" class="hidden space-y-4 max-w-3xl mx-auto">
         <div class="bg-white border-2 border-amber-200 rounded-3xl p-4 sm:p-6 shadow-md space-y-4">
           
@@ -521,6 +668,7 @@
         navFlashcards: "Flashcards",
         navQuiz: "Ear Quiz",
         navDragdrop: "Drag & Drop Quiz",
+        navSearchtree: "Search for it (Tree)",
         navSing: "Let's Sing",
         navDrawing: "Magic Pen",
         modulesHeader: "Advanced Modules",
@@ -568,6 +716,16 @@
         ddCompletedDesc: "Awesome job matching textbook illustrations to Tibetan consonants!",
         ddFinalLbl: "Final Score",
         ddPlayAgain: "Play Again",
+        stHeader: "Search for it (Apple Tree Quiz)",
+        stScoreLbl: "Score:",
+        stInstruction: "Listen to the sound and find the correct consonant apple on the tree!",
+        stPlaySound: "Replay Sound",
+        stChancesLbl: "Chances left",
+        stTip: "Tap on the apples on the tree to choose the correct letter!",
+        stCompletedTitle: "Apple Tree Quiz Completed!",
+        stCompletedDesc: "Wonderful job finding all 30 consonant apples!",
+        stFinalLbl: "Final Score",
+        stPlayAgain: "Play Again",
         singTitle: "🎵 Let's Sing Tibetan Alphabet Song! 🎤",
         singDesc: "Sing along with the song to master the 30 Tibetan consonants and their pronunciation!",
         drawHeader: "Magic Pen Canvas",
@@ -599,6 +757,7 @@
         navFlashcards: "བྱང་བུ།",
         navQuiz: "དྲི་རྩད་ཁག་དང་པོ།",
         navDragdrop: "དྲི་རྩད་ཁག་གཉིས་པ།",
+        navSearchtree: "སྦྱོང་ཚན་འཚོལ་བ།",
         navSing: "གླུ་དབྱངས་ལེན།",
         navDrawing: "ཡིག་གཟུགས་སྦྱོང་།",
         modulesHeader: "ནང་དོན་གཞན་ཁག་ལ་གཟིགས།",
@@ -628,7 +787,7 @@
         flashPractice: "ཡིག་གཟུགས་སྦྱོང་།",
         btnPrev: "སྔོན་མ།",
         btnNext: "རྗེས་མ།",
-        quizHeader: "དྲི་རྩད་ཁག་དང་པོ།",
+        quizHeader: "'འགྲིག་པ་དེ་འདེམས།",
         quizScoreLbl: "ཐོབ་སྐར།",
         quizInstruction: "སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འདེམས། ( ༥ )",
         quizChancesLbl: "གོ་སྐབས།",
@@ -637,7 +796,7 @@
         quizCompletedDesc: "དྲི་རྩད་མཉམ་ཞུགས་གནང་བ་ཐུགས་རྗེ་ཞུ།",
         quizFinalLbl: "མཐའ་མའི་ཐོབ་སྐར།",
         quizPlayAgain: "ཡང་བསྐྱར་དྲི་རྩད་སྦྱོངས།",
-        ddHeader: "དྲི་རྩད་ཁག་གཉིས་པ།",
+        ddHeader: "མཐུན་སྦྱོར་བྱོས།",
         ddScoreLbl: "ཐོབ་སྐར།",
         ddInstruction: "རི་མོ་དང་ཡི་གེ་མཐུན་སྦྱོར་བྱོས།",
         ddChancesLbl: "གོ་སྐབས།",
@@ -646,6 +805,16 @@
         ddCompletedDesc: "དྲི་རྩད་ལ་མཉམ་ཞུགས་གནང་བ་ཐུགས་རྗེ་ཞུ།",
         ddFinalLbl: "མཐའ་མའི་ཐོབ་སྐར།",
         ddPlayAgain: "ཡང་བསྐྱར་དྲི་རྩད་སྦྱོངས།",
+        stHeader: "འགྲིག་པ་དེ་འཚོལ།",
+        stScoreLbl: "ཐོབ་སྐར།",
+        stInstruction: "སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འཚོལ།",
+        stPlaySound: "སྒྲ་ཡང་བསྐྱར་ཉོན།",
+        stChancesLbl: "གོ་སྐབས།",
+        stTip: "ཤིང་སྡོང་གི་སྟེང་ཡོད་པའི་ཡི་གེ་རེ་རེ་བཞིན་བསྣུན།",
+        stCompletedTitle: "རྟེན་འབྲེལ་ཞུ།",
+        stCompletedDesc: "སྦྱོང་ཚན་འཚོལ་བ་མཇུག་གྲུབ་སོང་།",
+        stFinalLbl: "མཐའ་མའི་ཐོབ་སྐར།",
+        stPlayAgain: "ཡང་བསྐྱར་སྦྱོངས།",
         singTitle: "🎵 གླུ་གཞས་ལེན། 🎤",
         singDesc: "ང་ཚོས་མཉམ་དུ་གསལ་བྱེད་སུམ་ཅུ་གླུ་གཞས་ལེན།",
         drawHeader: "ཡིག་གཟུགས་སྦྱོང་དེབ།",
@@ -682,6 +851,7 @@
       document.getElementById('txt-nav-flashcards').innerText = t.navFlashcards;
       document.getElementById('txt-nav-quiz').innerText = t.navQuiz;
       document.getElementById('txt-nav-dragdrop').innerText = t.navDragdrop;
+      document.getElementById('txt-nav-searchtree').innerText = t.navSearchtree;
       document.getElementById('txt-nav-sing').innerText = t.navSing;
       document.getElementById('txt-nav-drawing').innerText = t.navDrawing;
       document.getElementById('txt-mascot-name').innerText = t.mascotName;
@@ -717,6 +887,17 @@
       document.getElementById('txt-dd-completed-desc').innerText = t.ddCompletedDesc;
       document.getElementById('txt-dd-final-lbl').innerText = t.ddFinalLbl;
       document.getElementById('txt-dd-play-again').innerText = t.ddPlayAgain;
+
+      document.getElementById('txt-st-header').innerText = t.stHeader;
+      document.getElementById('txt-st-score-lbl').innerText = t.stScoreLbl;
+      document.getElementById('txt-st-instruction').innerText = t.stInstruction;
+      document.getElementById('txt-st-play-sound').innerText = t.stPlaySound;
+      document.getElementById('txt-st-chances-lbl').innerText = t.stChancesLbl;
+      document.getElementById('txt-st-tip').innerText = t.stTip;
+      document.getElementById('txt-st-completed-title').innerText = t.stCompletedTitle;
+      document.getElementById('txt-st-completed-desc').innerText = t.stCompletedDesc;
+      document.getElementById('txt-st-final-lbl').innerText = t.stFinalLbl;
+      document.getElementById('txt-st-play-again').innerText = t.stPlayAgain;
 
       document.getElementById('txt-sing-title').innerText = t.singTitle;
       document.getElementById('txt-sing-desc').innerText = t.singDesc;
@@ -800,6 +981,39 @@
       { id: 29, char: "ཨ", row: 8, freq: 659.25, audioUrl: "audio/01_30_consonant/a_high.mp3", imgUrl: null }
     ];
 
+    const EXACT_APPLE_POSITIONS = [
+      { id: 0,  x: 445, y: 140, rx: 50, ry: 44 }, // ཀ 
+      { id: 1,  x: 690, y: 220, rx: 50, ry: 44 }, // ཁ 
+      { id: 2,  x: 775, y: 640, rx: 50, ry: 44 }, // ག 
+      { id: 3,  x: 870, y: 440, rx: 50, ry: 44 }, // ང 
+      { id: 4,  x: 180, y: 200, rx: 50, ry: 44 }, // ཅ 
+      { id: 5,  x: 540, y: 265, rx: 50, ry: 44 }, // ཆ 
+      { id: 6,  x: 815, y: 330, rx: 50, ry: 44 }, // ཇ 
+      { id: 7,  x: 670, y: 345, rx: 50, ry: 44 }, // ཉ 
+      { id: 8,  x: 260, y: 325, rx: 50, ry: 44 }, // ཏ 
+      { id: 9,  x: 550, y: 395, rx: 50, ry: 44 }, // ཐ 
+      { id: 10, x: 730, y: 495, rx: 50, ry: 44 }, // ད 
+      { id: 11, x: 635, y: 685, rx: 50, ry: 44 }, // ན 
+      { id: 12, x: 310, y: 155, rx: 50, ry: 44 }, // པ 
+      { id: 13, x: 125, y: 295, rx: 50, ry: 44 }, // ཕ 
+      { id: 14, x: 675, y: 560, rx: 50, ry: 44 }, // བ 
+      { id: 15, x: 245, y: 435, rx: 50, ry: 44 }, // མ 
+      { id: 16, x: 110, y: 410, rx: 50, ry: 44 }, // ཙ 
+      { id: 17, x: 115, y: 520, rx: 50, ry: 44 }, // ཚ 
+      { id: 18, x: 390, y: 250, rx: 50, ry: 44 }, // ཛ 
+      { id: 19, x: 420, y: 675, rx: 50, ry: 44 }, // ཝ 
+      { id: 20, x: 575, y: 510, rx: 50, ry: 44 }, // ཞ 
+      { id: 21, x: 845, y: 520, rx: 50, ry: 44 }, // ཟ 
+      { id: 22, x: 252, y: 540, rx: 50, ry: 44 }, // འ 
+      { id: 23, x: 230, y: 660, rx: 50, ry: 44 }, // ཡ 
+      { id: 24, x: 405, y: 390, rx: 50, ry: 44 }, // ར 
+      { id: 25, x: 410, y: 490, rx: 50, ry: 44 }, // ལ 
+      { id: 26, x: 125, y: 630, rx: 50, ry: 44 }, // ཤ 
+      { id: 27, x: 335, y: 660, rx: 50, ry: 44 }, // ས 
+      { id: 28, x: 472, y: 585, rx: 50, ry: 44 }, // ཧ 
+      { id: 29, x: 575, y: 165, rx: 50, ry: 44 }  // ཨ 
+    ];
+
     const ROW_NAMES = {
       en: ["Ka sde", "Ca sde", "Ta sde", "Pa sde", "Tsa sde", "Zha sde", "Ra sde", "Ha sde"],
       bo: ["ཀ་སྡེ།", "ཅ་སྡེ།", "ཏ་སྡེ།", "པ་སྡེ།", "ཙ་སྡེ།", "ཞསྡེ།", "ར་སྡེ།", "ཧ་སྡེ།"]
@@ -827,6 +1041,15 @@
     let ddAnswered = false;
     let ddSelectedMobile = false;
     let ddRemainingPool = [];
+
+    // Search For It (SVG Tree Quiz) state
+    let stTarget = null;
+    let stScore = 0;
+    let stCurrentQuestion = 0;
+    const stTotalQuestions = 30;
+    let stChancesLeft = 2;
+    let stAnswered = false;
+    let stRemainingPool = [];
 
     let audioCtx = null;
 
@@ -896,9 +1119,10 @@
       document.getElementById('view-flashcards').classList.add('hidden');
       document.getElementById('view-quiz').classList.add('hidden');
       document.getElementById('view-dragdrop').classList.add('hidden');
+      document.getElementById('view-searchtree').classList.add('hidden');
       document.getElementById('view-drawing').classList.add('hidden');
 
-      const navBtns = ['nav-grid', 'nav-flashcards', 'nav-quiz', 'nav-dragdrop', 'nav-sing', 'nav-drawing'];
+      const navBtns = ['nav-grid', 'nav-flashcards', 'nav-quiz', 'nav-dragdrop', 'nav-searchtree', 'nav-sing', 'nav-drawing'];
       navBtns.forEach(id => {
         const btn = document.getElementById(id);
         if (btn) {
@@ -920,6 +1144,8 @@
         restartQuiz();
       } else if (tab === 'dragdrop') {
         restartDragDropQuiz();
+      } else if (tab === 'searchtree') {
+        restartSearchTreeQuiz();
       } else if (tab === 'drawing') {
         setupCanvas();
       } else if (tab === 'flashcards') {
@@ -1238,7 +1464,6 @@
 
         try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch(e) {}
 
-        // Play sound completely first, then advance question on end
         playSound(selectedItem.id, () => {
           nextDragDropQuestion();
         });
@@ -1266,6 +1491,122 @@
       document.getElementById('dd-active-card').classList.add('hidden');
       document.getElementById('dd-completed-card').classList.remove('hidden');
       document.getElementById('dd-final-score').innerText = `${ddScore} / ${ddTotalQuestions * 10}`;
+
+      try { confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } }); } catch(e) {}
+    }
+
+    // --- Search For It (SVG Tree Quiz Functions) ---
+    function restartSearchTreeQuiz() {
+      stScore = 0;
+      stCurrentQuestion = 0;
+      stRemainingPool = [...TIBETAN_LETTERS].sort(() => Math.random() - 0.5);
+      document.getElementById('st-score').innerText = '0';
+      document.getElementById('st-active-card').classList.remove('hidden');
+      document.getElementById('st-completed-card').classList.add('hidden');
+      
+      renderSVGAppleTree();
+      nextSearchTreeQuestion();
+    }
+
+    function renderSVGAppleTree() {
+      const applesLayer = document.getElementById('svg-apples-layer');
+      applesLayer.innerHTML = '';
+
+      TIBETAN_LETTERS.forEach(item => {
+        const pos = EXACT_APPLE_POSITIONS.find(p => p.id === item.id);
+        if (!pos) return;
+
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.setAttribute("class", "apple-group");
+        g.setAttribute("id", `svg-apple-${item.id}`);
+        g.setAttribute("transform", `translate(${pos.x}, ${pos.y})`);
+
+        g.onclick = () => handleSearchTreeAnswer(item, g);
+
+        g.innerHTML = `
+          <!-- Invisible larger hit area to make clicking/tapping effortless -->
+          <circle cx="0" cy="0" r="65" fill="transparent" style="cursor: pointer;" />
+          <!-- Apple Stem -->
+          <path d="M 0 -${pos.ry - 5} C 5 -${pos.ry + 15}, 12 -${pos.ry + 10}, 8 -${pos.ry + 22}" stroke="#3b0764" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Leaf -->
+          <path d="M 5 -${pos.ry + 12} Q 22 -${pos.ry + 22} 28 -${pos.ry + 8} Q 15 -${pos.ry + 2} 5 -${pos.ry + 12}" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+          <!-- Apple Body -->
+          <ellipse cx="0" cy="0" rx="${pos.rx}" ry="${pos.ry}" fill="url(#appleGrad)" stroke="#2e1065" stroke-width="3"/>
+          <!-- Tibetan Consonant Text -->
+          <text x="0" y="11" text-anchor="middle" class="tibetan-font" font-size="40" font-weight="bold" fill="#ffffff" style="filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.8)); font-family: 'Jomolhari', serif; pointer-events: none;">${item.char}</text>
+        `;
+
+        applesLayer.appendChild(g);
+      });
+    }
+
+    function nextSearchTreeQuestion() {
+      if (stCurrentQuestion >= stTotalQuestions || stRemainingPool.length === 0) {
+        finishSearchTreeQuiz();
+        return;
+      }
+
+      stCurrentQuestion++;
+      stChancesLeft = 2;
+      stAnswered = false;
+
+      document.getElementById('st-progress-badge').innerText = `${currentLang === 'en' ? 'Question' : 'དྲི་བ།'} ${stCurrentQuestion} / ${stTotalQuestions}`;
+      document.getElementById('st-chances').innerText = stChancesLeft;
+
+      stTarget = stRemainingPool.pop();
+      playSearchTreeTargetAudio();
+    }
+
+    function playSearchTreeTargetAudio() {
+      if (stTarget) {
+        playSound(stTarget.id);
+      }
+    }
+
+    function handleSearchTreeAnswer(selectedItem, groupElem) {
+      if (stAnswered) return;
+
+      if (selectedItem.id === stTarget.id) {
+        stAnswered = true;
+        groupElem.classList.add('apple-falling');
+        
+        let earnedPoints = (stChancesLeft === 2) ? 10 : 5;
+        let earnedStars = (stChancesLeft === 2) ? 5 : 2;
+
+        stScore += earnedPoints;
+        addStars(earnedStars);
+        document.getElementById('st-score').innerText = stScore;
+
+        try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch(e) {}
+
+        playSound(selectedItem.id, () => {
+          nextSearchTreeQuestion();
+        });
+
+      } else {
+        stChancesLeft--;
+        document.getElementById('st-chances').innerText = stChancesLeft;
+        groupElem.classList.add('apple-wrong');
+        playSound(selectedItem.id);
+
+        if (stChancesLeft <= 0) {
+          stAnswered = true;
+          const targetElem = document.getElementById(`svg-apple-${stTarget.id}`);
+          if (targetElem) {
+            targetElem.classList.add('apple-falling');
+          }
+
+          setTimeout(() => {
+            nextSearchTreeQuestion();
+          }, 1600);
+        }
+      }
+    }
+
+    function finishSearchTreeQuiz() {
+      document.getElementById('st-active-card').classList.add('hidden');
+      document.getElementById('st-completed-card').classList.remove('hidden');
+      document.getElementById('st-final-score').innerText = `${stScore} / ${stTotalQuestions * 10}`;
 
       try { confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } }); } catch(e) {}
     }
