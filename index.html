@@ -352,7 +352,7 @@
           <div class="flex justify-between items-center border-b pb-3">
             <div class="flex items-center gap-2">
               <span class="text-2xl">🍎</span>
-              <span id="txt-st-header" class="font-bold text-slate-800 text-xl tibetan-font tibetan-ui-scale">སྦྱོང་ཚན་འཚོལ་བ། (Search for it)</span>
+              <span id="txt-st-header" class="font-bold text-slate-800 text-xl tibetan-font tibetan-ui-scale">སྦྱོང་ཚན་འཚོལ་བ།</span>
             </div>
             <div class="flex items-center gap-2">
               <span id="st-progress-badge" class="bg-amber-100 text-amber-900 font-bold px-3 py-1 rounded-full border border-amber-200 tibetan-font tibetan-ui-scale">
@@ -668,7 +668,7 @@
         navFlashcards: "Flashcards",
         navQuiz: "Ear Quiz",
         navDragdrop: "Drag & Drop Quiz",
-        navSearchtree: "Search for it (Tree)",
+        navSearchtree: "Search for it",
         navSing: "Let's Sing",
         navDrawing: "Magic Pen",
         modulesHeader: "Advanced Modules",
@@ -716,7 +716,7 @@
         ddCompletedDesc: "Awesome job matching textbook illustrations to Tibetan consonants!",
         ddFinalLbl: "Final Score",
         ddPlayAgain: "Play Again",
-        stHeader: "Search for it (Apple Tree Quiz)",
+        stHeader: "Search for it",
         stScoreLbl: "Score:",
         stInstruction: "Listen to the sound and find the correct consonant apple on the tree!",
         stPlaySound: "Replay Sound",
@@ -755,9 +755,9 @@
         navHeader: "དཀར་ཆག",
         navGrid: "གསལ་བྱེད་སུམ་ཅུ།",
         navFlashcards: "བྱང་བུ།",
-        navQuiz: "དྲི་རྩད་ཁག་དང་པོ།",
-        navDragdrop: "དྲི་རྩད་ཁག་གཉིས་པ།",
-        navSearchtree: "སྦྱོང་ཚན་འཚོལ་བ།",
+        navQuiz: "'འགྲིག་པ་དེ་འདེམས།",'",
+        navDragdrop: "མཐུན་སྦྱོར་བྱོས།",
+        navSearchtree: "འགྲིག་པ་དེ་འཚོལ།",
         navSing: "གླུ་དབྱངས་ལེན།",
         navDrawing: "ཡིག་གཟུགས་སྦྱོང་།",
         modulesHeader: "ནང་དོན་གཞན་ཁག་ལ་གཟིགས།",
@@ -787,7 +787,7 @@
         flashPractice: "ཡིག་གཟུགས་སྦྱོང་།",
         btnPrev: "སྔོན་མ།",
         btnNext: "རྗེས་མ།",
-        quizHeader: "'འགྲིག་པ་དེ་འདེམས།",
+        quizHeader: "འགྲིག་པ་དེ་འདེམས།",
         quizScoreLbl: "ཐོབ་སྐར།",
         quizInstruction: "སྒྲ་ལ་ཉན་ནས་ཡི་གེ་འགྲིག་པ་དེ་འདེམས། ( ༥ )",
         quizChancesLbl: "གོ་སྐབས།",
@@ -1323,7 +1323,6 @@
         quizChancesLeft--;
         document.getElementById('quiz-chances').innerText = quizChancesLeft;
         buttonElem.classList.add('bg-red-100', 'border-red-400');
-        playSound(selected.id);
 
         if (quizChancesLeft <= 0) {
           quizAnswered = true;
@@ -1464,15 +1463,14 @@
 
         try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch(e) {}
 
-        playSound(selectedItem.id, () => {
+        setTimeout(() => {
           nextDragDropQuestion();
-        });
+        }, 1100);
 
       } else {
         ddChancesLeft--;
         document.getElementById('dd-chances').innerText = ddChancesLeft;
         dropBox.classList.add('bg-red-100', 'border-red-400');
-        playSound(selectedItem.id);
 
         if (ddChancesLeft <= 0) {
           ddAnswered = true;
@@ -1579,15 +1577,14 @@
 
         try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch(e) {}
 
-        playSound(selectedItem.id, () => {
+        setTimeout(() => {
           nextSearchTreeQuestion();
-        });
+        }, 1100);
 
       } else {
         stChancesLeft--;
         document.getElementById('st-chances').innerText = stChancesLeft;
         groupElem.classList.add('apple-wrong');
-        playSound(selectedItem.id);
 
         if (stChancesLeft <= 0) {
           stAnswered = true;
