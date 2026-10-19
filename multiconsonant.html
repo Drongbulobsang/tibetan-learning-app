@@ -691,7 +691,7 @@
         navHeader: "དཀར་ཆག",
         navGrid: "མིང་ཚིག",
         navFlashcards: "བྱང་བུ།",
-        navQuiz: "འགྲིག་པ་དེ་འདེམས།",'",
+        navQuiz: "འགྲིག་པ་དེ་འདེམས།",
         navDragdrop: "མཐུན་སྦྱོར་བྱོས།",
         navSpelling: "དག་ཆ་སྦྱོང་བརྡར།",
         navMemory: "དྲན་ཤེས་སྦྱོང་བརྡར།",
@@ -725,7 +725,7 @@
         flashPractice: "ཡིག་གཟུགས་སྦྱོང་།",
         btnPrev: "སྔོན་མ།",
         btnNext: "རྗེས་མ།",
-        quizHeader: "འགྲིག་པ་དེ་འདེམས།'",
+        quizHeader: "འགྲིག་པ་དེ་འདེམས།",
         quizScoreLbl: "ཐོབ་སྐར།",
         quizInstruction: "སྒྲ་ལ་ཉན་ནས་མིང་ཚིག་འགྲིག་པ་དེ་འདེམས།",
         quizChancesLbl: "གོ་སྐབས།",
@@ -1223,7 +1223,6 @@
         quizChancesLeft--;
         document.getElementById('quiz-chances').innerText = quizChancesLeft;
         buttonElem.classList.add('bg-red-100', 'border-red-400');
-        playSound(selected.id);
 
         if (quizChancesLeft <= 0) {
           quizAnswered = true;
@@ -1364,16 +1363,14 @@
 
         try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch(e) {}
 
-        // Play sound completely first, then advance question on end
-        playSound(selectedItem.id, () => {
+        setTimeout(() => {
           nextDragDropQuestion();
-        });
+        }, 1100);
 
       } else {
         ddChancesLeft--;
         document.getElementById('dd-chances').innerText = ddChancesLeft;
         dropBox.classList.add('bg-red-100', 'border-red-400');
-        playSound(selectedItem.id);
 
         if (ddChancesLeft <= 0) {
           ddAnswered = true;
@@ -1536,7 +1533,6 @@
       btnElem.classList.add('flipped', 'bg-white');
       if (card.type === 'char') {
         btnElem.innerHTML = `<span class="tibetan-font text-3xl font-bold text-red-900">${card.content}</span>`;
-        playSound(card.id);
       } else {
         btnElem.innerHTML = `<img src="${card.content}" class="h-16 object-contain" onerror="this.style.display='none'">`;
       }
